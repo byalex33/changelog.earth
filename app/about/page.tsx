@@ -1,21 +1,18 @@
 import Link from "next/link";
+import localFont from "next/font/local";
 import { Navbar } from "@/components/navbar";
 
-export const metadata = {title:"About us | changelog.earth",description:"The idea behind Earth's unofficial patch notes."};
+const nothing = localFont({src:"../../public/fonts/nothing/Ndot57-Regular.otf",display:"swap",weight:"400"});
+export const metadata = {title:"About Us | changelog.earth",description:"Why we made Earth's unofficial patch notes."};
 
 export default function AboutPage() {
  return <div className="site-shell">
   <Navbar/>
   <main className="about-page">
-   <p className="eyebrow">ABOUT CHANGELOG.EARTH</p>
-   <h1>Same planet.<br/>Always updating.</h1>
-   <p className="about-lead">Earth has patch notes. We collect discoveries, conservation wins and useful progress, then write them like updates to a game we all live in.</p>
-   <h2>Small updates, real stories</h2>
-   <p>Each daily edition aims for three to six worthwhile stories. Quiet days can have fewer. Previous editions stay in the archive, so the good things do not disappear with the next refresh.</p>
-   <h2>Playful titles. Sources attached.</h2>
-   <p>AI helps select stories and write the patch notes. Every entry links to the original reporting, with more context behind its info button. The game language is for fun; the linked source is the reference for the facts.</p>
-   <h2>Built in the open</h2>
-   <p>Created by <a href="https://alex.codes">Alex</a>. The project is open source, and ideas, fixes and contributions are welcome on <a href="https://github.com/byalex33/changelog.earth" target="_blank" rel="noreferrer">GitHub</a>.</p>
+   <h1 className={nothing.className}>About Us</h1>
+   <p className="about-lead">We made changelog.earth to keep track of the good things that are easy to miss in the news. A new species or a restored habitat deserves a moment of attention.</p>
+   <p>Game patch notes felt like a fun way to tell those stories. So we gave Earth a changelog, with a few real updates each day and links to the reporting behind them.</p>
+   <p>Created by <a href="https://alex.codes">Alex</a>, with AI helping select and write the updates. The code is open on <a href="https://github.com/byalex33/changelog.earth" target="_blank" rel="noreferrer">GitHub</a>.</p>
    <Link className="github-pill" href="/">Back to the patch notes ↗</Link>
   </main>
  </div>;

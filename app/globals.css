@@ -210,3 +210,5 @@ body{letter-spacing:var(--letter-spacing)}
 
 .topbar{display:grid;grid-template-columns:1fr auto 1fr;gap:24px}.topbar .brand{justify-self:start}.topbar>.github-pill{justify-self:end}.topbar nav{font:13px var(--theme-font-mono);color:var(--muted-foreground)}.topbar nav a{display:inline-block;padding:12px 0}.about-page{max-width:820px;margin:64px auto 90px}.about-page h1{margin-bottom:28px}.about-page h2{font-size:20px;font-weight:500;margin:36px 0 12px}.about-page p{color:var(--muted-foreground);line-height:1.85}.about-page .about-lead{font-size:19px}.about-page p a{color:var(--foreground);text-decoration:underline;text-underline-offset:4px}.about-page>.github-pill{margin-top:28px}
 @media(max-width:600px){.topbar{grid-template-columns:1fr auto;gap:0 12px;height:auto;min-height:96px;padding-top:12px}.topbar nav{grid-column:1/-1;grid-row:2;justify-self:center}.about-page{margin:40px auto 60px}.about-page h1{font-size:40px}}
+
+.about-page h1{font-weight:400;font-size:clamp(48px,7vw,80px);letter-spacing:0;line-height:1.15}

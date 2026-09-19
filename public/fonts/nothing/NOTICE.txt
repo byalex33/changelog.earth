@@ -1,0 +1,4 @@
+Ndot57 Regular
+Source: https://github.com/xeji01/nothingfont
+Upstream credit: NOTHING Tech. All Rights Reserved.
+No font license is provided in that repository. This third-party font is not covered by the project MIT license.
