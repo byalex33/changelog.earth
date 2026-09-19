@@ -12,7 +12,9 @@ const fetcher = async (url, options) => {
  assert.ok(!url.includes('test'));
  const body=JSON.parse(options.body);
  assert.ok(body.systemInstruction.parts[0].text.includes('Never joke about suffering'));
- assert.equal(JSON.parse(body.contents[0].parts[0].text).length,8);
+ const candidates=JSON.parse(body.contents[0].parts[0].text).candidates;
+ assert.equal(candidates.length,8);
+ assert.equal(candidates[0].date,'2026-09-19');
  return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:JSON.stringify({entries:[entry]})}]}}]});
 };
 const opts = {apiKey:'test',fetcher,now:1_000_000};

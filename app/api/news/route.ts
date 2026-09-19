@@ -1,11 +1,12 @@
-import { getNews, sourceCount } from "@/lib/news.mjs";
-import { getChangelog, editionCacheControl } from "@/lib/changelog.mjs";
+import { getNews } from "@/lib/news.mjs";
+import { getPublishedChangelog } from "@/lib/published-changelog.mjs";
+import { editionCacheControl } from "@/lib/changelog.mjs";
 export const dynamic = "force-dynamic";
 export async function GET() {
  const news = await getNews();
- const edition = await getChangelog(news, {apiKey:process.env.GEMINI_API_KEY, model:process.env.GEMINI_MODEL,hfToken:process.env.HF_TOKEN,hfModel:process.env.HF_MODEL});
+ const edition = await getPublishedChangelog(news);
  return Response.json(edition, {
-  status: news.articles.length === 0 && news.unavailable.length === sourceCount ? 503 : 200,
+  status: edition.articles.length ? 200 : 503,
   headers: {
    "Cache-Control": "public, max-age=0, must-revalidate",
    "Vercel-CDN-Cache-Control": editionCacheControl(edition),
