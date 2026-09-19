@@ -32,7 +32,7 @@ changelog.earth collects recent reporting and turns selected headlines into shor
 - **A small edition.** Up to six stories, prioritising discoveries, conservation wins and useful progress.
 - **Reporting you can trace.** Original links, publishers and dates stay attached to every update.
 - **A living terminal.** A rotating ASCII Earth, dated panels and compact source stacks.
-- **Visible fallbacks.** Original headlines when Gemini is unavailable; cached stories and feed failures are labelled.
+- **Curated fallbacks.** If Gemini fails, try Hugging Face when configured, then reuse the last generated edition for up to 24 hours within the same server instance. A cold start during an outage shows an editor-unavailable message; raw headlines never fill the gap.
 
 ## Run locally
 
@@ -49,13 +49,16 @@ Copy `.env.example` to `.env.local`, then add your Gemini API key:
 ```dotenv
 GEMINI_API_KEY=your_key_here
 GEMINI_MODEL=gemini-3.5-flash
+# Optional fallback; token needs Inference Providers permission and available credits
+HF_TOKEN=
+HF_MODEL=Qwen/Qwen3.5-35B-A3B
 ```
 
 ```sh
 npm run dev
 ```
 
-Open **http://localhost:5173**. Without a key, the app still fetches news and shows original headlines. Restart the server after changing environment variables. Keep the key server-side; never use a `NEXT_PUBLIC_` variable for it.
+Open **http://localhost:5173**. Without either provider's key, the app fetches news but cannot generate an edition. Restart the server after changing environment variables. Keep both keys server-side; never use a `NEXT_PUBLIC_` variable for them. Configure the same variables in your hosting environment for production. Hugging Face uses the same selection prompt and source validation as Gemini. The Qwen fallback runs without extra reasoning so the token budget goes to the JSON edition.
 
 ## How it works
 
@@ -64,19 +67,19 @@ flowchart LR
     A[24 RSS feeds] --> D[Validate and deduplicate]
     B[GDELT] --> D
     C[Spaceflight News] --> D
-    D --> E[Recent headlines]
+    D --> E[Science, nature, positive news, tech and aviation]
     E --> F[Gemini selects up to 6 stories]
     F --> G[Dated patch notes]
-    E --> H[Original-headline fallback]
+    F --> H[Last curated edition during outages]
     H --> G
     G --> I[Publisher summaries and source links]
 ```
 
 The current directory covers **26 feeds across 18 source organisations**. The server keeps stories from the last seven days, checks healthy sources again after 15 minutes, and can reuse previously fetched stories for up to 24 hours during outages. Refresh checks happen when the API is requested, rather than through a background scheduler.
 
-Gemini receives headlines and categories. It selects and rewrites them, while source URLs and dates come from the validated feed data. Publisher summaries are displayed separately. Generated labels can be wrong, so the linked reporting remains the reference. GDELT timestamps indicate indexing time rather than publication time.
+Gemini receives headlines from relevant categories. The editorial prompt excludes politics, war, crime, lawsuits, sports disputes and outrage stories. It selects and rewrites them, while source URLs and dates come from the validated feed data. Publisher summaries are displayed separately. Generated labels can be wrong, so the linked reporting remains the reference. GDELT timestamps indicate indexing time rather than publication time.
 
-On Vercel, generated editions stay fresh in the CDN for 15 minutes and can be served for another hour while refreshing in the background. Fallback headlines are cached for one minute. Empty editions are not cached. Feed requests time out after eight seconds; the first uncached edition can still take longer while Gemini writes it, with an animated ASCII signal showing progress.
+On Vercel, generated editions stay fresh in the CDN for 15 minutes and can be served for another hour while refreshing in the background. Previously curated editions served during outages are cached for one minute. Empty editions are not cached. Feed requests time out after eight seconds; the first uncached edition can still take longer while Gemini writes it, with an animated ASCII signal showing progress.
 
 Server-side caching and request coalescing are also in memory, per instance. They are not a global rate or spending limit.
 
@@ -107,7 +110,7 @@ These cover feed parsing, validation, deduplication, cache and outage behaviour,
 
 ## Deploy to Vercel
 
-Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GEMINI_API_KEY` as a server-side environment variable and optionally set `GEMINI_MODEL`, then deploy. The news function allows up to 120 seconds for upstream fetches and generation.
+Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GEMINI_API_KEY` and `HF_TOKEN` as server-side environment variables, optionally set `GEMINI_MODEL` and `HF_MODEL`, then deploy. The news function allows up to 120 seconds for upstream fetches and generation.
 
 For analytics, create a website in [Tracwell](https://tracwell.app/docs/browser-sdk), use its **private** collection mode, and add the production domain to its allowed domains. Set `NEXT_PUBLIC_TRACWELL_PROJECT_KEY` to the public browser project key before building. No analytics script is loaded when this value is absent. Never use a Tracwell server key in this variable.
 
@@ -140,3 +143,4 @@ Project code is available under the [MIT license](LICENSE). Third-party componen
 - [JetBrains Mono](public/fonts/JetBrainsMono-OFL.txt) and [Plus Jakarta Sans](public/fonts/PlusJakartaSans-OFL.txt), under the SIL Open Font License
 
 News articles, publisher summaries, names and logos belong to their respective owners. The software license does not relicense that content. This project is not affiliated with the publishers it links to.
+

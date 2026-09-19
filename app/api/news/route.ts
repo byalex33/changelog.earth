@@ -3,7 +3,7 @@ import { getChangelog, editionCacheControl } from "@/lib/changelog.mjs";
 export const dynamic = "force-dynamic";
 export async function GET() {
  const news = await getNews();
- const edition = await getChangelog(news, {apiKey:process.env.GEMINI_API_KEY, model:process.env.GEMINI_MODEL});
+ const edition = await getChangelog(news, {apiKey:process.env.GEMINI_API_KEY, model:process.env.GEMINI_MODEL,hfToken:process.env.HF_TOKEN,hfModel:process.env.HF_MODEL});
  return Response.json(edition, {
   status: news.articles.length === 0 && news.unavailable.length === sourceCount ? 503 : 200,
   headers: {
