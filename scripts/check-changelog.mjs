@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {getChangelog, validateEdition} from '../lib/changelog.mjs';
+import {getChangelog, validateEdition, editionCacheControl} from '../lib/changelog.mjs';
 const news = {articles:Array.from({length:8}, (_,i) => ({title:`Community restores forest ${i}`,url:`https://example.org/${i}`,date:'2026-09-19',publisher:'Example',category:'Positive news'})),checkedAt:1,unavailable:[],stale:[]};
 const entry = {sourceId:2,title:'Forest restored',note:'The community restored a forest. More room for the neighbours with wings.',kind:'Improved'};
 assert.equal(validateEdition({entries:[{...entry,url:'https://wrong.example'}]},news.articles)[0].url,news.articles[2].url);
@@ -20,6 +20,9 @@ assert.equal((await getChangelog(news)).editorial,'unconfigured');
 const [first,second] = await Promise.all([getChangelog(news,opts),getChangelog(news,opts)]);
 assert.equal(calls,1); assert.deepEqual(first,second); assert.equal(first.editorial,'generated');
 assert.equal(first.articles[0].originalTitle,news.articles[2].title);
+assert.equal(editionCacheControl(first),'public, s-maxage=900, stale-while-revalidate=3600');
+assert.equal(editionCacheControl({...first,editorial:'unavailable'}),'public, s-maxage=60, stale-while-revalidate=60');
+assert.equal(editionCacheControl({...first,articles:[]}),'no-store');
 await getChangelog(news,{...opts,now:opts.now+1000}); assert.equal(calls,1);
 const failed = {...opts,now:opts.now+3_600_001,fetcher:async()=>{calls++;return new Response('',{status:429});}};
 assert.equal((await getChangelog(news,failed)).editorial,'unavailable');

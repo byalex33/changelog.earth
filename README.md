@@ -76,7 +76,9 @@ The current directory covers **26 feeds across 18 source organisations**. The se
 
 Gemini receives headlines and categories. It selects and rewrites them, while source URLs and dates come from the validated feed data. Publisher summaries are displayed separately. Generated labels can be wrong, so the linked reporting remains the reference. GDELT timestamps indicate indexing time rather than publication time.
 
-Caching and request coalescing are in memory, per Worker isolate. They are not a global rate or spending limit.
+On Vercel, generated editions stay fresh in the CDN for 15 minutes and can be served for another hour while refreshing in the background. Fallback headlines are cached for one minute. Empty editions are not cached. Feed requests time out after eight seconds; the first uncached edition can still take longer while Gemini writes it, with an animated ASCII signal showing progress.
+
+Server-side caching and request coalescing are also in memory, per instance. They are not a global rate or spending limit.
 
 ## Make it yours
 

@@ -179,3 +179,11 @@ body{letter-spacing:var(--letter-spacing)}
 .patch-line{color:#e8b45f}.patch-line[data-kind=Added]{color:#85d6a1}.patch-line[data-kind=Removed]{color:#f18b8b}.patch-line[data-kind=Patched],.patch-line[data-kind=Fixed]{color:#80b9f3}.patch-line a:hover{color:inherit}
 
 .terminal-titlebar h3{margin:0;font:inherit;color:var(--foreground)}.news-day.terminal-window{margin-top:24px;margin-bottom:28px}
+
+.ascii-loader{display:flex;align-items:center;gap:24px;margin:22px 0;padding:26px 28px;border:1px dashed var(--border);border-radius:12px;background:var(--card);font:12px/1.7 var(--theme-font-mono)}
+.ascii-loader-dish{margin:0;color:#85d6a1;font:14px/1.3 var(--theme-font-mono);animation:signal-pulse 1.8s ease-in-out infinite}
+.ascii-loader .ascii-loader-title{color:var(--foreground);font-size:13px;margin:0 0 8px}.ascii-loader-cursor{animation:signal-pulse 1s steps(2,end) infinite}
+.ascii-loader-scan{position:relative;width:26ch;color:var(--muted-foreground);overflow:hidden;white-space:pre}.ascii-loader-scan i{position:absolute;left:1ch;top:0;color:#85d6a1;background:var(--card);font-style:normal;animation:signal-scan 2.4s steps(21,end) infinite alternate}
+@keyframes signal-scan{to{transform:translateX(21ch)}}@keyframes signal-pulse{50%{opacity:.35}}
+@media(max-width:600px){.ascii-loader{padding:20px 16px;gap:14px}.ascii-loader-dish{font-size:11px}.ascii-loader .ascii-loader-title{font-size:12px}.ascii-loader-scan{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.ascii-loader-dish,.ascii-loader-cursor,.ascii-loader-scan i{animation:none}}
