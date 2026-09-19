@@ -89,7 +89,7 @@ Caching and request coalescing are in memory, per Worker isolate. They are not a
 | Edit the page and theme | [`app/page.tsx`](app/page.tsx) and [`app/globals.css`](app/globals.css) |
 | Change story popouts and the source directory | [`components/news-details.tsx`](components/news-details.tsx) |
 
-Built with **React 19, TypeScript, Tailwind CSS 4 and Vinext**, using Cloudflare Workers for the server runtime. Gemini uses the REST API directly. The interface uses shadcn/ui, Radix, Motion and Hugeicons.
+Built with **React 19, TypeScript, Tailwind CSS 4 and Vinext**, with a Cloudflare Workers development runtime and a Next.js build for Vercel. Gemini uses the REST API directly. The interface uses shadcn/ui, Radix, Motion and Hugeicons.
 
 ## Checks
 
@@ -103,7 +103,15 @@ These cover feed parsing, validation, deduplication, cache and outage behaviour,
 
 `npm run lint` runs ESLint. The starter currently has lint findings in existing UI code; a passing lint badge is intentionally not claimed.
 
-## Build and host
+## Deploy to Vercel
+
+Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GEMINI_API_KEY` as a server-side environment variable and optionally set `GEMINI_MODEL`, then deploy. The news function allows up to 120 seconds for upstream fetches and generation.
+
+For analytics, create a website in [Tracwell](https://tracwell.app/docs/browser-sdk), use its **private** collection mode, and add the production domain to its allowed domains. Set `NEXT_PUBLIC_TRACWELL_PROJECT_KEY` to the public browser project key before building. No analytics script is loaded when this value is absent. Never use a Tracwell server key in this variable.
+
+Add your custom domain in the Vercel project settings and apply the DNS records Vercel provides at your DNS host.
+
+## Build for Cloudflare
 
 ```sh
 npm run build

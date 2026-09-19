@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,7 +21,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        {process.env.NEXT_PUBLIC_TRACWELL_PROJECT_KEY && (
+          <Script
+            src="https://collect.tracwell.app/script.js"
+            data-project-key={process.env.NEXT_PUBLIC_TRACWELL_PROJECT_KEY}
+            data-collection-mode="private"
+            strategy="afterInteractive"
+          />
+        )}
+      </body>
     </html>
   );
 }
