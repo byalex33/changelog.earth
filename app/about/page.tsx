@@ -12,7 +12,7 @@ export default function AboutPage() {
    <h1 className={nothing.className}>About Us</h1>
    <p className="about-lead">We made changelog.earth to keep track of the good things that are easy to miss in the news. A new species or a restored habitat deserves a moment of attention.</p>
    <p>Game patch notes felt like a fun way to tell those stories. So we gave Earth a changelog, with a few real updates each day and links to the reporting behind them.</p>
-   <p>Created by <a href="https://alex.codes">Alex</a>, with AI helping select and write the updates. The code is open on <a href="https://github.com/byalex33/changelog.earth" target="_blank" rel="noreferrer">GitHub</a>.</p>
+   <p>Created by <a href="https://alex.codes">Alex</a>. The code is open on <a href="https://github.com/byalex33/changelog.earth" target="_blank" rel="noreferrer">GitHub</a>.</p>
    <Link className="github-pill" href="/">Back to the patch notes ↗</Link>
   </main>
  </div>;
