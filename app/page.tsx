@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import EarthIcon from "@hugeicons/core-free-icons/EarthIcon";
 import GitBranchIcon from "@hugeicons/core-free-icons/GitBranchIcon";
+import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
 import { AsciiEarth } from "@/components/ascii-earth";
 import { StoryInfo, Sources } from "@/components/news-details";
 
@@ -13,6 +14,18 @@ type News = {editorial?:string;articles:Article[];checkedAt:number;unavailable:s
 const patchSymbols:Record<string,string>={Added:'+',Removed:'-',Changed:'~',Improved:'~',Fixed:'*',Patched:'*'};
 const dayFormat = new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
 export default function Home() {
+ const [stars,setStars] = useState<number | null>(null);
+ useEffect(() => {
+  const controller = new AbortController();
+  fetch('https://api.github.com/repos/byalex33/changelog.earth',{signal:controller.signal})
+   .then(response => response.ok ? response.json() : null)
+   .then(repo => {
+    const count = repo && typeof repo === 'object' && 'stargazers_count' in repo ? repo.stargazers_count : null;
+    if (typeof count === 'number' && Number.isSafeInteger(count) && count >= 0) setStars(count);
+   })
+   .catch(() => {}); // The repository link still works if GitHub is unavailable.
+  return () => controller.abort();
+ },[]);
  const [news, setNews] = useState<News | null>(null);
  const [visibleCount,setVisibleCount] = useState(30);
  const [loading, setLoading] = useState(true);
@@ -32,7 +45,7 @@ export default function Home() {
  useEffect(() => { const controller=new AbortController(); void refresh(controller.signal); return () => controller.abort(); },[refresh]);
  const groups = Object.groupBy((news?.articles ?? []).slice(0,visibleCount), article => article.date.slice(0,10));
  return <div className="site-shell">
-  <header className="topbar"><a className="brand" href="/" aria-label="changelog.earth home"><HugeiconsIcon icon={EarthIcon} size={25}/><span>changelog<span className="mint">.earth</span></span></a></header>
+  <header className="topbar"><a className="brand" href="/" aria-label="changelog.earth home"><HugeiconsIcon icon={EarthIcon} size={25}/><span>changelog<span className="mint">.earth</span></span></a><a className="github-pill" href="https://github.com/byalex33/changelog.earth" target="_blank" rel="noreferrer" aria-label={`GitHub repository${stars === null ? '' : `, ${stars} stars`}`}><HugeiconsIcon icon={GithubIcon} size={18} aria-hidden="true"/><span className="github-label">GitHub</span><span className="github-stars"><span aria-hidden="true">☆</span> {stars === null ? '—' : stars.toLocaleString('en-GB')}</span></a></header>
   <main><section className="intro"><div className="intro-copy"><div className="eyebrow"><HugeiconsIcon icon={GitBranchIcon} size={15}/> EARTH / LIVE PATCHES</div><h1>Same planet.<br/>New patch.</h1><p>New spawns. World upgrades. The occasional bug fix.<br/>Real news, written like game updates.</p><div className="intro-meta"><span className="mint">●</span> 4.54 billion years online. Still in beta.</div></div><div className="planet-panel"><AsciiEarth/></div></section>
   <section aria-label="Patch notes" id="releases">
   {(error || (loading && !news) || news?.articles.length === 0) && <div className="feed-status" aria-live="polite">{error ? <p role="alert">{error}{news && ' Showing the last loaded feed.'}</p> : loading && !news ? <div className="ascii-loader">
