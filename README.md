@@ -11,7 +11,7 @@ A few good things on Earth, one patch at a time.
 [![Node.js](https://img.shields.io/badge/Node.js-22.13%2B-85d6a1?style=flat-square)](#run-locally)
 [![React](https://img.shields.io/badge/React-19-80b9f3?style=flat-square)](package.json)
 
-[Run locally](#run-locally) · [How it works](#how-it-works) · [Contribute](#contributing)
+[Live site](https://www.changelog.earth) · [Run locally](#run-locally) · [How it works](#how-it-works) · [Contribute](#contributing)
 
 </div>
 
