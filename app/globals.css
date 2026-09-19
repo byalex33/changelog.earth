@@ -188,3 +188,22 @@ body{letter-spacing:var(--letter-spacing)}
 @media(max-width:600px){.ascii-loader{padding:20px 16px;gap:14px}.ascii-loader-dish{font-size:11px}.ascii-loader .ascii-loader-title{font-size:12px}.ascii-loader-scan{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.ascii-loader-dish,.ascii-loader-cursor,.ascii-loader-scan i{animation:none}}
 .github-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:999px;padding:8px 13px;background:var(--card);color:var(--foreground);font:12px var(--theme-font-mono);white-space:nowrap;transition:background .15s,border-color .15s}.github-pill:hover{background:var(--secondary);border-color:var(--muted-foreground)}.github-stars{display:inline-flex;align-items:center;gap:5px;border-left:1px solid var(--border);padding-left:9px;font-variant-numeric:tabular-nums}.github-stars>span{font-size:17px;color:var(--muted-foreground)}@media(max-width:420px){.github-label{display:none}.github-pill{padding:7px 10px;gap:7px}.topbar{gap:12px}}
+.hero-heading{position:relative;isolation:isolate;display:inline-block;padding:20px 0}.intro .hero-title{position:relative;z-index:1;font-size:clamp(52px,6.5vw,88px);line-height:.95;letter-spacing:-.065em;margin:0;text-shadow:0 0 20px #ffffff20;filter:drop-shadow(0 0 10px #ffffff18)}.hero-title>span{display:block}.hero-title>span+span{color:var(--muted-foreground)}@media(max-width:600px){.intro .hero-title{font-size:clamp(48px,12vw,72px)}}
+.brand .ascii-earth-compact{width:36px;height:36px;flex:none}.brand .ascii-earth-compact pre{font-size:3px;line-height:3.6px;text-shadow:none}
+.site-footer{padding:0 22px 28px;text-align:center;color:var(--muted-foreground);font:12px/1.8 var(--theme-font-mono)}.site-footer>span,.site-footer>a{color:var(--primary)}.site-footer>a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.intro{position:relative;isolation:isolate}.intro-copy{position:relative;z-index:1}.hero-stars{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}.hero-star{position:absolute;border-radius:50%;background:#e3edf9;opacity:.4;box-shadow:0 0 4px #c6ddff60;animation:star-twinkle 6s ease-in-out infinite alternate}
+.hero-meteor{position:absolute;left:28%;top:6%;width:110px;height:1px;background:linear-gradient(90deg,transparent,#d9eaff);transform:rotate(32deg);transform-origin:right center;opacity:0;animation:meteor-pass 19s linear 3s infinite}.hero-meteor:nth-last-child(2){left:58%;top:12%;animation-duration:29s;animation-delay:11s}.hero-meteor:last-child{left:75%;top:4%;width:75px;animation-duration:37s;animation-delay:23s}
+@keyframes star-twinkle{to{opacity:.85;transform:scale(1.25)}}
+@keyframes meteor-pass{0%,6%,100%{opacity:0;transform:translate(0,0) rotate(32deg)}.8%{opacity:.8}5%{opacity:0;transform:translate(260px,162px) rotate(32deg)}}
+@media(prefers-reduced-motion:reduce){.hero-star{animation:none}.hero-meteor{display:none}}
+
+.hero-star:nth-child(6n+2){background:#fff;box-shadow:0 0 7px #d6eaff;animation-name:star-sparkle;animation-direction:normal}
+.hero-star:nth-child(6n+2)::before,.hero-star:nth-child(6n+2)::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:linear-gradient(transparent,#eaf4ff,transparent);width:1px;height:9px}
+.hero-star:nth-child(6n+2)::after{transform:translate(-50%,-50%) rotate(90deg);height:7px}
+@keyframes star-sparkle{0%,65%,100%{opacity:.2;transform:scale(.55)}35%{opacity:1;transform:scale(1.3)}48%{opacity:.45;transform:scale(.8)}}
+@media(prefers-reduced-motion:reduce){.hero-star:nth-child(6n+2){animation:none;opacity:.55}}
+.intro{justify-content:center;gap:clamp(24px,6vw,90px)}.intro .planet-panel{margin:0;flex-shrink:0}.intro .intro-copy{min-width:0}.intro .hero-title{font-size:clamp(42px,6vw,80px)}
+@media(max-width:600px){.intro{gap:16px;min-height:260px}.intro .planet-panel{position:relative;inset:auto;width:100px;height:160px;opacity:1;z-index:1}.intro .planet-panel .ascii-earth{width:100px;height:140px}.intro .planet-panel .ascii-earth pre{font-size:3px;line-height:3.5px}.intro .hero-title{font-size:clamp(24px,6vw,36px);letter-spacing:-.05em}}
+
+.hero-share{display:flex;width:fit-content;margin:16px auto 0;position:relative;z-index:1}

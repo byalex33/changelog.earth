@@ -29,10 +29,10 @@ What if the news read like a game's patch notes?
 
 changelog.earth collects recent reporting and turns selected headlines into short planetary updates. Open a story's info button for the original headline, publisher summary and source link. The examples above illustrate the editorial style; the feed changes as new stories arrive.
 
-- **A small edition.** Up to six stories, prioritising discoveries, conservation wins and useful progress.
+- **Daily editions.** Aim for 3–6 worthwhile stories per publication day, prioritising discoveries, conservation wins and useful progress. Quiet days can have fewer.
 - **Reporting you can trace.** Original links, publishers and dates stay attached to every update.
 - **A living terminal.** A rotating ASCII Earth, dated panels and compact source stacks.
-- **Curated fallbacks.** If Gemini fails, try Hugging Face when configured, then reuse the last generated edition for up to 24 hours within the same server instance. A cold start during an outage shows an editor-unavailable message; raw headlines never fill the gap.
+- **Curated fallbacks.** If Gemini fails, try Hugging Face when configured, then reuse the last generated edition for up to 24 hours within the same server instance. The versioned archive remains available on cold starts; raw headlines never fill the gap.
 
 ## Run locally
 
@@ -58,7 +58,7 @@ HF_MODEL=Qwen/Qwen3.5-35B-A3B
 npm run dev
 ```
 
-Open **http://localhost:5173**. Without either provider's key, the app fetches news but cannot generate an edition. Restart the server after changing environment variables. Keep both keys server-side; never use a `NEXT_PUBLIC_` variable for them. Configure the same variables in your hosting environment for production. Hugging Face uses the same selection prompt and source validation as Gemini. The Qwen fallback runs without extra reasoning so the token budget goes to the JSON edition.
+Open **http://localhost:5173**. Without either provider's key, the app serves the saved archive but cannot select new stories. Restart the server after changing environment variables. Keep both keys server-side; never use a `NEXT_PUBLIC_` variable for them. Configure the same variables in your hosting environment for production. Hugging Face uses the same selection prompt and source validation as Gemini. The Qwen fallback runs without extra reasoning so the token budget goes to the JSON edition.
 
 ## How it works
 
@@ -68,7 +68,7 @@ flowchart LR
     B[GDELT] --> D
     C[Spaceflight News] --> D
     D --> E[Science, nature, positive news, tech and aviation]
-    E --> F[Gemini selects up to 6 stories]
+    E --> F[Gemini fills daily editions]
     F --> G[Dated patch notes]
     F --> H[Last curated edition during outages]
     H --> G
@@ -79,7 +79,7 @@ The current directory covers **26 feeds across 18 source organisations**. The se
 
 Gemini receives headlines from relevant categories. The editorial prompt excludes politics, war, crime, lawsuits, sports disputes and outrage stories. It selects and rewrites them, while source URLs and dates come from the validated feed data. Publisher summaries are displayed separately. Generated labels can be wrong, so the linked reporting remains the reference. GDELT timestamps indicate indexing time rather than publication time.
 
-On Vercel, generated editions stay fresh in the CDN for 15 minutes and can be served for another hour while refreshing in the background. Previously curated editions served during outages are cached for one minute. Empty editions are not cached. Feed requests time out after eight seconds; the first uncached edition can still take longer while Gemini writes it, with an animated ASCII signal showing progress.
+The homepage is generated with a complete edition before deployment. Next.js serves that cached HTML immediately, including to first-time visitors, and regenerates it in the background on visits after 15 minutes. Failed or empty regeneration keeps the previous page; an initial build without a valid edition fails instead of publishing an empty feed. The browser no longer waits for /api/news. The separate API still caches generated editions in the CDN for 15 minutes and allows an hour of stale serving during refreshes. Previously curated editions served during outages are cached for one minute. Empty editions are not cached. Feed requests time out after eight seconds. News and AI latency is paid during builds and background regeneration, rather than on the normal visitor loading path. Local development renders on demand; use a production build to measure caching.
 
 Server-side caching and request coalescing are also in memory, per instance. They are not a global rate or spending limit.
 
@@ -106,7 +106,7 @@ node scripts/check-earth.mjs
 
 These cover feed parsing, validation, deduplication, cache and outage behaviour, generated-output validation, source integrity, and globe geometry. The checks use Node's built-in assertions and mocked requests.
 
-`npm run lint` runs ESLint. The starter currently has lint findings in existing UI code; a passing lint badge is intentionally not claimed.
+`npm run lint` runs ESLint. Current checks pass with one advisory about the small external favicon images.
 
 ## Deploy to Vercel
 
@@ -144,3 +144,11 @@ Project code is available under the [MIT license](LICENSE). Third-party componen
 
 News articles, publisher summaries, names and logos belong to their respective owners. The software license does not relicense that content. This project is not affiliated with the publishers it links to.
 
+
+### Edition archive
+
+`data/editions.json` retains published stories by their source publication date. New selections fill up to six places per day without replacing earlier entries. Exact source URLs and original headlines are deduplicated; the editor also receives previous selections to avoid covering the same event twice. There is no automatic expiry of archived days.
+
+The **Archive daily editions** GitHub Actions workflow collects the live curated API every six hours and commits additions. It can also be run manually. It requires no AI secrets in GitHub. On Vercel, the app reads that public archive with a 15-minute cache and falls back to its bundled copy if GitHub is unavailable. New selections made between archive runs are provisional until the next successful save. GitHub can delay scheduled runs; failures remain visible in Actions.
+
+Run `node scripts/check-archive.mjs` to check daily limits, duplicate prevention, retention and cold-outage behavior. To capture a local edition, set `EDITION_URL=http://localhost:5176/api/news` before running `node scripts/archive-editions.mjs`.
