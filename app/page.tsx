@@ -1,7 +1,8 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { EarthIcon, GitBranchIcon } from "@hugeicons/core-free-icons";
+import EarthIcon from "@hugeicons/core-free-icons/EarthIcon";
+import GitBranchIcon from "@hugeicons/core-free-icons/GitBranchIcon";
 import { AsciiEarth } from "@/components/ascii-earth";
 import { StoryInfo, Sources } from "@/components/news-details";
 
