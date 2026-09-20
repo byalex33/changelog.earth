@@ -95,7 +95,7 @@
     "scopeReason": "Local fox rehabilitation in England, not global impact"
   },
   {
-    "title": "Starlink V2 Mini constellation expands with 27 new satellites",
+    "title": "Planned launch queues 27 Starlink V2 Mini satellites",
     "summary": "Liftoff from pad 4E at Vandenberg Space Force Base is scheduled during a window that opens at 6:47 p.m. PDT (9:47 p.m. EDT / 0147 UTC). It will be the 81st Starlink mission of the year.",
     "url": "https://spaceflightnow.com/2026/09/19/live-coverage-spacex-to-launch-27-starlink-v2-mini-satellites-on-falcon-9-rocket-from-vandenberg/",
     "date": "2026-09-19T20:06:04.000Z",
@@ -103,14 +103,14 @@
     "publisher": "Spaceflight Now",
     "provider": "Spaceflight News",
     "category": "Space",
-    "kind": "Added",
+    "kind": "Updated",
     "originalTitle": "Live coverage: SpaceX to launch 27 Starlink V2 Mini satellites on Falcon 9 rocket from Vandenberg",
-    "note": "SpaceX lifted 27 Starlink V2 Mini satellites on a Falcon 9 from Vandenberg, adding to the worldwide low‑orbit broadband network.",
+    "note": "SpaceX plans to launch 27 Starlink V2 Mini satellites on a Falcon 9 from Vandenberg. The source describes a scheduled launch window, not a confirmed liftoff.",
     "worldwide": true,
-    "scopeReason": "Launch adds 27 Starlink V2 Mini satellites, extending worldwide broadband coverage",
-    "titleRevision": 1,
-    "titleProvider": "groq",
-    "titleModel": "openai/gpt-oss-120b",
+    "scopeReason": "Planned satellite mission for the Starlink constellation; launch completion is not established by the supplied source.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-reviewed",
     "titleStyleVersion": 5
   },
   {
