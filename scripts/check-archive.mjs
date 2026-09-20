@@ -36,3 +36,6 @@ assert.equal(fuller.articles.filter(a=>a.date==='2026-09-18').length,6);
 assert.deepEqual(fuller.articles.find(a=>a.url===previous[1].url),previous[1]);
 assert.equal(fuller.articles.length,12);
 console.log('Daily limits, multi-day selection, duplicate prevention, idempotent archives and cold-outage retention pass.');
+const excludedDay=Array.from({length:6},(_,i)=>({...story(100+i),worldwide:false}));
+assert.equal(mergeEditions(excludedDay,[story(200)]).length,7,'Excluded local stories must not consume worldwide daily slots');
+assert.throws(()=>validateArchive([{...story(300),worldwide:'yes'}]));
