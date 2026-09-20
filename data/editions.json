@@ -1,5 +1,24 @@
 [
   {
+    "title": "£1 million grant supports local green‑space protection",
+    "summary": "The cash can be used by local communities to protect threatened green spaces and wildlife sites.",
+    "url": "https://www.bbc.co.uk/news/articles/c9y7zmg53nrzo?at_medium=RSS&at_campaign=rss",
+    "date": "2026-09-20T06:55:28.000Z",
+    "dateLabel": "Published",
+    "publisher": "BBC News",
+    "provider": "BBC News · Science & environment",
+    "category": "Science & nature",
+    "kind": "Updated",
+    "originalTitle": "New £1m grant to help groups protect green spaces",
+    "note": "A new grant of £1 million is available for local groups to safeguard at‑risk green areas and wildlife habitats.",
+    "worldwide": false,
+    "scopeReason": "Local UK grant for community green‑space protection, no global relevance",
+    "titleRevision": 1,
+    "titleProvider": "groq",
+    "titleModel": "openai/gpt-oss-120b",
+    "titleStyleVersion": 5
+  },
+  {
     "title": "NYC adds trees and bike lane to Park Avenue",
     "summary": "Until the 1920s Park Avenue in Manhattan actually park running through it. Now, New York City has unveiled a new plan for transforming Park Avenue back into its original natural character, adding trees, benches, and a protected bike lane. Mayor Mamdani and the NYC Department of Transportation are updating 11 blocks of the wide street, […] The post New York City is Putting ‘The Park’ Back in Park Avenue – And Adding a Protected Bike Lane (LOOK) appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/new-york-city-is-putting-the-park-back-in-park-avenue/",
@@ -38,6 +57,25 @@
     "scopeReason": "Docking of Russian cargo ship to ISS supports international space operations"
   },
   {
+    "title": "Flexjet receives first Embraer Praetor 600E aircraft",
+    "summary": "Embraer has delivered the first Praetor 600E business jet to Flexjet, making the private aviation company the fleet launch customer for the upgraded super-midsize aircraft. The delivery forms part of the companies’ agreement announced in February 2025, valued at up to $7 billion. It includes firm orders for 182 aircraft, options for another 30 and […]",
+    "url": "https://www.aviation24.be/business-jet-operators/flexjet/flexjet-receives-first-embraer-praetor-600e/",
+    "date": "2026-09-19T20:36:21.000Z",
+    "dateLabel": "Published",
+    "publisher": "Aviation24.be",
+    "provider": "Aviation24.be",
+    "category": "Aviation",
+    "kind": "Added",
+    "originalTitle": "Flexjet receives first Embraer Praetor 600E",
+    "note": "Embraer delivered the first Praetor 600E business jet to Flexjet, marking the launch of the upgraded super‑midsize aircraft series.",
+    "worldwide": false,
+    "scopeReason": "First delivery of Embraer Praetor 600E to a US operator, limited to private aviation market",
+    "titleRevision": 1,
+    "titleProvider": "groq",
+    "titleModel": "openai/gpt-oss-120b",
+    "titleStyleVersion": 5
+  },
+  {
     "title": "Fox cub recovers after hydrotherapy in Nottinghamshire",
     "summary": "A fox cub that was left for dead after being hit by a car is making a miracle recovery thanks to hydrotherapy swimming sessions. The young kit, aptly named Chance, was reportedly stuck for days with its back legs unable to function after the accident last June in Nottinghamshire, England. A member of the public […] The post Fox Left For Dead After Being Run Over is Now Recovering Thanks to Swimming Lessons appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/fox-left-for-dead-on-road-is-recovering-thanks-to-swim-lessons/",
@@ -55,6 +93,25 @@
     "titleStyleVersion": 5,
     "worldwide": false,
     "scopeReason": "Local fox rehabilitation in England, not global impact"
+  },
+  {
+    "title": "Starlink V2 Mini constellation expands with 27 new satellites",
+    "summary": "Liftoff from pad 4E at Vandenberg Space Force Base is scheduled during a window that opens at 6:47 p.m. PDT (9:47 p.m. EDT / 0147 UTC). It will be the 81st Starlink mission of the year.",
+    "url": "https://spaceflightnow.com/2026/09/19/live-coverage-spacex-to-launch-27-starlink-v2-mini-satellites-on-falcon-9-rocket-from-vandenberg/",
+    "date": "2026-09-19T20:06:04.000Z",
+    "dateLabel": "Published",
+    "publisher": "Spaceflight Now",
+    "provider": "Spaceflight News",
+    "category": "Space",
+    "kind": "Added",
+    "originalTitle": "Live coverage: SpaceX to launch 27 Starlink V2 Mini satellites on Falcon 9 rocket from Vandenberg",
+    "note": "SpaceX lifted 27 Starlink V2 Mini satellites on a Falcon 9 from Vandenberg, adding to the worldwide low‑orbit broadband network.",
+    "worldwide": true,
+    "scopeReason": "Launch adds 27 Starlink V2 Mini satellites, extending worldwide broadband coverage",
+    "titleRevision": 1,
+    "titleProvider": "groq",
+    "titleModel": "openai/gpt-oss-120b",
+    "titleStyleVersion": 5
   },
   {
     "title": "Blue crab numbers rise in Chesapeake Bay survey",
