@@ -25,11 +25,11 @@ assert.deepEqual(result.articles,mergeEditions(previous,[]),'A cold outage must 
 assert.equal(result.editorial,'cached');
 const {getChangelog:generate}=await import('../lib/changelog.mjs?archive-additions');
 const fuller=await generate(news,{archive:previous,apiKey:'test',fetcher:async(_,options)=>{
- const input=JSON.parse(JSON.parse(options.body).contents[0].parts[0].text);
+ const input=JSON.parse(JSON.parse(options.body).messages[1].content);
  assert.ok(input.previouslySelected.some(a=>a.title===previous[1].originalTitle));
  assert.ok(input.candidates.every(a=>a.title!==previous[1].originalTitle));
  const entries=input.candidates.map(a=>({sourceId:a.sourceId,title:a.title,note:'A community restored a forest.',kind:'Changed'}));
- return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:JSON.stringify({entries})}]}}]});
+ return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries})}}]});
 }});
 assert.equal(fuller.articles.filter(a=>a.date==='2026-09-19').length,5);
 assert.equal(fuller.articles.filter(a=>a.date==='2026-09-18').length,6);

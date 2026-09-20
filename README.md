@@ -32,7 +32,7 @@ changelog.earth collects recent reporting and turns selected headlines into shor
 - **Daily editions.** Aim for 3–6 worthwhile stories per publication day, prioritising discoveries, conservation wins and useful progress. Quiet days can have fewer.
 - **Reporting you can trace.** Original links, publishers and dates stay attached to every update.
 - **A living terminal.** A rotating ASCII Earth, dated panels and compact source stacks.
-- **Curated fallbacks.** If Gemini fails, try Hugging Face when configured, then reuse the last generated edition for up to 24 hours within the same server instance. The versioned archive remains available on cold starts; raw headlines never fill the gap.
+- **Saved editions during outages.** Groq selects stories and writes patch titles. Failed requests leave the saved archive intact; raw headlines never fill the gap.
 
 ## Run locally
 
@@ -44,21 +44,19 @@ cd changelog.earth
 npm ci
 ```
 
-Copy `.env.example` to `.env.local`, then add your Gemini API key:
+Copy `.env.example` to `.env.local`, then add your Groq API key:
 
 ```dotenv
-GEMINI_API_KEY=your_key_here
-GEMINI_MODEL=gemini-3.5-flash
+GROQ_API_KEY=your_key_here
+GROQ_MODEL=openai/gpt-oss-120b
 # Optional fallback; token needs Inference Providers permission and available credits
-HF_TOKEN=
-HF_MODEL=Qwen/Qwen3.5-35B-A3B
 ```
 
 ```sh
 npm run dev
 ```
 
-Open **http://localhost:5173**. Without either provider's key, the app serves the saved archive but cannot select new stories. Restart the server after changing environment variables. Keep both keys server-side; never use a `NEXT_PUBLIC_` variable for them. Configure the same variables in your hosting environment for production. Hugging Face uses the same selection prompt and source validation as Gemini. The Qwen fallback runs without extra reasoning so the token budget goes to the JSON edition.
+Open **http://localhost:5173**. Without a Groq key, the app serves the saved archive but cannot select new stories. Restart the server after changing environment variables. Keep the key server-side. Configure the same variables in Vercel for production.
 
 ## How it works
 
@@ -68,7 +66,7 @@ flowchart LR
     B[GDELT] --> D
     C[Spaceflight News] --> D
     D --> E[Science, nature, positive news, tech and aviation]
-    E --> F[Gemini fills daily editions]
+    E --> F[Groq fills daily editions]
     F --> G[Dated patch notes]
     F --> H[Last curated edition during outages]
     H --> G
@@ -77,7 +75,7 @@ flowchart LR
 
 The current directory covers **26 feeds across 18 source organisations**. The server keeps stories from the last seven days, checks healthy sources again after 15 minutes, and can reuse previously fetched stories for up to 24 hours during outages. Refresh checks happen when the API is requested, rather than through a background scheduler.
 
-Gemini receives headlines from relevant categories. The editorial prompt excludes politics, war, crime, lawsuits, sports disputes and outrage stories. It selects and rewrites them, while source URLs and dates come from the validated feed data. Publisher summaries are displayed separately. Generated labels can be wrong, so the linked reporting remains the reference. GDELT timestamps indicate indexing time rather than publication time.
+Groq receives headlines from relevant categories. The editorial prompt excludes politics, war, crime, lawsuits, sports disputes and outrage stories. It selects and rewrites them, while source URLs and dates come from the validated feed data. Publisher summaries are displayed separately. Generated labels can be wrong, so the linked reporting remains the reference. GDELT timestamps indicate indexing time rather than publication time.
 
 The homepage is generated with a complete edition before deployment. Next.js serves that cached HTML immediately, including to first-time visitors, and regenerates it in the background on visits after 15 minutes. Failed or empty regeneration keeps the previous page; an initial build without a valid edition fails instead of publishing an empty feed. The browser no longer waits for /api/news. The separate API still caches generated editions in the CDN for 15 minutes and allows an hour of stale serving during refreshes. Previously curated editions served during outages are cached for one minute. Empty editions are not cached. Feed requests time out after eight seconds. News and AI latency is paid during builds and background regeneration, rather than on the normal visitor loading path. Local development renders on demand; use a production build to measure caching.
 
@@ -94,7 +92,7 @@ Server-side caching and request coalescing are also in memory, per instance. The
 | Edit the page and theme | [`app/page.tsx`](app/page.tsx) and [`app/globals.css`](app/globals.css) |
 | Change story popouts and the source directory | [`components/news-details.tsx`](components/news-details.tsx) |
 
-Built with **React 19, TypeScript, Tailwind CSS 4 and Vinext**, with a Cloudflare Workers development runtime and a Next.js build for Vercel. Gemini uses the REST API directly. The interface uses shadcn/ui, Radix, Motion and Hugeicons.
+Built with **React 19, TypeScript, Tailwind CSS 4 and Vinext**, with a Cloudflare Workers development runtime and a Next.js build for Vercel. Groq uses the REST API directly. The interface uses shadcn/ui, Radix, Motion and Hugeicons.
 
 ## Checks
 
@@ -110,7 +108,7 @@ These cover feed parsing, validation, deduplication, cache and outage behaviour,
 
 ## Deploy to Vercel
 
-Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GEMINI_API_KEY` and `HF_TOKEN` as server-side environment variables, optionally set `GEMINI_MODEL` and `HF_MODEL`, then deploy. The news function allows up to 120 seconds for upstream fetches and generation.
+Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GROQ_API_KEY` as server-side environment variables, optionally set `GROQ_MODEL`, then deploy. The news function allows up to 120 seconds for upstream fetches and generation.
 
 For analytics, create a website in [Tracwell](https://tracwell.app/docs/browser-sdk), use its **private** collection mode, and add the production domain to its allowed domains. Set `NEXT_PUBLIC_TRACWELL_PROJECT_KEY` to the public browser project key before building. No analytics script is loaded when this value is absent. Never use a Tracwell server key in this variable.
 
@@ -125,7 +123,7 @@ npm start
 
 The build produces a Cloudflare Worker under `dist/server`; `npm start` previews it locally through Wrangler. To host it on your own Cloudflare account, configure your Worker and secrets, then deploy the generated Worker configuration. The default news feed does not require D1 or R2.
 
-Set `GEMINI_API_KEY` as a production secret and optionally set `GEMINI_MODEL`. Do not commit credentials. Local hosting metadata is optional and is excluded from the public repository.
+Set `GROQ_API_KEY` as a production secret and optionally set `GROQ_MODEL`. Do not commit credentials. Local hosting metadata is optional and is excluded from the public repository.
 
 ## Contributing
 

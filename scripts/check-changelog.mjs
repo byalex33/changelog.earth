@@ -8,14 +8,14 @@ assert.deepEqual(validateEdition({entries:[]},news.articles),[]);
 let calls = 0;
 const fetcher = async (url, options) => {
  calls++;
- assert.equal(options.headers['x-goog-api-key'],'test');
+ assert.equal(options.headers.Authorization,'Bearer test');
  assert.ok(!url.includes('test'));
  const body=JSON.parse(options.body);
- assert.ok(body.systemInstruction.parts[0].text.includes('Never joke about suffering'));
- const candidates=JSON.parse(body.contents[0].parts[0].text).candidates;
+ assert.ok(body.messages[0].content.includes('Never joke about suffering'));
+ const candidates=JSON.parse(body.messages[1].content).candidates;
  assert.equal(candidates.length,8);
  assert.equal(candidates[0].date,'2026-09-19');
- return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:JSON.stringify({entries:[entry]})}]}}]});
+ return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[entry]})}}]});
 };
 const opts = {apiKey:'test',fetcher,now:1_000_000};
 assert.equal((await getChangelog(news)).editorial,'unconfigured');
@@ -31,7 +31,7 @@ assert.equal((await getChangelog(news,failed)).editorial,'cached');
 assert.deepEqual((await getChangelog(news,failed)).articles,first.articles); assert.equal(calls,2);
 const malformed = {...opts,now:failed.now+900_001,fetcher:async()=>Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:'not json'}]}}]})};
 assert.equal((await getChangelog(news,malformed)).editorial,'cached');
-console.log('Gemini source mapping, validation, caching/coalescing, missing key and failure fallback pass.');
+console.log('Groq source mapping, validation, caching/coalescing, missing key and failure fallback pass.');
 for (const kind of ['Added','Removed','Changed','Patched']) assert.equal(validateEdition({entries:[{...entry,kind}]},news.articles)[0].kind,kind);
 
 const {getChangelog:coldStart}=await import('../lib/changelog.mjs?cold-outage');
@@ -42,31 +42,5 @@ const expired=await getChangelog(news,{...failed,now:opts.now+24*60*60_000+1});
 assert.deepEqual(expired.articles,[]);
 const {getChangelog:filtered}=await import('../lib/changelog.mjs?filter');
 const mixed={...news,articles:[...news.articles,{...news.articles[0],title:'Election dispute',category:'World'}]};
-assert.equal((await filtered(mixed,opts)).editorial,'generated'); // Mock asserts only the eight relevant candidates reach Gemini.
-console.log('Raw headlines excluded on cold outages, curated fallback expires, and unrelated categories never reach Gemini.');
-
-const {getChangelog:withBackup}=await import('../lib/changelog.mjs?hf-backup');
-let backupCalls=0;
-const backupOptions={...opts,hfToken:'hf-test',fetcher:async(url,options)=>{
- backupCalls++;
- if(url.includes('googleapis')) return new Response('',{status:429});
- assert.equal(url,'https://router.huggingface.co/v1/chat/completions');
- assert.equal(options.headers.Authorization,'Bearer hf-test');
- const body=JSON.parse(options.body);
- assert.ok(body.messages[0].content.includes('Never joke about suffering'));
- return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[entry]})}}]});
-}};
-const backedUp=await withBackup(news,backupOptions);
-assert.equal(backedUp.editorial,'generated');
-assert.equal(backedUp.articles[0].url,news.articles[2].url);
-assert.equal(backupCalls,2);
-await withBackup(news,backupOptions);
-assert.equal(backupCalls,2);
-const empty=await withBackup(news,{...opts,now:opts.now+3_600_001,fetcher:async()=>Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:'{"entries":[]}'}]}}]})});
-assert.deepEqual(empty.articles,backedUp.articles);
-assert.equal(empty.editorial,'cached');
-const {getChangelog:badBackup}=await import('../lib/changelog.mjs?bad-hf');
-const rejected=await badBackup(news,{...opts,apiKey:'',hfToken:'hf-test',fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[{...entry,sourceId:999}]})}}]})});
-assert.equal(rejected.editorial,'unavailable');
-assert.deepEqual(rejected.articles,[]);
-console.log('Hugging Face fallback, caching, invalid source rejection and empty-selection preservation pass.');
+assert.equal((await filtered(mixed,opts)).editorial,'generated'); // Mock asserts only the eight relevant candidates reach Groq.
+console.log('Raw headlines excluded on cold outages, curated fallback expires, and unrelated categories never reach Groq.');
