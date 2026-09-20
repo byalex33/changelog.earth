@@ -10,13 +10,16 @@ assert.throws(()=>applyPatchTitles([article],{entries:[]}));
 assert.throws(()=>applyPatchTitles([article],{entries:[{sourceId:1,title:'Wrong story'}]}));
 assert.equal(mergeEditions([article],[corrected])[0].title,'New cat spawned');
 assert.equal(mergeEditions([corrected],[article])[0].title,'New cat spawned');
+const buff=applyPatchTitles([article],{entries:[{sourceId:0,kind:'Buffed',title:'Textile crafting water cost reduced'}]},'groq','test');
+assert.equal(mergeEditions([article],buff)[0].kind,'Buffed','Rewritten labels must survive archiving');
+assert.throws(()=>applyPatchTitles([article],{entries:[{sourceId:0,kind:'Invented',title:'Invalid label'}]}));
 let calls=0;
 const written=await writePatchTitles([article],{apiKey:'test',fetcher:async url=>{
  calls++; assert.equal(url,'https://api.groq.com/openai/v1/chat/completions');
  return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[{sourceId:0,title:'New cat spawned'}]})}}]});
 }});
 assert.equal(calls,1); assert.equal(written[0].titleProvider,'groq');
-assert.equal(mergeEditions([article],written)[0].titleStyleVersion,2);
+assert.equal(mergeEditions([article],written)[0].titleStyleVersion,4);
 await assert.rejects(writePatchTitles([article],{apiKey:'test',fetcher:async()=>new Response('',{status:429})}));
 await loadArchive(async()=>Response.json([corrected]),true);
 const oldFetch=globalThis.fetch;
@@ -42,8 +45,8 @@ try {
    return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:submitted.map(a=>({sourceId:a.sourceId,title:'Test patch title'}))})}}]});
   };
   const draft=await getPublishedChangelog({draft:true});
-  assert.equal(submitted.length,edition.articles.filter(a=>a.titleProvider!=='groq' || a.titleStyleVersion!==2).length,'Every unwritten story must go through the writer');
-  assert.ok(draft.articles.every(a=>a.titleProvider==='groq' && a.titleStyleVersion===2));
+  assert.equal(submitted.length,edition.articles.filter(a=>a.titleProvider!=='groq' || a.titleStyleVersion!==4).length,'Every unwritten story must go through the writer');
+  assert.ok(draft.articles.every(a=>a.titleProvider==='groq' && a.titleStyleVersion===4));
   assert.equal((await getPublishedChangelog()).articles.find(a=>a.url===article.url).title,'New cat spawned','Uncommitted rewrites must not reach visitors');
   globalThis.fetch=async url=>String(url).startsWith('https://raw.githubusercontent.com/')?Response.json([article]):new Response('',{status:429});
   await assert.rejects(getPublishedChangelog({draft:true}),'Provider failure must not publish a partial migration');

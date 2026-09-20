@@ -1,6 +1,6 @@
 [
   {
-    "title": "Park Avenue bike lane added",
+    "title": "Park Avenue protected bike lane added to map",
     "summary": "Until the 1920s Park Avenue in Manhattan actually park running through it. Now, New York City has unveiled a new plan for transforming Park Avenue back into its original natural character, adding trees, benches, and a protected bike lane. Mayor Mamdani and the NYC Department of Transportation are updating 11 blocks of the wide street, […] The post New York City is Putting ‘The Park’ Back in Park Avenue – And Adding a Protected Bike Lane (LOOK) appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/new-york-city-is-putting-the-park-back-in-park-avenue/",
     "date": "2026-09-19T21:56:51.000Z",
@@ -8,16 +8,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "New York City is Putting ‘The Park’ Back in Park Avenue – And Adding a Protected Bike Lane (LOOK)",
     "note": "New York City is adding green park spaces and a protected bike lane to Park Avenue.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Progress cargo ship docks at ISS",
+    "title": "Progress cargo delivers supplies to ISS",
     "summary": "The Progress M-25 docked at the space-facing port of Russia’s Poisk module at 9:44 a.m. EDT (1344 UTC) after a one-week delay.",
     "url": "https://spaceflightnow.com/2026/09/19/russian-progress-cargo-ship-arrives-at-international-space-station/",
     "date": "2026-09-19T21:11:15.000Z",
@@ -25,16 +25,16 @@
     "publisher": "Spaceflight Now",
     "provider": "Spaceflight News",
     "category": "Space",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "Russian Progress cargo ship arrives at International Space Station",
     "note": "A Russian Progress cargo ship has arrived at the International Space Station.",
-    "titleRevision": 4,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Fox rehab via swimming lessons",
+    "title": "Swimming lessons buff recovery speed for fox",
     "summary": "A fox cub that was left for dead after being hit by a car is making a miracle recovery thanks to hydrotherapy swimming sessions. The young kit, aptly named Chance, was reportedly stuck for days with its back legs unable to function after the accident last June in Nottinghamshire, England. A member of the public […] The post Fox Left For Dead After Being Run Over is Now Recovering Thanks to Swimming Lessons appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/fox-left-for-dead-on-road-is-recovering-thanks-to-swim-lessons/",
     "date": "2026-09-19T20:13:56.000Z",
@@ -42,16 +42,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Patched",
+    "kind": "Buffed",
     "originalTitle": "Fox Left For Dead After Being Run Over is Now Recovering Thanks to Swimming Lessons",
     "note": "A fox left for dead after being run over is recovering with the help of hydrotherapy sessions.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Blue crab population buffed",
+    "title": "Blue crab spawn rates increased in Chesapeake Bay",
     "summary": "Conservationists working to turn the tide on declining numbers of blue crabs in the Chesapeake Bay, found some good news in their latest field surveys. After years of worryingly low numbers, the population appears to be responding to some of the measures implemented to build a crustacean comeback. This year’s field sampling estimated a total […] The post Chesapeake Bay Blue Crab Numbers See Encouraging Bounceback in New Survey appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/chesapeake-bay-blue-crab-numbers-see-encouraging-bounceback-in-new-survey/",
     "date": "2026-09-19T18:55:20.000Z",
@@ -59,16 +59,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Updated",
     "originalTitle": "Chesapeake Bay Blue Crab Numbers See Encouraging Bounceback in New Survey",
     "note": "Chesapeake Bay blue crab numbers have seen an encouraging bounceback in a new survey.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Nature reserve expansion queued",
+    "title": "Nature reserve expansion queued, area will double",
     "summary": "Staffordshire Wildlife Trust acquires an area of wet woodland, marsh and pastureland due to the will.",
     "url": "https://www.bbc.co.uk/news/articles/c6kgw0kx0540o?at_medium=RSS&at_campaign=rss",
     "date": "2026-09-19T14:37:07.000Z",
@@ -76,16 +76,16 @@
     "publisher": "BBC News",
     "provider": "BBC News · Science & environment",
     "category": "Science & nature",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "Nature reserve to double in size, thanks to gift",
     "note": "A donation has allowed a nature reserve to expand its protected area by 100%.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Warm-weather insects receive buff",
+    "title": "Warm-weather insect buffs applied to moths and bees",
     "summary": "Hummingbird hawk moths - often mistaken for small birds - are being spotted in the West Midlands.",
     "url": "https://www.bbc.co.uk/news/articles/cvzez0lpnn3go?at_medium=RSS&at_campaign=rss",
     "date": "2026-09-19T06:27:28.000Z",
@@ -93,16 +93,16 @@
     "publisher": "BBC News",
     "provider": "BBC News · Science & environment",
     "category": "Science & nature",
-    "kind": "Changed",
+    "kind": "Buffed",
     "originalTitle": "Hummingbird hawk moths and ivy bees: The insects thriving as temperatures rise",
     "note": "Research shows these specific insects are adapting well to rising global temperatures.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Europe exhibit and astronaut Pikachu launched",
+    "title": "Astronaut Pikachu NPC and Europe exhibition added",
     "summary": "The European Space Agency (ESA) and The Pokémon Company International (TPCI) have launched an official collaboration to celebrate World Space Week 2026 from 4–10 October 2026.",
     "url": "https://www.esa.int/About_Us/Branding_and_Partnerships/ESA_and_The_Pokemon_Company_International_reveal_Europe-wide_exhibition_and_astronaut_Pikachu_experience",
     "date": "2026-09-18T22:01:00.000Z",
@@ -113,13 +113,13 @@
     "kind": "Added",
     "originalTitle": "ESA and The Pokémon Company International reveal Europe-wide exhibition and astronaut Pikachu experience",
     "note": "ESA and The Pokémon Company International revealed a new exhibition and astronaut experience featuring Pikachu.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "New lunar crater map expanded",
+    "title": "Massive new crater added to Moon map",
     "summary": "The impact crater was formed in 2024 when an object the size of a multistory building crashed into our lunar companion. The resulting divot is about 728 feet wide and 141 feet deep",
     "url": "https://www.smithsonianmag.com/smart-news/the-moon-just-got-a-massive-new-crater-thats-wider-than-two-end-to-end-football-fields-its-a-once-in-a-lifetime-observation-180989526/",
     "date": "2026-09-18T19:04:38.000Z",
@@ -127,16 +127,16 @@
     "publisher": "Smithsonian Magazine",
     "provider": "Smithsonian Magazine",
     "category": "Science & nature",
-    "kind": "Added",
+    "kind": "Updated",
     "originalTitle": "The Moon Just Got a Massive New Crater That's Wider Than Two End-to-End Football Fields. It's a 'Once-in-a-Lifetime Observation'",
     "note": "A massive new crater wider than two end-to-end football fields has been observed on the Moon.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Textile dyes use magnetic efficiency",
+    "title": "Textile dyeing consumes less water and energy",
     "summary": "Hoping to tackle the 50% of textile emissions associated with the dyeing process, a vaunted French startup has created non-toxic dyes that require substantially less water to activate and last just as long. Additionally, they take hold electromagnetically at room temperature, rather than over long periods at boiling temperatures, and don’t require chemical fixatives. EverDye’s […] The post Company’s Textile Dyes Work Through Magnetism, Cutting Fashion’s Water-Use, Energy, and Pollution appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/companys-textile-dyes-work-through-magnetism-cutting-fashions-water-use-energy-and-pollution/",
     "date": "2026-09-18T18:30:36.000Z",
@@ -144,16 +144,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Added",
+    "kind": "Buffed",
     "originalTitle": "Company’s Textile Dyes Work Through Magnetism, Cutting Fashion’s Water-Use, Energy, and Pollution",
     "note": "A new textile dye process uses magnetism to significantly reduce water consumption, energy use, and pollution.",
-    "titleRevision": 4,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "600-year Peruvian tomb declared discovery",
+    "title": "600-year-old tomb unlocked in Peru region",
     "summary": "An unspoiled, undiscovered tomb containing the remains of an elite society belong to a major Andean civilization has been uncovered in Peru. Located in the UNESCO World Heritage-listed site of Chan Chan, inside a palatial complex called Utzh An, its contents of 38 skeletons and a wealth of grave goods have remained undisturbed to our […] The post Unsealed for the First Time, This 600-yo Tomb in Peru Was Just Declared the ‘Discovery of the Decade’ appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/unsealed-for-the-first-time-this-600-yo-tomb-in-peru-was-just-declared-the-discovery-of-the-decade/",
     "date": "2026-09-18T15:30:26.000Z",
@@ -161,16 +161,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Added",
+    "kind": "Unlocked",
     "originalTitle": "Unsealed for the First Time, This 600-yo Tomb in Peru Was Just Declared the ‘Discovery of the Decade’",
     "note": "A 600-year-old tomb in Peru has been unsealed for the first time and declared a major discovery.",
-    "titleRevision": 4,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Chimpanzee cataract surgery patched",
+    "title": "Blindness debuff removed from 54-year-old chimpanzee",
     "summary": "After becoming completely blind from cataracts, a 54-year-old chimpanzee named Pierre is seeing again following a successful surgery at Chimp Haven, the world’s largest chimpanzee sanctuary. The procedure, the first cataract surgery performed for a resident at Chimp Haven, restored functional sight and allowed Pierre to quickly begin reconnecting with the people, chimpanzees, and activities […] The post Cataract Surgery Restores Sight for 54-Year-Old Chimpanzee–the First Such Procedure at Chimp Haven appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/cataract-surgery-restores-sight-for-54-year-old-chimpanzee-the-first-such-procedure-at-chimp-haven/",
     "date": "2026-09-18T12:30:44.000Z",
@@ -178,16 +178,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Patched",
+    "kind": "Fixed",
     "originalTitle": "Cataract Surgery Restores Sight for 54-Year-Old Chimpanzee–the First Such Procedure at Chimp Haven",
     "note": "A 54-year-old chimpanzee became the first to receive cataract surgery at Chimp Haven, restoring its vision.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Tilcayo cat species spawned",
+    "title": "New cat mob Tilcayo added",
     "summary": "In a story that proves ‘explorer’ is still a good answer to the question “what do you want to be when you grow up?” a whole new cat species has been identified for the first time in over 100 years. Found in Bolivia, the animal is smaller than the average housecat, but now enters the […] The post New Cat Species Identified for the First Time in Over 100 Years–Meet the Tilcayo appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/new-cat-species-identified-for-the-first-time-in-over-100-years-meet-the-tilcayo/",
     "date": "2026-09-18T08:45:29.000Z",
@@ -198,13 +198,13 @@
     "kind": "Added",
     "originalTitle": "New Cat Species Identified for the First Time in Over 100 Years–Meet the Tilcayo",
     "note": "Scientists have identified a new wild cat species, the Tilcayo, for the first time in over a century.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Irrawaddy dolphins find cautious hope",
+    "title": "Irrawaddy dolphin behavior entry unlocked in bestiary",
     "summary": "KAMPI, Cambodia — At nine in the morning, the sun beats down on the Mekong River as Heang Koeurn turns off the motor of his boat and bobs on the water. He has done this every morning for 11 years, and he still leans forward the same way when he waits: elbows on his knees, […]",
     "url": "https://news.mongabay.com/2026/09/mekongs-irrawaddy-dolphins-find-cautious-hope-amid-a-river-in-crisis/",
     "date": "2026-09-17T20:59:19.000Z",
@@ -212,16 +212,16 @@
     "publisher": "Mongabay",
     "provider": "Mongabay",
     "category": "Science & nature",
-    "kind": "Changed",
+    "kind": "Unlocked",
     "originalTitle": "Mekong’s Irrawaddy dolphins find cautious hope amid a river in crisis",
     "note": "Conservation efforts are providing cautious hope for Irrawaddy dolphins in the Mekong River despite the river's crisis.",
-    "titleRevision": 4,
+    "titleRevision": 8,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Plastic sequestered into new items",
+    "title": "Plastic recycling craft added for environmental items",
     "summary": "In central California’s city of San Carlos, recycling plastics is a family affair. Nick Schick and his parents, David and Andrea, work exclusively with products made from hard-to-recycle plastic polymers called thermoplastics. Unlike water bottles and tote bags, thermoplastics lack conventional recycling methods. In order to stop them from reaching the landfills where they will […] The post Team Sequesters Plastic and Makes New Products Before it Breaks Down in Environment appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/team-sequesters-plastic-and-makes-new-products-before-it-breaks-down-in-environment/",
     "date": "2026-09-17T18:30:31.000Z",
@@ -232,13 +232,13 @@
     "kind": "Added",
     "originalTitle": "Team Sequesters Plastic and Makes New Products Before it Breaks Down in Environment",
     "note": "A team has developed a method to sequester plastic and create new products before it degrades in the environment.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Antarctic snowfall mystery solved",
+    "title": "Antarctic snowfall mechanism unlocked in climate lore",
     "summary": "A warming pool of tropical ocean water has been shown to be the cause of immense snowstorms over East Antarctica which contributed to a net gain of 695 billion tons of ice between 2021 and 2023. To put that tonnage into perspective, it’s about 4 years of annual ice loss according to a 2 decade […] The post Scientists Solve Mystery Behind Snowfall That Dropped 695 Billion Tons of Ice on Antarctica appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/scientists-solve-mystery-behind-snowfall-that-dropped-695-billion-tons-of-ice-on-antarctica/",
     "date": "2026-09-17T15:30:25.000Z",
@@ -246,16 +246,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Patched",
+    "kind": "Unlocked",
     "originalTitle": "Scientists Solve Mystery Behind Snowfall That Dropped 695 Billion Tons of Ice on Antarctica",
     "note": "Scientists have solved the mystery behind the snowfall that dropped 695 billion tons of ice on Antarctica.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Hydrogen-electric propulsion breakthrough unlocked",
+    "title": "Hydrogen-electric propulsion research unlocked for future vehicles",
     "summary": "A Honeywell Aerospace led alliance of 18 European companies has made a significant breakthrough developing a megawatt-class hydrogen-electric… The post Honeywell Aerospace led alliance makes hydrogen-electric propulsion breakthrough appeared first on AeroTime .",
     "url": "https://www.aerotime.aero/articles/honeywell-aerospace-hydrogen-electric-propulsion-project-newborn",
     "date": "2026-09-17T13:29:30.000Z",
@@ -263,16 +263,16 @@
     "publisher": "AeroTime",
     "provider": "AeroTime",
     "category": "Aviation",
-    "kind": "Added",
+    "kind": "Unlocked",
     "originalTitle": "Honeywell Aerospace led alliance makes hydrogen-electric propulsion breakthrough",
     "note": "An alliance led by Honeywell Aerospace has achieved a breakthrough in hydrogen-electric propulsion technology.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Concussion screening device unlocked",
+    "title": "Concussion screening device added to medical gear",
     "summary": "A trio of students at Harvard University have invented a low-cost, eye-tracking headset designed to help schools quickly screen child athletes for possible concussions. The invention takes just 2 to 3 minutes to screen for a concussion, or at least indicate sub-concussive trauma may be present, and it won the inventors the James Dyson Award […] The post Students Win James Dyson Award for Device That Screens Students for Concussions in Just 60 Seconds appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/students-win-james-dyson-award-for-device-that-screens-students-for-concussions-in-just-60-seconds/",
     "date": "2026-09-17T11:01:50.000Z",
@@ -283,13 +283,13 @@
     "kind": "Added",
     "originalTitle": "Students Win James Dyson Award for Device That Screens Students for Concussions in Just 60 Seconds",
     "note": "Students won the James Dyson Award for a device that can screen for concussions in 60 seconds.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Giant anteater reintroduced habitat buff",
+    "title": "Giant anteater mob reintroduced in Argentina",
     "summary": "In 2025, a giant anteater returned to the Alma Guaraní reserve in Argentina’s Corrientes province. It marked the first sighting of this vulnerable and emblematic mammal in the region since 1986. That return is believed to be the result of restoration work that began in the reserve in 2021, according to a paper published in […]",
     "url": "https://news.mongabay.com/2026/09/a-giant-anteaters-return-in-argentina-offers-a-case-for-letting-nature-restore-itself/",
     "date": "2026-09-17T09:55:38.000Z",
@@ -297,16 +297,16 @@
     "publisher": "Mongabay",
     "provider": "Mongabay",
     "category": "Science & nature",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "A giant anteater’s return in Argentina offers a case for letting nature restore itself",
     "note": "The return of a giant anteater in Argentina serves as a case study for letting nature restore itself.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Singer rescues foxes from mange",
+    "title": "Fox rescue program added to Nashville region",
     "summary": "A Nashville singer-songwriter has become a star—but not because of his guitar playing. Jerry Vandiver, whose songs have been recorded by country stars like Tim McGraw, moonlights as a volunteer hero to the local red fox population. As Tennessee suffers from a serious mange epidemic, particularly bad in the area around Vandiver’s adopted home of […] The post Nashville Singer Becomes Local Celebrity Rescuing Foxes and Saving Them from Mange appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/nashville-singer-songwriter-becomes-local-celebrity-rescuing-foxes-and-saving-them-from-mange/",
     "date": "2026-09-16T18:30:06.000Z",
@@ -317,13 +317,13 @@
     "kind": "Added",
     "originalTitle": "Nashville Singer Becomes Local Celebrity Rescuing Foxes and Saving Them from Mange",
     "note": "A Nashville singer has become a local celebrity for rescuing foxes and treating them for mange.",
-    "titleRevision": 4,
+    "titleRevision": 8,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Red deserts could fuel hydrogen energy",
+    "title": "Red Desert hydrogen potential unlocked for energy research",
     "summary": "Scientists have revealed that Australia may hold the key to generating ample green energy while creating a major export industry, and that it’s buried underneath their feet. The breakthrough centers on magnetite, a mineral found in Western Australia’s vast iron ore deposits throughout the Pilbara region. Researchers at Edith Cowan University’s School of Engineering have […] The post Scientists Determine Australia’s Vast Red Deserts Could Fuel a Hydrogen-Powered Energy Revolution appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/scientists-determine-australias-vast-red-deserts-could-fuel-a-hydrogen-powered-energy-revolution/",
     "date": "2026-09-16T15:35:16.000Z",
@@ -331,16 +331,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Added",
+    "kind": "Unlocked",
     "originalTitle": "Scientists Determine Australia’s Vast Red Deserts Could Fuel a Hydrogen-Powered Energy Revolution",
     "note": "Scientists determined that Australia's vast red deserts could provide the fuel for a hydrogen-powered energy revolution.",
-    "titleRevision": 4,
+    "titleRevision": 8,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Bison reintroduced desert ecosystem",
+    "title": "Bison mobs respawned in Mexico desert region",
     "summary": "A series of reintroductions have seen the bison return to a landscape in Mexico’s Chihuahua Desert after a 200 year absence. Having acted as ecosystem anchors for the vegetation is this vital biosphere reserve for millennia, their return is seen as a major step towards fortifying the area’s sensitive arid grasslands. A vast bison herd […] The post Mexico Reintroduced Bison into Precious Desert Ecosystem After Century-Long Absence appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/mexico-reintroduced-bison-into-precious-desert-ecosystem-after-century-long-absence/",
     "date": "2026-09-16T13:00:13.000Z",
@@ -351,13 +351,13 @@
     "kind": "Added",
     "originalTitle": "Mexico Reintroduced Bison into Precious Desert Ecosystem After Century-Long Absence",
     "note": "Mexico has reintroduced bison into a desert ecosystem after a century-long absence.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Viking silver find logged",
+    "title": "Viking silver loot added in Finland region",
     "summary": "Metal detectors have had a banner year in Scandinavia, where records for the largest recovered Viking silver hoards have been made in Norway, Denmark, and now Finland. A man found two large hoards of silver in southern Finland, containing thousands of coins, as well as pieces of jewelry and scrap silver, that together weighed around […] The post 10 Pounds of Viking Silver Found in Finland Extend Incredible Year for Scandinavian Treasure Hunts appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/10-pounds-of-viking-silver-found-in-finland-extend-incredible-year-for-scandinavian-treasure-hunts/",
     "date": "2026-09-16T11:00:03.000Z",
@@ -368,13 +368,13 @@
     "kind": "Added",
     "originalTitle": "10 Pounds of Viking Silver Found in Finland Extend Incredible Year for Scandinavian Treasure Hunts",
     "note": "Ten pounds of Viking silver have been found in Finland.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "20,000 salmon return to Klamath River",
+    "title": "Salmon spawn numbers increased in Klamath River",
     "summary": "Welcome back to our weekly behind-the-scenes glimpse at what’s getting our team talking. Tell us what you’ve been reading at info@reasonstobecheerful.world and we just might feature it here. Swimming upstream 20,000: That’s how many chinook salmon have migrated up the Klamath River, which flows through southern Oregon and northern California,... The post What We’re Reading: 20,000 Salmon Return to the Klamath River appeared first on Reasons to be Cheerful .",
     "url": "https://reasonstobecheerful.world/what-were-reading-klamath-river-salmon-return/",
     "date": "2026-09-16T08:00:56.000Z",
@@ -382,16 +382,16 @@
     "publisher": "Reasons to be Cheerful",
     "provider": "Reasons to be Cheerful",
     "category": "Positive news",
-    "kind": "Added",
+    "kind": "Updated",
     "originalTitle": "What We’re Reading: 20,000 Salmon Return to the Klamath River",
     "note": "A massive return of 20,000 salmon has been recorded in the Klamath River.",
-    "titleRevision": 4,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Congolese NGO manages protected area",
+    "title": "NGO management added for DRC protected area",
     "summary": "For the first time in the modern history of the Democratic Republic of Congo (DRC), a Congolese nongovernmental organization will co-manage a protected area in the country. “It is an honor,” Dominique Bikaba, founder of the NGO Strong Roots, told Mongabay by phone. Strong Roots has been entrusted with the management of Itombwe Nature Reserve […]",
     "url": "https://news.mongabay.com/short-article/2026/09/for-the-first-time-congolese-ngo-to-manage-a-drc-protected-area/",
     "date": "2026-09-16T05:56:14.000Z",
@@ -399,16 +399,16 @@
     "publisher": "Mongabay",
     "provider": "Mongabay",
     "category": "Science & nature",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "For the first time, Congolese NGO to manage a DRC protected area",
     "note": "For the first time, a Congolese NGO is managing a protected area in the Democratic Republic of Congo.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Foster care village opened",
+    "title": "Foster care village added, siblings stay together",
     "summary": "The personal passion project of Hollywood A-lister Christian Bale has finally come to fruition, as the Welsh actor cut the ribbon on a children’s foster care village in Palmdale, California. Called Together California, the facility and the organization which will run it are focused on one key mission Mr. Bale says the state foster system […] The post Christian Bale Opens Long-Dreamed of Foster Care Village Aimed at Keeping Siblings Together appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/christian-bale-opens-long-dreamed-of-foster-care-village-aimed-at-keeping-siblings-together/",
     "date": "2026-09-15T18:30:28.000Z",
@@ -419,13 +419,13 @@
     "kind": "Added",
     "originalTitle": "Christian Bale Opens Long-Dreamed of Foster Care Village Aimed at Keeping Siblings Together",
     "note": "Christian Bale opened a foster care village designed to keep siblings together.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Casino workers receive bonus reward",
+    "title": "Yearly bonus reward added for casino workers",
     "summary": "When thousands of employees at Station Casinos arrived at one of the company’s resorts to celebrate its 50th anniversary, they hadn’t a clue what was about to happen. They were going to hit the jackpot. In a stunning display of profit sharing, business moguls the Fertitta brothers announced that each of Station Casinos’ 10,000 employees […] The post $1,000 Bonus for Every Year of Work: Casino Employees Shocked at Company’s 50th Anniversary appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/1000-bonus-for-every-year-at-the-company-casino-employees-shocked-at-companys-50th-anniversary/",
     "date": "2026-09-15T15:30:43.000Z",
@@ -433,16 +433,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "$$1,000 Bonus for Every Year of Work: Casino Employees Shocked at Company’s 50th Anniversary",
     "note": "Casino employees were surprised with a $1,000 bonus for every year of work on the company's 50th anniversary.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Sydney Airport deploys electric buses",
+    "title": "Sydney Airport map updated with electric bus routes",
     "summary": "Sydney Airport announced it has begun rolling out a fleet of 50 electric buses to replace its diesel-powered… The post Sydney Airport rolls out 50 electric buses in push toward net zero by 2030 appeared first on AeroTime .",
     "url": "https://www.aerotime.aero/articles/sydney-airport-rolls-out-50-electric-buses-in-push-toward-net-zero-by-2030",
     "date": "2026-09-15T13:37:31.000Z",
@@ -450,16 +450,16 @@
     "publisher": "AeroTime",
     "provider": "AeroTime",
     "category": "Aviation",
-    "kind": "Changed",
+    "kind": "Updated",
     "originalTitle": "Sydney Airport rolls out 50 electric buses in push toward net zero by 2030",
     "note": "Sydney Airport has rolled out 50 electric buses in its push toward net zero emissions.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Runner comeback trail run quest",
+    "title": "Runner stamina buff applied to trail race quest",
     "summary": "A runner whose improbable resurrection from the frigid fells of north England saw his heart stopped for hours, has returned to conquer the athletic challenge that nearly claimed his life. Tommy Price suffered cardiac arrest triggered by hypothermia while running the “Bob Graham Round,” a punishing trail run up and down 42 separate hills and […] The post UK Runner Makes Improbable Comeback to Conquer the Grueling Trail Run That Nearly Killed Him appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/uk-runner-makes-improbable-comeback-to-conquer-the-grueling-trail-run-that-nearly-killed-him/",
     "date": "2026-09-15T13:00:44.000Z",
@@ -467,16 +467,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Patched",
+    "kind": "Buffed",
     "originalTitle": "UK Runner Makes Improbable Comeback to Conquer the Grueling Trail Run That Nearly Killed Him",
     "note": "A UK runner made an improbable comeback to conquer the grueling trail run that nearly killed him.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Wind turbines boost ranch income",
+    "title": "Wind turbine profit mechanic added to rancher economy",
     "summary": "In 2006, the largest wind power project in Kansas was turned on among the Flint Hills. Today, the royalties it has generated for rancher Peter Ferrell are allowing him to pass the farm down to his children. The 50 turbines—which Ferrell barely notices these days—have provided half of his income since then, insulating him and […] The post Wind Turbines Provide Half of Rancher’s Income Since He Decided to Invite Them on His Land appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/wind-turbines-have-made-up-half-this-ranchers-income-since-fateful-choice-to-allow-them-on-his-land/",
     "date": "2026-09-15T11:00:55.000Z",
@@ -484,16 +484,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "Wind Turbines Provide Half of Rancher’s Income Since He Decided to Invite Them on His Land",
     "note": "A rancher has boosted his income by inviting wind turbines onto his land.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Afghan women rebuild reproductive care",
+    "title": "Reproductive health care rebuilding underway in Afghanistan",
     "summary": "In Helmand province in southern Afghanistan, Ram Bibi, a 30-year-old mother now pregnant with her sixth child, counts herself as one of the lucky ones. She gets regular prenatal checkups at the Qari Safed family health house not far from her home. Here, midwife Marzia screens her for anemia, provides... The post How Afghan Women Are Rebuilding Reproductive Health Care appeared first on Reasons to be Cheerful .",
     "url": "https://reasonstobecheerful.world/how-afghan-women-are-rebuilding-reproductive-health-care/",
     "date": "2026-09-15T08:00:40.000Z",
@@ -501,16 +501,16 @@
     "publisher": "Reasons to be Cheerful",
     "provider": "Reasons to be Cheerful",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Updated",
     "originalTitle": "How Afghan Women Are Rebuilding Reproductive Health Care",
     "note": "Afghan women are actively working to rebuild reproductive healthcare services.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Airport conversion into European park ongoing",
+    "title": "Athens airport conversion to park underway",
     "summary": "A former Athens airport site is set to host one of the continent’s most ambitious urban greening projects. Called the Ellinikon Park, it won’t only add an unforgettable attraction to the birthplace of Democracy, but also a shaded refuge for residents of the continent’s hottest city. The park will stretch over 400 acres along the […] The post Athens Is Turning its Old Airport into One of Europe’s Largest Parks appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/athens-is-turning-its-old-airport-into-one-of-europes-largest-parks/",
     "date": "2026-09-14T18:30:13.000Z",
@@ -518,16 +518,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Updated",
     "originalTitle": "Athens Is Turning its Old Airport into One of Europe’s Largest Parks",
     "note": "Athens is transforming its old airport into one of the largest parks in Europe.",
-    "titleRevision": 4,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Dinosaur dung feather clue unlocked",
+    "title": "Dinosaur dung feather loot added to paleontology zone",
     "summary": "A feather preserved inside dinosaur dung could help explain why birds survived the mass extinction that wiped out most life on Earth. Specifically, it could explain whether it prepared a certain lineage of birds to weather the unnatural winter that followed in the wake of the asteroid impact. Scientists at the Field Museum of Chicago […] The post Feather Preserved in Dinosaur Dung Could Explain Why Birds Survived Mass Extinction appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/feather-preserved-in-dinosaur-dung-could-explain-why-birds-survived-mass-extinction/",
     "date": "2026-09-14T15:30:42.000Z",
@@ -538,13 +538,13 @@
     "kind": "Added",
     "originalTitle": "Feather Preserved in Dinosaur Dung Could Explain Why Birds Survived Mass Extinction",
     "note": "A feather preserved in dinosaur dung could explain why birds survived the mass extinction event.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Southeast Asia eliminates trachoma",
+    "title": "Trachoma debuff cleared across Southeast Asia",
     "summary": "The World Health Organization (WHO) recently announced it has certified Timor-Leste as having eliminated trachoma as a public health problem. The leading infectious cause of blindness, the achievement on the island nation now means that the entire Southeast Asian region, as defined by the WHO, is trachoma-free. It means over 2 billion people now live […] The post Following Timor-Leste’s Triumph, All of Southeast Asia Has Eliminated Trachoma appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/following-timor-lestes-triumph-all-of-southeast-asia-has-eliminated-trachoma/",
     "date": "2026-09-14T13:00:37.000Z",
@@ -552,16 +552,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Patched",
+    "kind": "Fixed",
     "originalTitle": "Following Timor-Leste’s Triumph, All of Southeast Asia Has Eliminated Trachoma",
     "note": "Following Timor-Leste's success, all of Southeast Asia has eliminated trachoma.",
-    "titleRevision": 4,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Housing first reduces rough sleeping",
+    "title": "Housing-first program added, reduces rough sleeping",
     "summary": "A housing model that gives people a permanent home before asking them to tackle their other problems has achieved striking results The post How ‘housing first’ is helping people leave rough sleeping behind appeared first on Positive News .",
     "url": "https://www.positive.news/society/how-housing-first-is-helping-people-leave-rough-sleeping-behind/",
     "date": "2026-09-14T11:23:22.000Z",
@@ -569,16 +569,16 @@
     "publisher": "Positive News",
     "provider": "Positive News",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "How ‘housing first’ is helping people leave rough sleeping behind",
     "note": "The 'housing first' approach is successfully helping people leave rough sleeping behind.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Industrial dump becomes grebe habitat",
+    "title": "Industrial dump converted to wildlife reserve hosting grebes",
     "summary": "A conservation charity in the UK has turned what was once a dumping ground for material dug up during canal dredging into a nesting habitat for two-thirds of the UK’s black-necked grebes. These beautiful waterfowl with thin ochre-golden feathers sashaying away from their ruby-red eyes have a very unusual migratory pattern which in the UK […] The post Former Industrial Ground Goes from Dump to Diversity and Hosts 64% of UK’s Black-Necked Grebes appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/former-industrial-ground-goes-from-dump-to-diversity-and-hosts-64-of-uks-black-necked-grebes/",
     "date": "2026-09-14T11:00:59.000Z",
@@ -586,16 +586,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Updated",
     "originalTitle": "Former Industrial Ground Goes from Dump to Diversity and Hosts 64% of UK’s Black-Necked Grebes",
     "note": "A former industrial ground has been transformed into a diverse habitat hosting 64% of the UK's black-necked grebes.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Adapted sailing opens sea",
+    "title": "Adapted sailing activity added for inclusive sea play",
     "summary": "César Maquieira has always loved the sea. Born and raised in the northwest of Spain, much of which is bordered by the Atlantic Ocean, he would for years regularly go fishing and on boat trips, and he dabbled in scuba diving. There was something about the great expanse of azure... The post With Adapted Sailing, the Sea Is for Everyone appeared first on Reasons to be Cheerful .",
     "url": "https://reasonstobecheerful.world/adapted-sailing-school/",
     "date": "2026-09-14T08:00:33.000Z",
@@ -603,16 +603,16 @@
     "publisher": "Reasons to be Cheerful",
     "provider": "Reasons to be Cheerful",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "With Adapted Sailing, the Sea Is for Everyone",
     "note": "Adapted sailing initiatives are making the sea accessible to everyone.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Kingfisher appears as sign",
+    "title": "Kingfisher hand‑sitting behavior unlocked in bestiary",
     "summary": "A woman in England had just “asked for a sign” when a kingfisher streaked in, and even landed on her hand—staying there for ten minutes. “I had just asked for a sign, then just moments later this happened,” Laura O’Brien told SWNS news. The 24-year-old says she was “amazed” because the Eurasian Kingfisher (also known […] The post She ‘Asked for a Sign’ and Suddenly a Kingfisher Darts Up and Sits in Her Hand for 10 Minutes appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/woman-asked-for-a-sign-and-a-kingfisher-sits-on-her-hand/",
     "date": "2026-09-13T18:26:53.000Z",
@@ -620,16 +620,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Added",
+    "kind": "Unlocked",
     "originalTitle": "She ‘Asked for a Sign’ and Suddenly a Kingfisher Darts Up and Sits in Her Hand for 10 Minutes",
     "note": "A woman asked for a sign and a kingfisher darted up to sit in her hand for 10 minutes.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Math ensures Wordle win",
+    "title": "Wordle optimization algorithm added to puzzle toolkit",
     "summary": "Millions of people playing their daily Wordle games will be eager to hear about this new research. Using information theory, the team of researchers from Binghamton University and State University of New York has developed a method to solve the game with a 99% success rate. In the The New York Times online game, players […] The post Researchers Use Math to Ensure a Wordle Win 99% of the Time appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/researchers-use-math-to-ensure-a-wordle-win-99-of-the-time/",
     "date": "2026-09-13T15:22:28.000Z",
@@ -640,13 +640,13 @@
     "kind": "Added",
     "originalTitle": "Researchers Use Math to Ensure a Wordle Win 99% of the Time",
     "note": "Researchers used mathematics to create a strategy that ensures a Wordle win 99% of the time.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "Elephants exhibit impulse control",
+    "title": "Elephant impulse‑resistance insight unlocked in bestiary",
     "summary": "Elephants can think before they act, as well as resist impulsive behavior, reveals new research that adds to growing evidence of elephants possessing sophisticated cognitive skills. Experiments at the National Elephant Institute in Thailand show Asian pachyderms are able to deny their impulses and choose a more rational course of action, in order to solve […] The post Elephants Can Think Before They Act and Resist Impulsive Behavior, Shows Study appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/elephants-can-think-before-they-act-and-resist-impulsive-behavior/",
     "date": "2026-09-13T11:00:25.000Z",
@@ -654,16 +654,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Unlocked",
     "originalTitle": "Elephants Can Think Before They Act and Resist Impulsive Behavior, Shows Study",
     "note": "A study shows that elephants can think before they act and resist impulsive behavior.",
-    "titleRevision": 3,
+    "titleRevision": 7,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "NYC subway blackout inspires unity",
+    "title": "NYC subway blackout event added to history mode",
     "summary": "In November of 1965 a great blackout spread across the northeastern United States and parts of Canada. 30 million people were affected and Lynn Lowin was one of them. Now in her senior years, she wanted to finally tell her inspiring tale from 61 years ago, so reached out to Good News Network. During that […] The post The Blackout of ‘65 Left 800K Trapped in NYC Subway – 6 Hours Later People Were Inspired by Each Other appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/the-massive-blackout-of-65-left-people-inspired-by-each-other/",
     "date": "2026-09-12T21:07:54.000Z",
@@ -671,16 +671,16 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Changed",
+    "kind": "Added",
     "originalTitle": "The Blackout of ‘65 Left 800K Trapped in NYC Subway – 6 Hours Later People Were Inspired by Each Other",
     "note": "Six hours after the 1965 blackout trapped 800,000 people in NYC, the public was inspired by each other.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   },
   {
-    "title": "T rex trackway map added",
+    "title": "Adult T‑rex trackway loot added in North Dakota",
     "summary": "Scientists have confirmed the discovery of the first adult T. rex trackway, providing new insights into how this emblematic predator moved. While a myriad of isolated footprints made by adults in the T. rex species have been found, this is the first time scientists can report a sequence of tracks, or a trackway, left by […] The post Massive Footprints Reveal First Ever Adult T Rex Trackway, a 66-Million-Year-old Walk Through North Dakota appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/massive-footprints-reveal-first-ever-adult-t-rex-trackway/",
     "date": "2026-09-12T19:15:02.000Z",
@@ -691,9 +691,9 @@
     "kind": "Added",
     "originalTitle": "Massive Footprints Reveal First Ever Adult T Rex Trackway, a 66-Million-Year-old Walk Through North Dakota",
     "note": "Massive footprints have revealed the first-ever adult T-Rex trackway, a 66-million-year-old walk in North Dakota.",
-    "titleRevision": 3,
+    "titleRevision": 6,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
-    "titleStyleVersion": 2
+    "titleStyleVersion": 4
   }
 ]
