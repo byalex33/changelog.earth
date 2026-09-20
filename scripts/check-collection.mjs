@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { groqJSON } from '../lib/groq.mjs';
+let calls=0;
+const result=await groqJSON('test','{}',{apiKey:'test',fetcher:async()=>++calls===1 ? new Response('',{status:429,headers:{'retry-after':'0'}}) : Response.json({choices:[{finish_reason:'stop',message:{content:'{"ok":true}'}}]})});
+assert.equal(result.ok,true); assert.equal(calls,2);
+calls=0;
+await assert.rejects(groqJSON('test','{}',{apiKey:'test',fetcher:async()=>{calls++;return new Response('',{status:429,headers:{'retry-after':'120'}})}}),/Groq HTTP 429/);
+assert.equal(calls,1);
+const {getChangelog}=await import('../lib/changelog.mjs?strict-collection');
+const news={articles:[{title:'New scientific discovery',url:'https://example.org/new',date:'2026-09-20',category:'Science & nature'}],stale:[],unavailable:[]};
+await assert.rejects(getChangelog(news,{strict:true}),/not configured/);
+await assert.rejects(getChangelog(news,{strict:true,apiKey:'test',fetcher:async()=>new Response('',{status:429})}),/Groq HTTP 429/);
+const {getChangelog:empty}=await import('../lib/changelog.mjs?empty-collection');
+assert.equal((await empty(news,{strict:true,apiKey:'test',fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})})).editorial,'empty');
+console.log('Rate-limit retry, bounded waiting, explicit collection failure and genuinely empty selection pass.');
