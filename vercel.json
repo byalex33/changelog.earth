@@ -4,7 +4,7 @@
   "installCommand": "npm ci",
   "functions": {
     "app/api/news/route.ts": {
-      "maxDuration": 120
+      "maxDuration": 180
     }
   }
 }
