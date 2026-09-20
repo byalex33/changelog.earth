@@ -20,7 +20,7 @@ assert.equal(mergeEditions([rejected],[corrected])[0].worldwide,false,'Old remot
 await writePatchTitles([article],{apiKey:'test',fetcher:async(url,options)=>{
  const body=JSON.parse(options.body);
  assert.ok(body.messages[0].content.includes('not a collection of local stories'));
- assert.equal(JSON.parse(body.messages[1].content)[0].summary,article.summary);
+ assert.deepEqual(JSON.parse(body.messages[1].content)[0],{sourceId:0,headline:article.originalTitle});
  return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[entry]})}}]});
 }});
 await assert.rejects(writePatchTitles([article],{apiKey:'test',fetcher:async()=>new Response('',{status:429})}));

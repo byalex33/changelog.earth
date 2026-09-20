@@ -11,5 +11,5 @@ const news={articles:[{title:'New scientific discovery',url:'https://example.org
 await assert.rejects(getChangelog(news,{strict:true}),/not configured/);
 await assert.rejects(getChangelog(news,{strict:true,apiKey:'test',fetcher:async()=>new Response('',{status:429})}),/Groq HTTP 429/);
 const {getChangelog:empty}=await import('../lib/changelog.mjs?empty-collection');
-assert.equal((await empty(news,{strict:true,apiKey:'test',fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})})).editorial,'empty');
+assert.equal((await empty({...news,articles:[]},{strict:true,apiKey:'test',fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})})).editorial,'empty');
 console.log('Rate-limit retry, bounded waiting, explicit collection failure and genuinely empty selection pass.');
