@@ -1,7 +1,7 @@
 name: Archive daily editions
 on:
   schedule:
-    - cron: '23 */6 * * *'
+    - cron: '23 */12 * * *'
   workflow_dispatch:
 permissions:
   contents: write
