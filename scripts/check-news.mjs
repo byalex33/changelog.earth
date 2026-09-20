@@ -28,8 +28,8 @@ assert.equal(expired.articles.length,0);assert.equal(expired.unavailable.length,
 console.log('News validation, future-date filtering, deduplication, cache/coalescing and outage fallback pass.');
 
 
-assert.equal(rssFeeds.length,24);
-assert.equal(new Set(rssFeeds.map(feed=>feed.url)).size,24);
+assert.equal(new Set(rssFeeds.map(feed=>feed.url)).size,rssFeeds.length);
+for (const id of ['ScienceDaily','Phys.org']) assert.equal(rssFeeds.find(feed=>feed.id===id)?.category,'Science & nature');
 const feed=rssFeeds[0];
 const rss='<rss version="2.0"><channel><item><title><![CDATA[New birds &amp; forests]]></title><link>https://example.org/birds</link><pubDate>Sat, 19 Sep 2026 10:00:00 GMT</pubDate></item></channel></rss>';
 const records=parseRss(rss,feed);
@@ -45,7 +45,7 @@ assert.throws(()=>parseRss('<rss><channel></rss>',feed));
 assert.throws(()=>parseRss('<!DOCTYPE rss [<!ENTITY x "boom">]><rss/>',feed));
 assert.equal(await readFeed(new Response(rss)),rss);
 await assert.rejects(()=>readFeed(new Response('x'.repeat(2*1024*1024+1))));
-console.log('24 unique RSS feeds, RSS/Atom/RDF parsing, XML rejection and response-size limits pass.');
+console.log('Unique science RSS feeds, RSS/Atom/RDF parsing, XML rejection and response-size limits pass.');
 
 const summaryRecord=parseRss(rss.replace('</item>','<description><![CDATA[<p>Researchers restored <b>the forest</b> &amp; protected wildlife.</p>]]></description></item>'),feed)[0];
 assert.equal(summaryRecord.summary,'Researchers restored the forest & protected wildlife.');

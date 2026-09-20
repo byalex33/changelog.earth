@@ -3,7 +3,7 @@ import { loadArchive, getPublishedChangelog } from '../lib/published-changelog.m
 import { applyPatchTitles, writePatchTitles } from '../lib/patch-titles.mjs';
 import { mergeEditions } from '../lib/edition-archive.mjs';
 import { TITLE_STYLE_VERSION, isPublishedWorldwide } from '../lib/editorial-policy.mjs';
-const article={title:'Old headline',originalTitle:'New cat species identified',summary:'Scientists identify a previously unknown wild cat species.',note:'A new cat species was identified.',url:'https://example.org/publication-test',date:'2026-09-20',provider:'Example',publisher:'Example',category:'Positive news',kind:'Added'};
+const article={title:'Old headline',originalTitle:'New cat species identified',summary:'Scientists identify a previously unknown wild cat species.',note:'A new cat species was identified.',url:'https://example.org/publication-test',date:'2000-01-01',provider:'Example',publisher:'Example',category:'Positive news',kind:'Added'};
 const entry={sourceId:0,title:'Added: New wild cat joins species roster',kind:'Added',worldwide:true,scopeReason:'New species expands scientific knowledge.'};
 const corrected=applyPatchTitles([article],{entries:[entry]},'groq','test')[0];
 assert.equal(corrected.title,'New wild cat joins species roster');

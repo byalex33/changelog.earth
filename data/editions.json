@@ -38,6 +38,44 @@
     "titleStyleVersion": 5
   },
   {
+    "title": "Firelight may explain the language skill tree",
+    "summary": "When asked about the greatest innovation of humans, people often say language or fire. A new paper suggests these innovations may be more interlinked than we previously assumed.",
+    "url": "https://phys.org/news/2026-09-firelight-spoken-language.html",
+    "date": "2026-09-20T19:00:01.000Z",
+    "dateLabel": "Published",
+    "publisher": "Phys.org",
+    "provider": "Phys.org",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "How firelight may have shaped the origins of spoken language",
+    "note": "When asked about the greatest innovation of humans, people often say language or fire. A new paper suggests these innovations may be more interlinked than we previously assumed.",
+    "worldwide": true,
+    "scopeReason": "Fire use linked to language origins",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-reviewed",
+    "titleStyleVersion": 5
+  },
+  {
+    "title": "Venus may have eaten its moon",
+    "summary": "Scientists have long speculated why Venus, with a size, mass and structure similar to Earth's, doesn't have a moon. New UC Riverside research shows that our hungry twin likely swallowed it.",
+    "url": "https://phys.org/news/2026-09-venus-ate-moon-earth-twin.html",
+    "date": "2026-09-20T18:30:02.000Z",
+    "dateLabel": "Published",
+    "publisher": "Phys.org",
+    "provider": "Phys.org",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "Venus ate its moon: How Earth's 'twin' could have swallowed a rocky satellite",
+    "note": "Scientists have long speculated why Venus, with a size, mass and structure similar to Earth's, doesn't have a moon. New UC Riverside research shows that our hungry twin likely swallowed it.",
+    "worldwide": true,
+    "scopeReason": "Venus likely consumed a former moon",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-reviewed",
+    "titleStyleVersion": 5
+  },
+  {
     "title": "No worldwide impact",
     "summary": "After more than 30 years of planning, construction, and fundraising, a paved bike trail ambling through 165 miles of Minnesota beauty has officially been completed—and now becomes one of the longest paved cycling trails in America. From the Mississippi river to the wilderness of the Boundary Waters, the Mesabi Trail winds through some of the […] The post 165-Mile Bike Trail Through Minnesota Finally Completed After 30 years, One of the Longest in America appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/165mi-bike-trail-through-minnesota-finally-completed-after-30-yrs/",
@@ -54,6 +92,25 @@
     "titleRevision": 1,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
+    "titleStyleVersion": 5
+  },
+  {
+    "title": "Virtual cells could boost drug discovery",
+    "summary": "Mitochondria—tiny structures that convert nutrients into energy—are often depicted as discrete kidney bean-shaped objects. But in reality, they form a dynamic, interconnected network throughout the entire cell, rapidly splitting and fusing as they're transported to where energy is needed most.",
+    "url": "https://phys.org/news/2026-09-virtual-cells-built-4d-ai.html",
+    "date": "2026-09-20T16:00:05.000Z",
+    "dateLabel": "Published",
+    "publisher": "Phys.org",
+    "provider": "Phys.org",
+    "category": "Science & nature",
+    "kind": "Added",
+    "originalTitle": "Virtual cells built from 4D AI models and 'digital twins' could speed up drug discovery",
+    "note": "Mitochondria—tiny structures that convert nutrients into energy—are often depicted as discrete kidney bean-shaped objects. But in reality, they form a dynamic, interconnected network throughout the entire cell, rapidly splitting and fusing as they're transported to where energy is needed most.",
+    "worldwide": true,
+    "scopeReason": "AI‑driven virtual cells speed drug research",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-reviewed",
     "titleStyleVersion": 5
   },
   {
@@ -133,6 +190,25 @@
     "titleStyleVersion": 5
   },
   {
+    "title": "Cat scent-ID system discovered",
+    "summary": "Cats may identify one another through a surprisingly durable chemical “calling card” made from 13 unusual fatty acids in their urine. The compounds appear linked to mysterious fat droplets in the kidneys and may represent a scent-recognition system shared across the cat family.",
+    "url": "https://www.sciencedaily.com/releases/2026/09/260919031033.htm",
+    "date": "2026-09-20T12:24:21.000Z",
+    "dateLabel": "Published",
+    "publisher": "ScienceDaily",
+    "provider": "ScienceDaily",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "Scientists discover a hidden “ID card” in cat urine",
+    "note": "Cats may identify one another through a surprisingly durable chemical “calling card” made from 13 unusual fatty acids in their urine. The compounds appear linked to mysterious fat droplets in the kidneys and may represent a scent-recognition system shared across the cat family.",
+    "worldwide": true,
+    "scopeReason": "Cat urine contains individual identifier",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-reviewed",
+    "titleStyleVersion": 5
+  },
+  {
     "title": "No worldwide impact",
     "summary": "Compare two children born in the same year: one in a country with functioning schools, social services, fair elections and a dynamic economy and the other in a nation devastated by poverty, conflict, climate change or corruption.",
     "url": "https://news.un.org/feed/view/en/story/2026/09/1168367",
@@ -149,6 +225,25 @@
     "titleRevision": 1,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
+    "titleStyleVersion": 5
+  },
+  {
+    "title": "Nanoparticles reveal hidden chemical differences",
+    "summary": "Scientists have developed ultra-bright nanoparticles that can detect tiny amounts of chemicals and distinguish between molecules that look almost identical. The technology could one day provide a cheaper way to catch dangerous drug impurities or trace pollutants using simple low-cost lasers.",
+    "url": "https://www.sciencedaily.com/releases/2026/09/260919031030.htm",
+    "date": "2026-09-20T11:35:28.000Z",
+    "dateLabel": "Published",
+    "publisher": "ScienceDaily",
+    "provider": "ScienceDaily",
+    "category": "Science & nature",
+    "kind": "Added",
+    "originalTitle": "New nanoparticles make hidden chemical differences light up",
+    "note": "Scientists have developed ultra-bright nanoparticles that can detect tiny amounts of chemicals and distinguish between molecules that look almost identical. The technology could one day provide a cheaper way to catch dangerous drug impurities or trace pollutants using simple low-cost lasers.",
+    "worldwide": true,
+    "scopeReason": "Nanoparticles reveal concealed chemical variations",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-reviewed",
     "titleStyleVersion": 5
   },
   {
@@ -266,6 +361,25 @@
     "titleStyleVersion": 5
   },
   {
+    "title": "T. rex temperature stats revealed",
+    "summary": "Chemical clues preserved inside fossilized T. rex teeth reveal that the dinosaur maintained a body temperature of about 97 degrees Fahrenheit, almost identical to humans. The finding provides direct evidence that the giant predator was warm-blooded, helping explain how it stayed active and survived in chilly environments as far north as Alaska.",
+    "url": "https://www.sciencedaily.com/releases/2026/09/260919031020.htm",
+    "date": "2026-09-20T05:56:26.000Z",
+    "dateLabel": "Published",
+    "publisher": "ScienceDaily",
+    "provider": "ScienceDaily",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "A 66-million-year-old tooth reveals T. rex was nearly as warm as a human",
+    "note": "Chemical clues preserved inside fossilized T. rex teeth reveal that the dinosaur maintained a body temperature of about 97 degrees Fahrenheit, almost identical to humans. The finding provides direct evidence that the giant predator was warm-blooded, helping explain how it stayed active and survived in chilly environments as far north as Alaska.",
+    "worldwide": true,
+    "scopeReason": "T. rex body temperature similar to humans",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-reviewed",
+    "titleStyleVersion": 5
+  },
+  {
     "title": "NYC adds trees and bike lane to Park Avenue",
     "summary": "Until the 1920s Park Avenue in Manhattan actually park running through it. Now, New York City has unveiled a new plan for transforming Park Avenue back into its original natural character, adding trees, benches, and a protected bike lane. Mayor Mamdani and the NYC Department of Transportation are updating 11 blocks of the wide street, […] The post New York City is Putting ‘The Park’ Back in Park Avenue – And Adding a Protected Bike Lane (LOOK) appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/new-york-city-is-putting-the-park-back-in-park-avenue/",
@@ -304,7 +418,7 @@
     "titleStyleVersion": 5
   },
   {
-    "title": "ISS inventory replenished by Progress cargo delivery",
+    "title": "ISS inventory restocked",
     "summary": "The Progress M-25 docked at the space-facing port of Russia’s Poisk module at 9:44 a.m. EDT (1344 UTC) after a one-week delay.",
     "url": "https://spaceflightnow.com/2026/09/19/russian-progress-cargo-ship-arrives-at-international-space-station/",
     "date": "2026-09-19T21:11:15.000Z",
@@ -315,7 +429,7 @@
     "kind": "Updated",
     "originalTitle": "Russian Progress cargo ship arrives at International Space Station",
     "note": "A Russian Progress cargo ship has arrived at the International Space Station.",
-    "titleRevision": 9,
+    "titleRevision": 11,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -380,7 +494,7 @@
     "scopeReason": "Local fox rehabilitation in England, not global impact"
   },
   {
-    "title": "Planned launch queues 27 Starlink V2 Mini satellites",
+    "title": "Starlink queues 27 satellites for launch",
     "summary": "Liftoff from pad 4E at Vandenberg Space Force Base is scheduled during a window that opens at 6:47 p.m. PDT (9:47 p.m. EDT / 0147 UTC). It will be the 81st Starlink mission of the year.",
     "url": "https://spaceflightnow.com/2026/09/19/live-coverage-spacex-to-launch-27-starlink-v2-mini-satellites-on-falcon-9-rocket-from-vandenberg/",
     "date": "2026-09-19T20:06:04.000Z",
@@ -393,7 +507,7 @@
     "note": "SpaceX plans to launch 27 Starlink V2 Mini satellites on a Falcon 9 from Vandenberg. The source describes a scheduled launch window, not a confirmed liftoff.",
     "worldwide": true,
     "scopeReason": "Planned satellite mission for the Starlink constellation; launch completion is not established by the supplied source.",
-    "titleRevision": 2,
+    "titleRevision": 4,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5
@@ -646,7 +760,7 @@
     "scopeReason": "Regional exhibition, no scientific or global impact"
   },
   {
-    "title": "Moon map gains newly documented 2024 impact crater",
+    "title": "Moon map reveals a giant crater",
     "summary": "The impact crater was formed in 2024 when an object the size of a multistory building crashed into our lunar companion. The resulting divot is about 728 feet wide and 141 feet deep",
     "url": "https://www.smithsonianmag.com/smart-news/the-moon-just-got-a-massive-new-crater-thats-wider-than-two-end-to-end-football-fields-its-a-once-in-a-lifetime-observation-180989526/",
     "date": "2026-09-18T19:04:38.000Z",
@@ -657,7 +771,7 @@
     "kind": "Updated",
     "originalTitle": "The Moon Just Got a Massive New Crater That's Wider Than Two End-to-End Football Fields. It's a 'Once-in-a-Lifetime Observation'",
     "note": "A massive new crater wider than two end-to-end football fields has been observed on the Moon.",
-    "titleRevision": 8,
+    "titleRevision": 10,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -665,7 +779,7 @@
     "scopeReason": "New lunar impact crater adds to planetary science worldwide"
   },
   {
-    "title": "Textile dyeing's water and energy costs",
+    "title": "Textile dyeing water and energy costs",
     "summary": "Hoping to tackle the 50% of textile emissions associated with the dyeing process, a vaunted French startup has created non-toxic dyes that require substantially less water to activate and last just as long. Additionally, they take hold electromagnetically at room temperature, rather than over long periods at boiling temperatures, and don’t require chemical fixatives. EverDye’s […] The post Company’s Textile Dyes Work Through Magnetism, Cutting Fashion’s Water-Use, Energy, and Pollution appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/companys-textile-dyes-work-through-magnetism-cutting-fashions-water-use-energy-and-pollution/",
     "date": "2026-09-18T18:30:36.000Z",
@@ -676,7 +790,7 @@
     "kind": "Nerfed",
     "originalTitle": "Company’s Textile Dyes Work Through Magnetism, Cutting Fashion’s Water-Use, Energy, and Pollution",
     "note": "A new textile dye process uses magnetism to significantly reduce water consumption, energy use, and pollution.",
-    "titleRevision": 9,
+    "titleRevision": 11,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -684,7 +798,7 @@
     "scopeReason": "Innovative magnetic dyes reduce water, energy, pollution globally"
   },
   {
-    "title": "Intact Andean tomb opens a 600-year-old history archive",
+    "title": "600-year-old tomb opens its history archive",
     "summary": "An unspoiled, undiscovered tomb containing the remains of an elite society belong to a major Andean civilization has been uncovered in Peru. Located in the UNESCO World Heritage-listed site of Chan Chan, inside a palatial complex called Utzh An, its contents of 38 skeletons and a wealth of grave goods have remained undisturbed to our […] The post Unsealed for the First Time, This 600-yo Tomb in Peru Was Just Declared the ‘Discovery of the Decade’ appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/unsealed-for-the-first-time-this-600-yo-tomb-in-peru-was-just-declared-the-discovery-of-the-decade/",
     "date": "2026-09-18T15:30:26.000Z",
@@ -695,7 +809,7 @@
     "kind": "Unlocked",
     "originalTitle": "Unsealed for the First Time, This 600-yo Tomb in Peru Was Just Declared the ‘Discovery of the Decade’",
     "note": "A 600-year-old tomb in Peru has been unsealed for the first time and declared a major discovery.",
-    "titleRevision": 9,
+    "titleRevision": 11,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -722,7 +836,7 @@
     "scopeReason": "Procedure done at single sanctuary, not yet broader veterinary impact"
   },
   {
-    "title": "Tilcayo joins the wild cat species roster",
+    "title": "New cat spawned: Tilcayo",
     "summary": "In a story that proves ‘explorer’ is still a good answer to the question “what do you want to be when you grow up?” a whole new cat species has been identified for the first time in over 100 years. Found in Bolivia, the animal is smaller than the average housecat, but now enters the […] The post New Cat Species Identified for the First Time in Over 100 Years–Meet the Tilcayo appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/new-cat-species-identified-for-the-first-time-in-over-100-years-meet-the-tilcayo/",
     "date": "2026-09-18T08:45:29.000Z",
@@ -733,7 +847,7 @@
     "kind": "Added",
     "originalTitle": "New Cat Species Identified for the First Time in Over 100 Years–Meet the Tilcayo",
     "note": "Scientists have identified a new wild cat species, the Tilcayo, for the first time in over a century.",
-    "titleRevision": 8,
+    "titleRevision": 10,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -779,7 +893,7 @@
     "scopeReason": "Plastic‑sequestration project operates in a single Californian city, not a worldwide change"
   },
   {
-    "title": "Tropical heat link to Antarctic snowfall identified",
+    "title": "Antarctic snowfall mystery decoded",
     "summary": "A warming pool of tropical ocean water has been shown to be the cause of immense snowstorms over East Antarctica which contributed to a net gain of 695 billion tons of ice between 2021 and 2023. To put that tonnage into perspective, it’s about 4 years of annual ice loss according to a 2 decade […] The post Scientists Solve Mystery Behind Snowfall That Dropped 695 Billion Tons of Ice on Antarctica appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/scientists-solve-mystery-behind-snowfall-that-dropped-695-billion-tons-of-ice-on-antarctica/",
     "date": "2026-09-17T15:30:25.000Z",
@@ -790,7 +904,7 @@
     "kind": "Unlocked",
     "originalTitle": "Scientists Solve Mystery Behind Snowfall That Dropped 695 Billion Tons of Ice on Antarctica",
     "note": "Scientists have solved the mystery behind the snowfall that dropped 695 billion tons of ice on Antarctica.",
-    "titleRevision": 9,
+    "titleRevision": 11,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -798,7 +912,7 @@
     "scopeReason": "Discovery explains Antarctic snow increase, impacting global climate understanding"
   },
   {
-    "title": "Hydrogen-electric propulsion development reaches megawatt-class breakthrough",
+    "title": "Hydrogen-electric propulsion development levels up",
     "summary": "A Honeywell Aerospace led alliance of 18 European companies has made a significant breakthrough developing a megawatt-class hydrogen-electric… The post Honeywell Aerospace led alliance makes hydrogen-electric propulsion breakthrough appeared first on AeroTime .",
     "url": "https://www.aerotime.aero/articles/honeywell-aerospace-hydrogen-electric-propulsion-project-newborn",
     "date": "2026-09-17T13:29:30.000Z",
@@ -809,7 +923,7 @@
     "kind": "Unlocked",
     "originalTitle": "Honeywell Aerospace led alliance makes hydrogen-electric propulsion breakthrough",
     "note": "An alliance led by Honeywell Aerospace has achieved a breakthrough in hydrogen-electric propulsion technology.",
-    "titleRevision": 9,
+    "titleRevision": 11,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -817,7 +931,7 @@
     "scopeReason": "International alliance achieved megawatt‑class hydrogen‑electric propulsion, a breakthrough for global aviation"
   },
   {
-    "title": "Low-cost concussion screening headset prototype",
+    "title": "Concussion-screening headset prototype",
     "summary": "A trio of students at Harvard University have invented a low-cost, eye-tracking headset designed to help schools quickly screen child athletes for possible concussions. The invention takes just 2 to 3 minutes to screen for a concussion, or at least indicate sub-concussive trauma may be present, and it won the inventors the James Dyson Award […] The post Students Win James Dyson Award for Device That Screens Students for Concussions in Just 60 Seconds appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/students-win-james-dyson-award-for-device-that-screens-students-for-concussions-in-just-60-seconds/",
     "date": "2026-09-17T11:01:50.000Z",
@@ -828,7 +942,7 @@
     "kind": "Added",
     "originalTitle": "Students Win James Dyson Award for Device That Screens Students for Concussions in Just 60 Seconds",
     "note": "Students developed a low-cost eye-tracking headset prototype designed to screen for possible concussions. The source headline and summary give different durations, so no screening time is claimed here.",
-    "titleRevision": 8,
+    "titleRevision": 10,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -874,7 +988,7 @@
     "scopeReason": "Local wildlife rescue by a Nashville singer in Tennessee, no global impact"
   },
   {
-    "title": "Australian magnetite's potential for hydrogen production",
+    "title": "Australian magnetite could power hydrogen production",
     "summary": "Scientists have revealed that Australia may hold the key to generating ample green energy while creating a major export industry, and that it’s buried underneath their feet. The breakthrough centers on magnetite, a mineral found in Western Australia’s vast iron ore deposits throughout the Pilbara region. Researchers at Edith Cowan University’s School of Engineering have […] The post Scientists Determine Australia’s Vast Red Deserts Could Fuel a Hydrogen-Powered Energy Revolution appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/scientists-determine-australias-vast-red-deserts-could-fuel-a-hydrogen-powered-energy-revolution/",
     "date": "2026-09-16T15:35:16.000Z",
@@ -885,7 +999,7 @@
     "kind": "Unlocked",
     "originalTitle": "Scientists Determine Australia’s Vast Red Deserts Could Fuel a Hydrogen-Powered Energy Revolution",
     "note": "Scientists determined that Australia's vast red deserts could provide the fuel for a hydrogen-powered energy revolution.",
-    "titleRevision": 10,
+    "titleRevision": 12,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -1102,7 +1216,7 @@
     "scopeReason": "Local urban greening project in Athens, no global significance"
   },
   {
-    "title": "Fossil feather offers clues to bird survival",
+    "title": "Fossil feather may explain bird survival",
     "summary": "A feather preserved inside dinosaur dung could help explain why birds survived the mass extinction that wiped out most life on Earth. Specifically, it could explain whether it prepared a certain lineage of birds to weather the unnatural winter that followed in the wake of the asteroid impact. Scientists at the Field Museum of Chicago […] The post Feather Preserved in Dinosaur Dung Could Explain Why Birds Survived Mass Extinction appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/feather-preserved-in-dinosaur-dung-could-explain-why-birds-survived-mass-extinction/",
     "date": "2026-09-14T15:30:42.000Z",
@@ -1113,7 +1227,7 @@
     "kind": "Unlocked",
     "originalTitle": "Feather Preserved in Dinosaur Dung Could Explain Why Birds Survived Mass Extinction",
     "note": "A feather preserved in dinosaur dung could explain why birds survived the mass extinction event.",
-    "titleRevision": 8,
+    "titleRevision": 10,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -1121,7 +1235,7 @@
     "scopeReason": "Discovery of feather in dinosaur dung provides new insight into bird survival, globally relevant to paleontology"
   },
   {
-    "title": "WHO Southeast Asia reaches trachoma elimination milestone",
+    "title": "Trachoma reaches public-health elimination milestone",
     "summary": "The World Health Organization (WHO) recently announced it has certified Timor-Leste as having eliminated trachoma as a public health problem. The leading infectious cause of blindness, the achievement on the island nation now means that the entire Southeast Asian region, as defined by the WHO, is trachoma-free. It means over 2 billion people now live […] The post Following Timor-Leste’s Triumph, All of Southeast Asia Has Eliminated Trachoma appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/following-timor-lestes-triumph-all-of-southeast-asia-has-eliminated-trachoma/",
     "date": "2026-09-14T13:00:37.000Z",
@@ -1129,10 +1243,10 @@
     "publisher": "Good News Network",
     "provider": "Good News Network",
     "category": "Positive news",
-    "kind": "Updated",
+    "kind": "Nerfed",
     "originalTitle": "Following Timor-Leste’s Triumph, All of Southeast Asia Has Eliminated Trachoma",
     "note": "WHO certified Timor-Leste as having eliminated trachoma as a public health problem, completing that milestone across the WHO-defined Southeast Asian region.",
-    "titleRevision": 9,
+    "titleRevision": 11,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -1235,7 +1349,7 @@
     "scopeReason": "Method for solving a specific online word game, limited to game community, not globally significant"
   },
   {
-    "title": "Elephant self-control documented in new study",
+    "title": "Elephant self-control skill discovered",
     "summary": "Elephants can think before they act, as well as resist impulsive behavior, reveals new research that adds to growing evidence of elephants possessing sophisticated cognitive skills. Experiments at the National Elephant Institute in Thailand show Asian pachyderms are able to deny their impulses and choose a more rational course of action, in order to solve […] The post Elephants Can Think Before They Act and Resist Impulsive Behavior, Shows Study appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/elephants-can-think-before-they-act-and-resist-impulsive-behavior/",
     "date": "2026-09-13T11:00:25.000Z",
@@ -1246,7 +1360,7 @@
     "kind": "Unlocked",
     "originalTitle": "Elephants Can Think Before They Act and Resist Impulsive Behavior, Shows Study",
     "note": "A study shows that elephants can think before they act and resist impulsive behavior.",
-    "titleRevision": 9,
+    "titleRevision": 11,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
@@ -1273,7 +1387,7 @@
     "scopeReason": "Personal recollection of a historic blackout event, local historical interest only"
   },
   {
-    "title": "First confirmed adult T. rex trackway",
+    "title": "First adult T. rex trackway discovered",
     "summary": "Scientists have confirmed the discovery of the first adult T. rex trackway, providing new insights into how this emblematic predator moved. While a myriad of isolated footprints made by adults in the T. rex species have been found, this is the first time scientists can report a sequence of tracks, or a trackway, left by […] The post Massive Footprints Reveal First Ever Adult T Rex Trackway, a 66-Million-Year-old Walk Through North Dakota appeared first on Good News Network .",
     "url": "https://www.goodnewsnetwork.org/massive-footprints-reveal-first-ever-adult-t-rex-trackway/",
     "date": "2026-09-12T19:15:02.000Z",
@@ -1284,7 +1398,7 @@
     "kind": "Added",
     "originalTitle": "Massive Footprints Reveal First Ever Adult T Rex Trackway, a 66-Million-Year-old Walk Through North Dakota",
     "note": "Massive footprints have revealed the first-ever adult T-Rex trackway, a 66-million-year-old walk in North Dakota.",
-    "titleRevision": 8,
+    "titleRevision": 10,
     "titleProvider": "editorial",
     "titleModel": "source-reviewed",
     "titleStyleVersion": 5,
