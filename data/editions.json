@@ -1,6 +1,6 @@
 [
   {
-    "title": "Antibiotic test methods updated",
+    "title": "Antibiotic resistance tests need environment modifiers",
     "summary": "The World Health Organization (WHO) regards antimicrobial resistance, including antibiotic resistance, as one of the world's major health challenges. A new fundamental understanding of antibiotic resistance could therefore potentially have a far-reaching impact on global public health, animal health and the environment.",
     "url": "https://phys.org/news/2026-09-antibiotic-resistance-bacteria-environments.html",
     "date": "2026-09-22T17:00:07.000Z",
@@ -13,13 +13,13 @@
     "note": "The World Health Organization (WHO) regards antimicrobial resistance, including antibiotic resistance, as one of the world's major health challenges. A new fundamental understanding of antibiotic resistance could therefore potentially have a far-reaching impact on global public health, animal health and the environment.",
     "worldwide": true,
     "scopeReason": "Global methodology for antibiotic testing",
-    "titleRevision": 1,
+    "titleRevision": 2,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
     "titleStyleVersion": 5
   },
   {
-    "title": "Death pool clues to early life",
+    "title": "Death pool biome offers early-life clues",
     "summary": "The origins of the earliest life on Earth, prior to the rise of oxygen and photosynthesis, remain a mystery. Graveyards in brine pools at the bottom of the Red Sea may hold some answers.",
     "url": "https://phys.org/news/2026-09-briny-death-pools-clues-early.html",
     "date": "2026-09-22T17:00:01.000Z",
@@ -32,7 +32,7 @@
     "note": "The origins of the earliest life on Earth, prior to the rise of oxygen and photosynthesis, remain a mystery. Graveyards in brine pools at the bottom of the Red Sea may hold some answers.",
     "worldwide": true,
     "scopeReason": "Ancient brine pools inform early life origins",
-    "titleRevision": 1,
+    "titleRevision": 2,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
     "titleStyleVersion": 5
@@ -304,7 +304,7 @@
     "titleStyleVersion": 5
   },
   {
-    "title": "Long COVID fatigue cause mapped",
+    "title": "Possible cause found for long COVID fatigue and brain fog debuffs",
     "summary": "Researchers have found evidence that long COVID may damage dopamine releasing neurons in the brain, potentially explaining persistent fatigue, low motivation, slowed movement, and memory difficulties. The discovery could lead to new treatments that target the brain's dopamine system.",
     "url": "https://www.sciencedaily.com/releases/2026/09/260920222412.htm",
     "date": "2026-09-22T03:48:58.000Z",
@@ -317,7 +317,7 @@
     "note": "Researchers have found evidence that long COVID may damage dopamine releasing neurons in the brain, potentially explaining persistent fatigue, low motivation, slowed movement, and memory difficulties. The discovery could lead to new treatments that target the brain's dopamine system.",
     "worldwide": true,
     "scopeReason": "Long COVID brain‑fog mechanism identified",
-    "titleRevision": 1,
+    "titleRevision": 2,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
     "titleStyleVersion": 5
@@ -342,7 +342,7 @@
     "titleStyleVersion": 5
   },
   {
-    "title": "New penguin species added",
+    "title": "New penguin species joins the known roster",
     "summary": "Genetic evidence has revealed a previously unknown gentoo penguin species on the remote Kerguelen Islands and shown that gentoos actually consist of four distinct species. The discovery also highlights a growing threat, as warming oceans could leave several island populations with little suitable habitat by 2050.",
     "url": "https://www.sciencedaily.com/releases/2026/09/260920222410.htm",
     "date": "2026-09-22T03:11:46.000Z",
@@ -355,7 +355,7 @@
     "note": "Genetic evidence has revealed a previously unknown gentoo penguin species on the remote Kerguelen Islands and shown that gentoos actually consist of four distinct species. The discovery also highlights a growing threat, as warming oceans could leave several island populations with little suitable habitat by 2050.",
     "worldwide": true,
     "scopeReason": "First new penguin species in a century",
-    "titleRevision": 1,
+    "titleRevision": 2,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
     "titleStyleVersion": 5
@@ -399,7 +399,7 @@
     "titleStyleVersion": 5
   },
   {
-    "title": "Stem cells reverse mouse stroke",
+    "title": "Mouse stroke debuff reversed with stem cells",
     "summary": "Stem cell transplants helped regenerate stroke-damaged brain tissue in mice, producing new neurons and restoring lost motor function. The treatment also improved blood vessels, inflammation, and the blood-brain barrier, raising hopes that a similar approach could eventually help repair the human brain after stroke.",
     "url": "https://www.sciencedaily.com/releases/2026/09/260921081116.htm",
     "date": "2026-09-22T01:49:32.000Z",
@@ -412,7 +412,7 @@
     "note": "Stem cell transplants helped regenerate stroke-damaged brain tissue in mice, producing new neurons and restoring lost motor function. The treatment also improved blood vessels, inflammation, and the blood-brain barrier, raising hopes that a similar approach could eventually help repair the human brain after stroke.",
     "worldwide": true,
     "scopeReason": "Stem‑cell stroke reversal in mice",
-    "titleRevision": 1,
+    "titleRevision": 2,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
     "titleStyleVersion": 5
@@ -456,7 +456,7 @@
     "titleStyleVersion": 5
   },
   {
-    "title": "Fairness pathways protect climate targets",
+    "title": "Fairness rules rebalance emissions cuts toward climate targets",
     "summary": "Who cuts emissions fastest, and who supports others in doing so, are central questions in global climate action. New IIASA-led research shows that building fairness into climate models from the start can inform deliberations without changing the overall climate goal.",
     "url": "https://phys.org/news/2026-09-fairness-based-pathways-shift-emissions.html",
     "date": "2026-09-22T00:20:01.000Z",
@@ -469,7 +469,7 @@
     "note": "Who cuts emissions fastest, and who supports others in doing so, are central questions in global climate action. New IIASA-led research shows that building fairness into climate models from the start can inform deliberations without changing the overall climate goal.",
     "worldwide": true,
     "scopeReason": "Equitable emissions pathways preserve climate goals",
-    "titleRevision": 1,
+    "titleRevision": 2,
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
     "titleStyleVersion": 5
