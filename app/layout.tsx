@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "changelog.earth | Planetary release notes",
   description: "New species. Balance changes. Unresolved bugs. An unofficial changelog for Earth.",
+  alternates: {
+    types: { "application/rss+xml": "https://www.changelog.earth/feed.xml" },
+  },
   other: {
     "codex-preview": "development",
   },

@@ -31,7 +31,9 @@ changelog.earth collects recent reporting and turns selected headlines into shor
 
 - **Daily editions.** Aim for 3–6 worthwhile stories per publication day, prioritising discoveries, conservation wins and useful progress. Quiet days can have fewer.
 - **Reporting you can trace.** Original links, publishers and dates stay attached to every update.
+- **Follow via RSS.** Subscribe at `/feed.xml` for the latest 100 published patch notes, with source links and stable IDs. The feed refreshes on the same 15-minute schedule as the homepage and never generates AI drafts.
 - **A living terminal.** A rotating ASCII Earth, dated panels and compact source stacks.
+- **Loading feedback.** A mint Orbit indicator from [loading.dev](https://loading.dev/spinners/orbit) appears while a page is loading, respects reduced motion, and never delays the cached content.
 - **Saved editions during outages.** Groq selects stories and writes patch titles. Failed requests leave the saved archive intact; raw headlines never fill the gap.
 
 ## Run locally
@@ -49,7 +51,8 @@ Copy `.env.example` to `.env.local`, then add your Groq API key:
 ```dotenv
 GROQ_API_KEY=your_key_here
 GROQ_MODEL=openai/gpt-oss-120b
-# Optional fallback; token needs Inference Providers permission and available credits
+# Optional: enables Jev editorial and title checks through Vercel AI Gateway
+AI_GATEWAY_API_KEY=your_gateway_key
 ```
 
 ```sh
@@ -57,6 +60,8 @@ npm run dev
 ```
 
 Open **http://localhost:5173**. Without a Groq key, the app serves the saved archive but cannot select new stories. Restart the server after changing environment variables. Keep the key server-side. Configure the same variables in Vercel for production.
+
+Set `AI_GATEWAY_API_KEY` in `.env.local` and in the Vercel project's server environment to enable Jev. Without it, collection keeps the existing Groq-only behavior. Jev uses the native `POST https://ai-gateway.vercel.sh/v1/evaluate` API with model `typesafe-ai/jev`; no extra SDK is needed. Vercel lists promotional free pricing until **September 25, 2026**. Check [current Gateway pricing](https://vercel.com/ai-gateway/models/jev) and your account budget before enabling it; this integration does not enforce a free-only spending cap.
 
 ## How it works
 
@@ -67,7 +72,8 @@ flowchart LR
     C[Spaceflight News] --> D
     D --> E[Science, nature, positive news, tech and aviation]
     E --> F[Groq fills daily editions]
-    F --> G[Dated patch notes]
+    F --> J[Jev checks when configured]
+    J --> G[Dated patch notes]
     F --> H[Last curated edition during outages]
     H --> G
     G --> I[Publisher summaries and source links]
@@ -100,6 +106,8 @@ Built with **React 19, TypeScript, Tailwind CSS 4 and Vinext**, with a Cloudflar
 node scripts/check-news.mjs
 node scripts/check-changelog.mjs
 node scripts/check-earth.mjs
+node scripts/check-feed.mjs
+node scripts/check-jev.mjs
 ```
 
 These cover feed parsing, validation, deduplication, cache and outage behaviour, generated-output validation, source integrity, and globe geometry. The checks use Node's built-in assertions and mocked requests.
@@ -108,7 +116,7 @@ These cover feed parsing, validation, deduplication, cache and outage behaviour,
 
 ## Deploy to Vercel
 
-Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GROQ_API_KEY` as server-side environment variables, optionally set `GROQ_MODEL`, then deploy. The news function allows up to 120 seconds for upstream fetches and generation.
+Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GROQ_API_KEY` as a server-side environment variable, optionally set `GROQ_MODEL`, and set `AI_GATEWAY_API_KEY` to enable Jev, then deploy. The news function allows up to 120 seconds for upstream fetches, generation and review.
 
 For analytics, create a website in [Tracwell](https://tracwell.app/docs/browser-sdk), use its **private** collection mode, and add the production domain to its allowed domains. Set `NEXT_PUBLIC_TRACWELL_PROJECT_KEY` to the public browser project key before building. No analytics script is loaded when this value is absent. Never use a Tracwell server key in this variable.
 
@@ -151,7 +159,9 @@ The **Archive daily editions** GitHub Actions workflow collects the live curated
 
 Run `node scripts/check-archive.mjs` to check daily limits, duplicate prevention, retention and cold-outage behavior. To capture a local edition, set `EDITION_URL=http://localhost:5176/api/news` before running `node scripts/archive-editions.mjs`.
 
-Publication safety: normal page and API reads return committed archive stories without calling feeds or AI. Only the archive collector requests candidate editions. New headlines receive one AI pass for eligibility and game-style titles; a failed pass prevents publication. Archived title corrections carry a revision number so an older cached copy cannot undo them. Run `node scripts/check-publication.mjs` to check this behavior.
+Publication safety: normal page and API reads return committed archive stories without calling feeds or AI. Only the archive collector requests candidate editions. New headlines receive one Groq pass for eligibility and game-style titles, followed by Jev when configured; a failed pass prevents publication. Archived title corrections carry a revision number so an older cached copy cannot undo them. Run `node scripts/check-publication.mjs` to check this behavior.
 
 Worldwide editorial scope: the selector and title writer share the policy in `lib/editorial-policy.mjs`. Stories must show significance beyond a local audience, regardless of their publisher or country. The writer receives only original headlines and records a versioned `worldwide` assessment with its reason. Only assessed, eligible stories appear on the homepage and public API. Excluded stories remain in the archive but do not consume daily publication slots. Buffed/Nerfed labels describe demonstrated improvements or reductions; plans and prototypes retain their uncertainty. Style changes require an archive review before publication.
 `node scripts/check-collection.mjs` checks collection failure reporting and bounded rate-limit retries. Groq calls retry once when Retry-After is at most 60 seconds, within a shared 70-second call deadline. Each run sends at most 24 new headlines, without summaries or archive history. One low-reasoning call assesses relevance and writes titles with a 3,000-token output ceiling. Accepted and rejected results are saved to avoid repeat reviews. Story details come from publisher text rather than AI expansion. Successful provider responses log actual input/output token usage. Collection errors fail the archive job; a completed empty selection is logged separately. A run date does not change the source publication dates shown on the site.
+
+Jev reviews Groq-accepted candidates against the same worldwide editorial policy and checks each patch title against its original headline. It sends only headlines, proposed titles and kinds, with at most 24 candidates per request and a shared 20-second deadline. Both probabilities must reach 0.8, an initial threshold that has not been calibrated on this archive. Jev can reject a candidate but cannot promote a Groq rejection. Scores are saved in each reviewed story's `jev` field and survive archive corrections. Malformed responses, rate limits and timeouts fail collection without publishing unchecked drafts. Existing published stories are not retroactively reviewed. Rejected stories remain archived to avoid repeat calls. `node scripts/check-jev.mjs` covers the integration using mocked API responses.
