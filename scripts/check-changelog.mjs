@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {getChangelog,editionCacheControl} from '../lib/changelog.mjs';
+import {getChangelog,editionCacheControl,selectCandidates} from '../lib/changelog.mjs';
 const news={articles:Array.from({length:8},(_,i)=>({title:`New species identified ${i}`,summary:'Original publisher details.',url:`https://example.org/${i}`,date:'2026-09-20',publisher:'Example',provider:'Example',category:'Science & nature'})),stale:[],unavailable:[]};
 let calls=0;
 const fetcher=async(_,options)=>{
@@ -24,3 +24,25 @@ const failure=await cold(news,{...options,archive:first.articles,fetcher:async()
 const {getChangelog:malformed}=await import('../lib/changelog.mjs?malformed');
 await assert.rejects(malformed(news,{...options,strict:true,fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})}),/Incomplete patch titles/);
 console.log('One headline-only AI pass, source preservation, saved rejection reuse, coalescing and outage safety pass.');
+
+const busy=Array.from({length:30},(_,i)=>({...news.articles[0],title:`Science headline ${i}`,url:`https://example.org/busy-${i}`,date:`2026-09-23T15:${String(59-i).padStart(2,'0')}:00Z`,publisher:'Busy science',provider:i%2 ? 'Science feed A' : 'Science feed B'}));
+const varied=['Health','Environment','Energy'].map((category,i)=>({...news.articles[0],title:`Progress in ${category}`,url:`https://example.org/varied-${i}`,date:'2026-09-23T09:00:00Z',publisher:category,category}));
+const older={...varied[0],url:'https://example.org/older',date:'2026-09-22T23:00:00Z'};
+const pool=[...busy,...varied,older];
+const selected=selectCandidates(pool);
+assert.equal(selected.length,24);
+assert.deepEqual(selected.slice(0,4),[busy[0],...varied],'A busy publisher, even with multiple feeds, must not crowd out other publishers');
+assert.equal(selected[4],busy[1],'Take the next newest story once each publisher has a turn');
+assert(!selected.includes(older),'Older days must not displace candidates from a newer day');
+assert.equal(pool[1],busy[1],'Selection must not mutate the feed list');
+assert.deepEqual(selectCandidates([older,...varied]),[...varied,older]);
+const {getChangelog:diverse}=await import('../lib/changelog.mjs?diverse');
+const edition=await diverse({...news,articles:pool},{apiKey:'test',strict:true,fetcher:async(_,options)=>{
+ const input=JSON.parse(JSON.parse(options.body).messages[1].content);
+ assert.deepEqual(input.map(a=>a.headline),selected.map(a=>a.title),'New categories must reach the editor in balanced order');
+ return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:input.map(a=>({sourceId:a.sourceId,title:a.headline,kind:a.sourceId===1 ? 'Nerfed' : 'Unlocked',worldwide:true,scopeReason:'Worldwide progress'}))})}}]});
+}});
+assert.equal(edition.articles.length,6,'Publisher balancing must preserve the daily limit');
+assert(varied.every(a=>edition.articles.some(b=>b.url===a.url)),'The first six accepted stories must retain publisher variety');
+assert.equal(edition.articles.find(a=>a.url===varied[0].url).kind,'Nerfed','Preserve the editor label through publication selection');
+console.log('Publisher diversity, category eligibility, newest-day priority and daily publication limits pass.');

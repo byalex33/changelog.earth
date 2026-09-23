@@ -30,6 +30,10 @@ console.log('News validation, future-date filtering, deduplication, cache/coales
 
 assert.equal(new Set(rssFeeds.map(feed=>feed.url)).size,rssFeeds.length);
 for (const id of ['ScienceDaily','Phys.org']) assert.equal(rssFeeds.find(feed=>feed.id===id)?.category,'Science & nature');
+for (const [id,category] of [['UN News · Health','Health'],['Yale Environment 360','Environment'],['Carbon Brief','Environment'],['pv magazine','Energy'],['CleanTechnica','Energy']]) {
+ assert.equal(rssFeeds.find(feed=>feed.id===id)?.category,category);
+ assert.equal(normalizeArticles({results:[story]},id,now)[0].category,category);
+}
 const feed=rssFeeds[0];
 const rss='<rss version="2.0"><channel><item><title><![CDATA[New birds &amp; forests]]></title><link>https://example.org/birds</link><pubDate>Sat, 19 Sep 2026 10:00:00 GMT</pubDate></item></channel></rss>';
 const records=parseRss(rss,feed);
