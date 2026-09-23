@@ -18,6 +18,8 @@ jobs:
         with:
           node-version: '22'
       - run: node scripts/archive-editions.mjs
+        env:
+          ARCHIVE_SECRET: ${{ secrets.ARCHIVE_SECRET }}
       - name: Save new stories
         run: |
           git add data/editions.json

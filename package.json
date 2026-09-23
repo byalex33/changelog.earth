@@ -10,28 +10,21 @@
     "dev": "node scripts/run-framework.mjs dev",
     "build": "node scripts/run-framework.mjs build",
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern outputs --ignore-pattern work",
-    "db:generate": "drizzle-kit generate"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern outputs --ignore-pattern work"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.3.4",
     "@hugeicons/react": "^1.1.10",
-    "@shadcn/react": "^0.3.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
-    "drizzle-orm": "0.45.2",
     "fast-xml-parser": "^5.11.1",
     "loading-dev": "^0.3.4",
-    "lucide-react": "^1.31.0",
     "motion": "^13.3.0",
     "next": "16.3.4",
-    "next-themes": "^0.4.6",
     "radix-ui": "^1.6.7",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "sonner": "^2.0.8",
-    "tailwind-merge": "3.6.0",
-    "zod": "^3.25.76"
+    "tailwind-merge": "3.6.0"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
@@ -42,7 +35,6 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "@vitejs/plugin-rsc": "0.5.26",
-    "drizzle-kit": "0.31.10",
     "eslint": "9.39.4",
     "eslint-config-next": "16.3.4",
     "react-server-dom-webpack": "19.2.6",
