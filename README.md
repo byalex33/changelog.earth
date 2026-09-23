@@ -63,6 +63,8 @@ Open **http://localhost:5173**. Without a Groq key, the app serves the saved arc
 
 Set `AI_GATEWAY_API_KEY` in `.env.local` and in the Vercel project's server environment to enable Jev. Without it, collection uses Groq alone. Check [Gateway pricing](https://vercel.com/ai-gateway/models/jev) and your account budget before enabling it; this integration does not enforce a spending cap.
 
+Collection also requires `ARCHIVE_SECRET`. Generate a random token with `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"` and set the same value in the hosting environment and the repository's GitHub Actions secret named `ARCHIVE_SECRET`. For local collection, add it to `.env.local`. Never use a `NEXT_PUBLIC_` variable for this token. Missing or incorrect bearer tokens receive HTTP 401 before any feed or AI calls; public saved editions remain accessible.
+
 ## How it works
 
 ```mermaid

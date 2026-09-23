@@ -4,13 +4,13 @@ The site serves saved editions from [`data/editions.json`](../data/editions.json
 
 ## Collecting stories
 
-The [archive workflow](../.github/workflows/archive-editions.yml) runs at 00:23 and 12:23 UTC and can also run manually. It calls the live API with the `archive` query parameter, validates the response and commits additions. GitHub can delay scheduled runs; failures appear in Actions. The workflow needs no AI credentials in GitHub because the deployed API holds them.
+The [archive workflow](../.github/workflows/archive-editions.yml) runs at 00:23 and 12:23 UTC and can also run manually. It calls the live API with the `archive` query parameter and an `Authorization: Bearer` header, validates the response and commits additions. Configure the same random `ARCHIVE_SECRET` in the hosting environment and GitHub Actions repository secrets before enabling collection. Missing or incorrect credentials return HTTP 401 before archive loading, feed requests or AI calls. GitHub can delay scheduled runs; failures appear in Actions. AI credentials remain on the deployed server.
 
 The collector combines [RSS feeds](../lib/rss-feeds.mjs), GDELT and Spaceflight News. It considers stories from the last seven days. In-memory source caches refresh after 15 minutes and can reuse fetched stories for up to 24 hours during outages. Individual feed requests time out after eight seconds. These caches and request coalescing are per server instance, not global rate or spending limits.
 
 Energy, environment and health coverage includes pv magazine, CleanTechnica, Yale Environment 360, Carbon Brief and a dedicated UN News health feed. These join the existing science, space, technology and positive-news sources under the same editorial policy.
 
-For a local collection run, set `EDITION_URL=http://localhost:5173/api/news`, then run `node scripts/archive-editions.mjs`. The script adds the archive query parameter. This command can use AI credits and writes to the local archive.
+For a local collection run, set `EDITION_URL=http://localhost:5173/api/news` and put `ARCHIVE_SECRET` in `.env.local`, then run `node --env-file=.env.local scripts/archive-editions.mjs`. The script adds the archive query parameter and bearer header, refuses to run without the secret, and rejects redirects. This command can use AI credits and writes to the local archive.
 
 ## Editorial rules
 

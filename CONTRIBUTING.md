@@ -39,6 +39,7 @@ Run `npm run lint` for code changes and the checks relevant to your change:
 | News sources and parsing | `node scripts/check-news.mjs` |
 | Story selection and editorial rules | `node scripts/check-changelog.mjs`, `node scripts/check-collection.mjs` |
 | Archive and publication | `node scripts/check-archive.mjs`, `node scripts/check-publication.mjs` |
+| Collection authentication | `node scripts/check-archive-auth.mjs` |
 | Jev reviews | `node scripts/check-jev.mjs` |
 | RSS output | `node scripts/check-feed.mjs` |
 | ASCII globe | `node scripts/check-earth.mjs` |
