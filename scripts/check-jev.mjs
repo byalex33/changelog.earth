@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { reviewPatchTitles } from '../lib/jev.mjs';
 import { writePatchTitles } from '../lib/patch-titles.mjs';
 import { mergeEditions, validateArchive } from '../lib/edition-archive.mjs';
-import { TITLE_STYLE_VERSION } from '../lib/editorial-policy.mjs';
+import { TITLE_STYLE_VERSION, WORLDWIDE_POLICY } from '../lib/editorial-policy.mjs';
 
 const story={title:'New cat joins species roster',originalTitle:'Scientists discover a new cat species',note:'A new species was identified.',url:'https://example.org/cat',date:'2026-09-22',provider:'Example',publisher:'Example',category:'Science & nature',kind:'Added',worldwide:true,scopeReason:'New species expands scientific knowledge.',titleStyleVersion:TITLE_STYLE_VERSION,titleRevision:1};
 const stories=[story,{...story,url:'https://example.org/local'},{...story,url:'https://example.org/prototype'},{...story,url:'https://example.org/excluded',worldwide:false}];
@@ -21,6 +21,8 @@ const reviewed=await reviewPatchTitles(stories,{gatewayApiKey:'gateway-test',fet
  assert.equal(Object.keys(body.questions).length,6);
  assert.ok(body.questions.eligible_0.instructions.includes('untrusted data'));
  assert.ok(body.questions.eligible_0.instructions.includes('not a collection of local stories'));
+ assert.ok(body.questions.eligible_0.instructions.includes(WORLDWIDE_POLICY),'Jev must receive the same research eligibility rules as the writer');
+ assert.ok(body.questions.eligible_0.instructions.includes('Do not require global deployment or an available product.'));
  assert.equal(body.providerOptions.gateway.zeroDataRetention,true);
  const result=response(body);
  result.answers.eligible_0=probability(0.8);

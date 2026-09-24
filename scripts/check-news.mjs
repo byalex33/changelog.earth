@@ -29,8 +29,9 @@ console.log('News validation, future-date filtering, deduplication, cache/coales
 
 
 assert.equal(new Set(rssFeeds.map(feed=>feed.url)).size,rssFeeds.length);
+assert.equal(new Set(rssFeeds.map(feed=>feed.id)).size,rssFeeds.length);
 for (const id of ['ScienceDaily','Phys.org']) assert.equal(rssFeeds.find(feed=>feed.id===id)?.category,'Science & nature');
-for (const [id,category] of [['UN News · Health','Health'],['Yale Environment 360','Environment'],['Carbon Brief','Environment'],['pv magazine','Energy'],['CleanTechnica','Energy']]) {
+for (const [id,category] of [['UN News · Health','Health'],['Yale Environment 360','Environment'],['Carbon Brief','Environment'],['pv magazine','Energy'],['CleanTechnica','Energy'],['ScienceDaily · Health & medicine','Health'],['ScienceDaily · Earth & climate','Environment'],['Science News','Science & nature'],['Medical Xpress','Health'],['MIT News · Research','Science & nature'],['The Guardian · Science','Science & nature'],['The Guardian · Environment','Environment']]) {
  assert.equal(rssFeeds.find(feed=>feed.id===id)?.category,category);
  assert.equal(normalizeArticles({results:[story]},id,now)[0].category,category);
 }

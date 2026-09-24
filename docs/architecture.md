@@ -10,11 +10,15 @@ The collector combines [RSS feeds](../lib/rss-feeds.mjs), GDELT and Spaceflight 
 
 Energy, environment and health coverage includes pv magazine, CleanTechnica, Yale Environment 360, Carbon Brief and a dedicated UN News health feed. These join the existing science, space, technology and positive-news sources under the same editorial policy.
 
+The collector also checks Science News, Medical Xpress, MIT research, the Guardian's science and environment feeds, and ScienceDaily's health and earth/climate feeds. There are 40 inputs in total. Topic feeds share their publisher's candidate-selection turn, and overlapping stories are deduplicated before review.
+
 For a local collection run, set `EDITION_URL=http://localhost:5173/api/news` and put `ARCHIVE_SECRET` in `.env.local`, then run `node --env-file=.env.local scripts/archive-editions.mjs`. The script adds the archive query parameter and bearer header, refuses to run without the secret, and rejects redirects. This command can use AI credits and writes to the local archive.
 
 ## Editorial rules
 
 [`lib/editorial-policy.mjs`](../lib/editorial-policy.mjs) defines the shared policy. Stories need significance beyond a local audience, regardless of publisher or country. The policy excludes politics, war, crime, lawsuits, sports disputes and outrage stories. Plans, prototypes and preliminary research must retain their uncertainty.
+
+Both Groq and Jev receive explicit guidance that research can qualify before global deployment or a finished product exists. A study's location or experimental limits alone do not make it local-interest news. The headline must still establish broader relevance, and titles must retain those limits. Saved editorial decisions are retained; this guidance applies to newly reviewed stories.
 
 Each collection run sends up to 24 new headlines to Groq in one pass for eligibility and patch titles. Requests omit article summaries and archive history, use low reasoning effort and cap output at 3,000 tokens. Validated feed data supplies source URLs and dates; publisher text supplies story details. Groq retries once when `Retry-After` is at most 60 seconds, within a shared 70-second deadline. Successful responses log token usage.
 

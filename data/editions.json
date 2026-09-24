@@ -1,5 +1,150 @@
 [
   {
+    "title": "Gas giant formation enters the observation log",
+    "summary": "In recent decades, astronomers have reconstructed a fairly complete scenario for planet formation, from minute dust motes clumping together to the emergence of rocky spheres thousands of kilometers across, like Earth, or larger gas giants like Jupiter.",
+    "url": "https://phys.org/news/2026-09-astronomers-capture-unprecedented-view-gas.html",
+    "date": "2026-09-24T15:20:10.000Z",
+    "dateLabel": "Published",
+    "publisher": "Phys.org",
+    "provider": "Phys.org",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "Astronomers capture an unprecedented view of gas giant formation in action",
+    "note": "ALMA observations show gas interacting with the forming planet WISPIT 2b. The researchers describe the observations in two preprints, adding direct evidence to planet-formation research.",
+    "worldwide": true,
+    "scopeReason": "Direct observations advance understanding of how gas giants form.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "Gas‑giant formation view unlocked for planetary science",
+      "previousJev": {
+        "model": "typesafe-ai/jev",
+        "eligibleProbability": 0.89,
+        "faithfulProbability": 0.75
+      }
+    }
+  },
+  {
+    "title": "ALS models gain an experimental mitochondrial energy buff",
+    "summary": "Amyotrophic lateral sclerosis (ALS) is a progressive neurodegenerative disease in which motor neurons are gradually lost, leading to muscle weakness and, as the disease advances, difficulty breathing and swallowing. Existing medicines can slow disease progression to some extent, but no treatment has been established that fundamentally reverses the disease process. Mitochondrial dysfunction is considered a potential therapeutic target because mitochondria play a central role in cellular energy production and are frequently impaired in ALS.",
+    "url": "https://medicalxpress.com/news/2026-09-synthetic-molecule-mitochondrial-function-als.html",
+    "date": "2026-09-24T15:20:04.000Z",
+    "dateLabel": "Published",
+    "publisher": "Medical Xpress",
+    "provider": "Medical Xpress",
+    "category": "Health",
+    "kind": "Buffed",
+    "originalTitle": "Synthetic molecule improves mitochondrial function in ALS models and patient-derived stem cells",
+    "note": "The experimental molecule MA-5 improved mitochondrial function in fruit-fly ALS models and patient-derived cells. These preclinical findings do not establish a treatment benefit in people.",
+    "worldwide": true,
+    "scopeReason": "Preclinical work investigates mitochondrial dysfunction across several ALS models.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "Mitochondrial‑boost molecule unlocked for ALS research",
+      "previousJev": {
+        "model": "typesafe-ai/jev",
+        "eligibleProbability": 0.82,
+        "faithfulProbability": 0.59
+      }
+    }
+  },
+  {
+    "title": "Cell-sampling prototype may expand the cancer detection toolkit",
+    "summary": "MIT researchers developed a handheld system that gently collects living cells from patient samples to aid cancer testing and development of personalized medicines.",
+    "url": "https://news.mit.edu/2026/new-cell-collection-device-could-improve-early-cancer-detection-0924",
+    "date": "2026-09-24T15:00:00.000Z",
+    "dateLabel": "Published",
+    "publisher": "MIT News",
+    "provider": "MIT News · Research",
+    "category": "Science & nature",
+    "kind": "Added",
+    "originalTitle": "New cell-collection device could improve early cancer detection",
+    "note": "A handheld microfluidic device collected living cells from freshly removed tissue in a study. It could support earlier cancer detection and personalised treatment research, but it is not yet a proven screening test.",
+    "worldwide": true,
+    "scopeReason": "A new sampling method could support cancer research and future detection.",
+    "titleRevision": 3,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "Prototype may expand early cancer detection toolkit",
+      "previousJev": {
+        "model": "typesafe-ai/jev",
+        "eligibleProbability": 0.78,
+        "faithfulProbability": 0.73
+      }
+    }
+  },
+  {
+    "title": "Lab frogs' bacterial armor helps resist fungal damage",
+    "summary": "The bacteria living on frogs' skin could play a vital role in protecting the animals from a deadly fungal disease. A team of researchers led by Penn State scientists found that frogs' natural skin bacteria can help them fight disease and improve their chances of survival.",
+    "url": "https://phys.org/news/2026-09-frog-coat-bacterial-armor-fungal.html",
+    "date": "2026-09-24T13:20:04.000Z",
+    "dateLabel": "Published",
+    "publisher": "Phys.org",
+    "provider": "Phys.org",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "Frog's coat of bacterial armor helps protect it from fungal disease",
+    "note": "Experiments found that natural skin bacteria helped one tropical frog species withstand chytrid fungus. Suppressing those bacteria increased disease risk; the findings do not establish a universal amphibian treatment.",
+    "worldwide": true,
+    "scopeReason": "Experimental evidence clarifies defenses against a globally damaging amphibian pathogen.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "Frog bacterial armor unlocked as antifungal defense",
+      "previousJev": {
+        "model": "typesafe-ai/jev",
+        "eligibleProbability": 0.71,
+        "faithfulProbability": 0.8
+      }
+    }
+  },
+  {
+    "title": "Single-junction silicon efficiency stat reaches 28.29%",
+    "summary": "The result was confirmed by Germany’s Institute for Solar Energy Research Hamelin (ISFH). The post Longi sets 28.29% world record for single-junction silicon solar cell efficiency appeared first on pv magazine Global .",
+    "url": "https://www.pv-magazine.com/2026/09/24/longi-sets-28-29-world-record-for-single-junction-silicon-solar-cell-efficiency/",
+    "date": "2026-09-24T09:19:40.000Z",
+    "dateLabel": "Published",
+    "publisher": "pv magazine",
+    "provider": "pv magazine",
+    "category": "Energy",
+    "kind": "Buffed",
+    "originalTitle": "Longi sets 28.29% world record for single-junction silicon solar cell efficiency",
+    "note": "Longi reported a 28.29% conversion-efficiency record for a single-junction crystalline silicon solar cell, verified by ISFH. This is a cell result, not the efficiency of installed solar panels.",
+    "worldwide": true,
+    "scopeReason": "An independently verified solar-cell record advances renewable-energy technology.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "Silicon solar cell efficiency buffed to 28.29 %",
+      "previousJev": {
+        "model": "typesafe-ai/jev",
+        "eligibleProbability": 0.86,
+        "faithfulProbability": 0.5
+      }
+    }
+  },
+  {
     "title": "Off‑grid power system upgrade applied locally",
     "summary": "A water treatment plant in South Australia has installed a containerised off-grid power system in an area with no grid connection that ensure its energy needs are met, and essential water movement and filtration processes run continuously. The post Australian off-grid power system keeps high energy utility running 24/7 appeared first on pv magazine Global .",
     "url": "https://www.pv-magazine.com/2026/09/24/south-australian-off-grid-power-system-keeps-high-energy-utility-running-24-7/",
@@ -419,6 +564,35 @@
     "titleStyleVersion": 5
   },
   {
+    "title": "Tumor simulation draft crafting time cut to minutes",
+    "summary": "Until now, building a digital model of a tumor required scientists to review extensive literature, train in specialized software and master multiple programming languages. From start to finish, the process often took months, if not years, of specialized work.",
+    "url": "https://medicalxpress.com/news/2026-09-tumor-digital-twins-months-ai.html",
+    "date": "2026-09-23T23:40:06.000Z",
+    "dateLabel": "Published",
+    "publisher": "Medical Xpress",
+    "provider": "Medical Xpress",
+    "category": "Health",
+    "kind": "Nerfed",
+    "originalTitle": "Tumor digital twins took months to build—AI now drafts them in minutes",
+    "note": "Researchers connected AI agents to biological modelling tools to produce initial tumor-model drafts in under ten minutes. Domain expertise and further validation remain necessary.",
+    "worldwide": true,
+    "scopeReason": "Faster biological modelling supports cancer research beyond one location.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "AI drafts tumor digital twins in minutes",
+      "previousJev": {
+        "model": "typesafe-ai/jev",
+        "eligibleProbability": 0.73,
+        "faithfulProbability": 0.44
+      }
+    }
+  },
+  {
     "title": "Mississippi Power cost & pollution critique",
     "summary": "JACKSON, Mississippi — Sierra Club has released its sixth Dirty Truth Report. This year, Mississippi Power scored a 44 out of 100. The report grades utilities across the country based on how much coal they are retiring, how much gas they are planning, and how much renewable energy they are adding. Nationally, ... [continued] The post NEW REPORT: Mississippi Power Failing to Lower Costs & Pollution appeared first on CleanTechnica .",
     "url": "https://cleantechnica.com/2026/09/23/new-report-mississippi-power-failing-to-lower-costs-pollution/",
@@ -833,6 +1007,30 @@
     "titleStyleVersion": 5
   },
   {
+    "title": "Blue rose variant joins the plant roster",
+    "summary": "Scientists engineered roses that made both a blue pigment and a colorless helper molecule that brought out its shade.",
+    "url": "https://www.sciencenews.org/article/true-blue-rose-pigment-copigment",
+    "date": "2026-09-23T15:00:00.000Z",
+    "dateLabel": "Published",
+    "publisher": "Science News",
+    "provider": "Science News",
+    "category": "Science & nature",
+    "kind": "Added",
+    "originalTitle": "Finally, a true blue rose exists",
+    "note": "Genetically engineered roses produce blue pigments and helper molecules together, resulting in violet-blue flowers. The plants retained the colour in greenhouse and field tests.",
+    "worldwide": true,
+    "scopeReason": "New genetic engineering results expand plant pigmentation knowledge.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "Blue rose cultivar released"
+    }
+  },
+  {
     "title": "Poland offers 76 TWh in November renewables auctions",
     "summary": "Poland's Energy Regulatory Office (URE) has put almost PLN 25 billion ($6.5 billion) of renewables support up for bid in November, with PV and onshore wind taking most of it. The post Poland offers 76 TWh in November renewables auctions appeared first on pv magazine Global .",
     "url": "https://www.pv-magazine.com/2026/09/23/poland-offers-76-twh-in-november-renewables-auctions/",
@@ -895,6 +1093,35 @@
     }
   },
   {
+    "title": "Tropical trees' nighttime water-saving skill explained",
+    "summary": "Some tropical trees have evolved a clever way to survive drought by taking in carbon dioxide at night, allowing them to keep their pores closed during the hot daytime and conserve water. By comparing three Clusia species, researchers discovered that this water-saving form of photosynthesis, known as CAM, did not arise through a single evolutionary change. Instead, ancient genome duplications followed by millions of years of genetic reshuffling produced strikingly different strategies, from strong CAM to stress-triggered and hybrid forms.",
+    "url": "https://www.sciencedaily.com/releases/2026/09/260922005712.htm",
+    "date": "2026-09-23T12:05:24.000Z",
+    "dateLabel": "Published",
+    "publisher": "ScienceDaily",
+    "provider": "ScienceDaily",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "These tropical trees breathe at night to survive drought",
+    "note": "Comparing three Clusia species revealed how genome duplication and reshuffling produced different forms of water-saving photosynthesis. The work explains existing adaptations, rather than giving trees a new ability.",
+    "worldwide": true,
+    "scopeReason": "Comparative plant genetics explains drought adaptations relevant beyond one forest.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "Night‑breathing tropical trees added to climate‑adaptation lore",
+      "previousJev": {
+        "model": "typesafe-ai/jev",
+        "eligibleProbability": 0.64,
+        "faithfulProbability": 0.63
+      }
+    }
+  },
+  {
     "title": "Zelenskyy urges stronger pressure on Russia",
     "summary": "Ukrainian President Volodymyr Zelenskyy on Wednesday called for intensified pressure on Russia to end its war against Ukraine, arguing that Moscow continues to incur massive losses while prolonging a conflict whose consequences are increasingly being felt far beyond the battlefield.",
     "url": "https://news.un.org/feed/view/en/story/2026/09/1168416",
@@ -912,6 +1139,35 @@
     "titleProvider": "groq",
     "titleModel": "openai/gpt-oss-120b",
     "titleStyleVersion": 5
+  },
+  {
+    "title": "Extragalactic star trail expands the dark-matter research tree",
+    "summary": "Astronomers have discovered the first globular cluster stellar stream beyond the Milky Way, opening a new way to study dark matter in distant galaxies. These faint trails of stars trace a galaxy’s gravitational structure and could eventually help scientists map invisible matter across the universe.",
+    "url": "https://www.sciencedaily.com/releases/2026/09/260921081110.htm",
+    "date": "2026-09-23T11:23:11.000Z",
+    "dateLabel": "Published",
+    "publisher": "ScienceDaily",
+    "provider": "ScienceDaily",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "First stellar stream beyond the Milky Way could reveal dark matter",
+    "note": "Astronomers found the first globular-cluster stellar stream outside the Milky Way. Such trails could help map dark matter in other galaxies; the discovery does not itself reveal that dark matter.",
+    "worldwide": true,
+    "scopeReason": "First extragalactic globular-cluster stream opens a new astronomical research method.",
+    "titleRevision": 2,
+    "titleProvider": "editorial",
+    "titleModel": "source-checked editorial backfill",
+    "titleStyleVersion": 5,
+    "editorialOverride": {
+      "reason": "Owner-approved, source-checked backfill for the missing 23 and 24 September editions.",
+      "reviewedAt": "2026-09-24T15:57:41.360Z",
+      "previousTitle": "Extragalactic stellar stream unlocked for dark‑matter studies",
+      "previousJev": {
+        "model": "typesafe-ai/jev",
+        "eligibleProbability": 0.88,
+        "faithfulProbability": 0.69
+      }
+    }
   },
   {
     "title": "Ramses asteroid mission switched on, ESA‑JAXA unlocked",

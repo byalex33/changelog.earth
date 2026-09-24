@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { loadArchive, getPublishedChangelog } from '../lib/published-changelog.mjs';
 import { applyPatchTitles, writePatchTitles } from '../lib/patch-titles.mjs';
 import { mergeEditions } from '../lib/edition-archive.mjs';
-import { TITLE_STYLE_VERSION, isPublishedWorldwide } from '../lib/editorial-policy.mjs';
+import { TITLE_STYLE_VERSION, WORLDWIDE_POLICY, isPublishedWorldwide } from '../lib/editorial-policy.mjs';
 const article={title:'Old headline',originalTitle:'New cat species identified',summary:'Scientists identify a previously unknown wild cat species.',note:'A new cat species was identified.',url:'https://example.org/publication-test',date:'2000-01-01',provider:'Example',publisher:'Example',category:'Positive news',kind:'Added'};
 const entry={sourceId:0,title:'Added: New wild cat joins species roster',kind:'Added',worldwide:true,scopeReason:'New species expands scientific knowledge.'};
 const corrected=applyPatchTitles([article],{entries:[entry]},'groq','test')[0];
@@ -20,6 +20,7 @@ assert.equal(mergeEditions([rejected],[corrected])[0].worldwide,false,'Old remot
 await writePatchTitles([article],{apiKey:'test',fetcher:async(url,options)=>{
  const body=JSON.parse(options.body);
  assert.ok(body.messages[0].content.includes('not a collection of local stories'));
+ assert.ok(body.messages[0].content.includes(WORLDWIDE_POLICY),'The writer and reviewer must share research eligibility rules');
  assert.deepEqual(JSON.parse(body.messages[1].content)[0],{sourceId:0,headline:article.originalTitle});
  return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[entry]})}}]});
 }});
