@@ -22,4 +22,7 @@ validateArchive(edition.articles);
 const historical={...story,jev:{model:'typesafe-ai/jev',eligibleProbability:0.9,faithfulProbability:0.95}};
 validateArchive([historical]);
 assert.deepEqual(mergeEditions([historical],[{...historical,titleRevision:2}])[0].jev,historical.jev);
+const {jev: omitted, ...groqRevision}={...historical,titleRevision:2};
+assert.ok(omitted);
+assert.deepEqual(mergeEditions([historical],[groqRevision])[0].jev,historical.jev,'Groq-only revisions retain historical review metadata');
 console.log('Groq-only writer and strict collection pass with a legacy gateway key; historical archive metadata is retained.');
