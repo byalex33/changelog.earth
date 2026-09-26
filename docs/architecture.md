@@ -18,15 +18,15 @@ For a local collection run, set `EDITION_URL=http://localhost:5173/api/news` and
 
 [`lib/editorial-policy.mjs`](../lib/editorial-policy.mjs) defines the shared policy. Stories need significance beyond a local audience, regardless of publisher or country. The policy excludes politics, war, crime, lawsuits, sports disputes and outrage stories. Plans, prototypes and preliminary research must retain their uncertainty.
 
-Both Groq and Jev receive explicit guidance that research can qualify before global deployment or a finished product exists. A study's location or experimental limits alone do not make it local-interest news. The headline must still establish broader relevance, and titles must retain those limits. Saved editorial decisions are retained; this guidance applies to newly reviewed stories.
+Groq receives explicit guidance that research can qualify before global deployment or a finished product exists. A study's location or experimental limits alone do not make it local-interest news. The headline must still establish broader relevance, and titles must retain those limits. Saved editorial decisions are retained; this guidance applies to newly reviewed stories.
 
 Each collection run sends up to 24 new headlines to Groq in one pass for eligibility and patch titles. Requests omit article summaries and archive history, use low reasoning effort and cap output at 3,000 tokens. Validated feed data supplies source URLs and dates; publisher text supplies story details. Groq retries once when `Retry-After` is at most 60 seconds, within a shared 70-second deadline. Successful responses log token usage.
 
 Candidate selection keeps the newest days first and alternates publishers within each day, taking each publisher's newest story before its next. Multiple feeds from one publisher share a turn. This prevents a busy feed from taking the entire candidate budget. Accepted candidates fill daily slots in that order; labels have no quota. Observational discoveries use Unlocked, while demonstrated reductions in harm or resource costs can use Nerfed, including research with its experimental limits stated. Proposals and projections must not become achieved reductions.
 
-When `AI_GATEWAY_API_KEY` is configured, Jev reviews Groq-accepted candidates for worldwide relevance and title accuracy. It uses Vercel AI Gateway's evaluation API with `typesafe-ai/jev`, batches of at most 24 candidates and a shared 20-second deadline. Both probabilities must reach 0.8, an initial threshold that has not been calibrated against the archive. Jev can reject candidates but cannot promote a Groq rejection.
+Groq is the only AI provider used during collection. Legacy AI Gateway environment variables have no effect.
 
-Malformed responses, rate limits and timeouts fail collection. A completed run with no eligible new stories is reported separately. Existing published stories are not retroactively reviewed by Jev.
+Malformed responses, rate limits and timeouts fail collection. A completed run with no eligible new stories is reported separately. Existing editorial decisions are retained.
 
 ## Saved editions
 
@@ -34,7 +34,7 @@ The archive retains stories by their source date, with up to six eligible storie
 
 Accepted and rejected decisions remain in the archive to avoid repeat reviews. Excluded stories do not consume daily publication slots or appear in the public feed. There is no automatic expiry of archived days.
 
-Only stories with the current title-style version and an eligible `worldwide` assessment appear publicly. Style changes require an archive review before publication. Title corrections carry revision numbers so an older cached copy cannot undo them. Jev scores, when present, remain in each story's `jev` field through archive corrections.
+Only stories with the current title-style version and an eligible `worldwide` assessment appear publicly. Style changes require an archive review before publication. Title corrections carry revision numbers so an older cached copy cannot undo them. Historical Jev scores remain in the archive for provenance; collection no longer calls Jev.
 
 ## Serving readers
 

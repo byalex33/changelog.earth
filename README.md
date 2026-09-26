@@ -51,8 +51,6 @@ Copy `.env.example` to `.env.local`, then add your Groq API key:
 ```dotenv
 GROQ_API_KEY=your_key_here
 GROQ_MODEL=openai/gpt-oss-120b
-# Optional: enables Jev editorial and title checks through Vercel AI Gateway
-AI_GATEWAY_API_KEY=your_gateway_key
 ```
 
 ```sh
@@ -60,8 +58,6 @@ npm run dev
 ```
 
 Open **http://localhost:5173**. Without a Groq key, the app serves the saved archive but cannot select new stories. Restart the server after changing environment variables. Keep the key server-side. Configure the same variables in Vercel for production.
-
-Set `AI_GATEWAY_API_KEY` in `.env.local` and in the Vercel project's server environment to enable Jev. Without it, collection uses Groq alone. Check [Gateway pricing](https://vercel.com/ai-gateway/models/jev) and your account budget before enabling it; this integration does not enforce a spending cap.
 
 Collection also requires `ARCHIVE_SECRET`. Generate a random token with `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"` and set the same value in the hosting environment and the repository's GitHub Actions secret named `ARCHIVE_SECRET`. For local collection, add it to `.env.local`. Never use a `NEXT_PUBLIC_` variable for this token. Missing or incorrect bearer tokens receive HTTP 401 before any feed or AI calls; public saved editions remain accessible.
 
@@ -72,14 +68,13 @@ flowchart LR
     A[Twice-daily archive job] --> B[RSS, GDELT and Spaceflight News]
     B --> C[Validate and deduplicate]
     C --> D[Groq selects stories and writes titles]
-    D --> E[Jev checks when configured]
-    E --> F[Commit saved editions]
+    D --> F[Commit saved editions]
     F --> G[Homepage, API and RSS]
 ```
 
 The **Archive daily editions** GitHub Actions workflow collects stories at 00:23 and 12:23 UTC. It requests drafts from `/api/news?archive`, then commits them to [`data/editions.json`](data/editions.json). Normal homepage, API and RSS requests read saved editions without calling feeds or AI. Failed collection leaves published stories intact.
 
-Groq assesses headlines for worldwide relevance and writes game-style patch titles. Jev checks eligibility and title accuracy when configured. Original source links, dates and publisher summaries remain attached. Generated labels can be wrong, so the linked reporting remains the reference. GDELT dates indicate indexing time rather than publication time.
+Groq assesses headlines for worldwide relevance and writes game-style patch titles. Original source links, dates and publisher summaries remain attached. Generated labels can be wrong, so the linked reporting remains the reference. GDELT dates indicate indexing time rather than publication time.
 
 On Vercel, Next.js serves the homepage as cached HTML and regenerates it on visits after 15 minutes. Failed or empty regeneration keeps the previous page; an initial build without a valid edition fails. Local development renders on demand, so use a production build to measure caching.
 
@@ -104,7 +99,7 @@ Run `npm run lint` for ESLint. The [contribution guide](CONTRIBUTING.md#check-yo
 
 ## Deploy to Vercel
 
-Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GROQ_API_KEY` as a server-side environment variable, optionally set `GROQ_MODEL`, and set `AI_GATEWAY_API_KEY` to enable Jev, then deploy. The news function allows up to 120 seconds for upstream fetches, generation and review.
+Import this GitHub repository in Vercel. The included `vercel.json` selects Next.js, installs with `npm ci`, and builds with `next build --webpack`. Add `GROQ_API_KEY` as a server-side environment variable, optionally set `GROQ_MODEL`, then deploy. The news function allows up to 180 seconds for upstream fetches and generation.
 
 For analytics, create a website in [Tracwell](https://tracwell.app/docs/browser-sdk), use its **private** collection mode, and add the production domain to its allowed domains. Set `NEXT_PUBLIC_TRACWELL_PROJECT_KEY` to the public browser project key before building. No analytics script is loaded when this value is absent. Never use a Tracwell server key in this variable.
 

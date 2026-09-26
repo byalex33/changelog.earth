@@ -17,7 +17,7 @@ For feed suggestions, include the feed URL, its publisher and examples of report
 3. Copy `.env.example` to `.env.local`.
 4. Run `npm run dev` and open http://localhost:5173.
 
-The saved archive works without AI credentials. New story collection needs `GROQ_API_KEY`; `AI_GATEWAY_API_KEY` enables optional Jev reviews. Keep credentials server-side and out of commits. See the [README](README.md#run-locally) for configuration details.
+The saved archive works without AI credentials. New story collection needs `GROQ_API_KEY`. Keep credentials server-side and out of commits. See the [README](README.md#run-locally) for configuration details.
 
 Create a branch for your change and follow the patterns in the files you edit. Before changing Next.js code, read the relevant installed guide under `node_modules/next/dist/docs/`.
 
@@ -40,7 +40,7 @@ Run `npm run lint` for code changes and the checks relevant to your change:
 | Story selection and editorial rules | `node scripts/check-changelog.mjs`, `node scripts/check-collection.mjs` |
 | Archive and publication | `node scripts/check-archive.mjs`, `node scripts/check-publication.mjs` |
 | Collection authentication | `node scripts/check-archive-auth.mjs` |
-| Jev reviews | `node scripts/check-jev.mjs` |
+| Groq-only collection | `node scripts/check-groq-only.mjs` |
 | RSS output | `node scripts/check-feed.mjs` |
 | ASCII globe | `node scripts/check-earth.mjs` |
 | Page caching | `node scripts/check-page-cache.mjs` |
