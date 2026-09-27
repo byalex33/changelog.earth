@@ -26,7 +26,7 @@ Candidate selection keeps the newest days first and alternates publishers within
 
 Groq is the only AI provider used during collection. Legacy AI Gateway environment variables have no effect.
 
-Malformed responses, rate limits and timeouts fail collection. A completed run with no eligible new stories is reported separately. Existing editorial decisions are retained.
+Invalid patch-title batches receive one fresh generation attempt within the same 70-second generation deadline. Every batch still passes the full title, story-ID and worldwide-assessment validation before publication. A second invalid batch, malformed JSON, rate limits and timeouts fail collection. A completed run with no eligible new stories is reported separately. Existing editorial decisions are retained.
 
 ## Saved editions
 
