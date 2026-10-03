@@ -35,6 +35,7 @@ changelog.earth collects recent reporting and turns selected headlines into shor
 - **A living terminal.** A rotating ASCII Earth, dated panels and compact source stacks.
 - **Loading feedback.** A mint Orbit indicator from [loading.dev](https://loading.dev/spinners/orbit) appears while a page is loading, respects reduced motion, and never delays the cached content.
 - **Saved editions during outages.** Groq selects stories and writes patch titles. Failed requests leave the saved archive intact; raw headlines never fill the gap.
+- **A structured record underneath.** Every archived story can be classified into a domain, a change type, a scope, an evidence status and a significance level, with the reasoning kept next to it. See [event taxonomy](#structured-archive).
 
 ## Run locally
 
@@ -80,6 +81,19 @@ On Vercel, Next.js serves the homepage as cached HTML and regenerates it on visi
 
 See [collection, archive and caching details](docs/architecture.md) for the editorial rules, outage behaviour and provider limits.
 
+## Structured archive
+
+The patch notes are the readable layer. Underneath, the archive is being shaped into a structured, source-backed record of changes to Earth: events with domains, change types, evidence and a significance ladder, each traceable to the reporting it came from. That work is deliberately **retrospective and offline**, so it never touches collection, the homepage or the feed.
+
+The vocabulary is a draft, and it is validated against the archive rather than assumed. [`docs/event-schema.md`](docs/event-schema.md) is the contract; [`lib/taxonomy.mjs`](lib/taxonomy.mjs) holds the machine-readable version of it, and [`lib/taxonomy-fallback.mjs`](lib/taxonomy-fallback.mjs) holds the separate heuristics that infer a story against it when no record exists.
+
+```sh
+node scripts/classify-archive.mjs     # one-off retrospective classification, resumable
+node scripts/report-classification.mjs # distribution, examples per level, vocabulary gaps
+```
+
+Classification writes [`data/classifications.json`](data/classifications.json) with its own provenance, and never modifies `data/editions.json`. Stories without a record are derived on read and reported as inferred.
+
 ## Make it yours
 
 | Change | File |
@@ -90,6 +104,10 @@ See [collection, archive and caching details](docs/architecture.md) for the edit
 | Change the ASCII globe | [`components/ascii-earth.tsx`](components/ascii-earth.tsx) and [`lib/ascii-earth.mjs`](lib/ascii-earth.mjs) |
 | Edit the page and theme | [`app/page.tsx`](app/page.tsx) and [`app/globals.css`](app/globals.css) |
 | Change story popouts and the source directory | [`components/news-details.tsx`](components/news-details.tsx) |
+| Change the event vocabulary or its labels | [`lib/taxonomy.mjs`](lib/taxonomy.mjs) and [`docs/event-schema.md`](docs/event-schema.md) |
+| Change how unclassified stories are inferred | [`lib/taxonomy-fallback.mjs`](lib/taxonomy-fallback.mjs) |
+| Change the retrospective classification pass | [`lib/classification.mjs`](lib/classification.mjs), [`lib/classification-prompt.mjs`](lib/classification-prompt.mjs), [`lib/classification-records.mjs`](lib/classification-records.mjs) |
+| Change how the archive is measured and reported | [`lib/classification-report.mjs`](lib/classification-report.mjs) and [`lib/classified-archive.mjs`](lib/classified-archive.mjs) |
 
 Built with **React 19, TypeScript, Tailwind CSS 4 and Vinext**, with a Cloudflare Workers development runtime and a Next.js build for Vercel. Groq uses the REST API directly. The interface uses shadcn/ui, Radix, Motion and Hugeicons.
 

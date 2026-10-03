@@ -29,6 +29,7 @@ Create a branch for your change and follow the patterns in the files you edit. B
 - Make UI changes work on small screens, with keyboard navigation and with reduced motion.
 - Update documentation when behaviour or setup changes.
 - Avoid incidental changes to `data/editions.json`. Explain any intentional archive correction in the pull request.
+- Treat [`docs/event-schema.md`](docs/event-schema.md) as the draft contract for structured events. The vocabulary changes from measured archive output, never from preference, and classification must stay in `data/classifications.json` rather than being written back into the published archive.
 
 ## Check your changes
 
@@ -42,6 +43,7 @@ Run `npm run lint` for code changes and the checks relevant to your change:
 | Collection authentication | `node scripts/check-archive-auth.mjs` |
 | Groq-only collection | `node scripts/check-groq-only.mjs` |
 | RSS output | `node scripts/check-feed.mjs` |
+| Event taxonomy and classification | `node scripts/check-classification.mjs`, `node scripts/report-classification.mjs` |
 | ASCII globe | `node scripts/check-earth.mjs` |
 | Page caching | `node scripts/check-page-cache.mjs` |
 | Security headers | `node scripts/check-security-headers.mjs` |

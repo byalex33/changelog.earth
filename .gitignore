@@ -18,6 +18,10 @@
 /.vinext/
 /out/
 
+# Classification run artefacts: a killed run can leave its lock or temporary file beside the store
+data/classifications.json.lock
+data/classifications.json.*.tmp
+
 # misc
 .DS_Store
 *.pem

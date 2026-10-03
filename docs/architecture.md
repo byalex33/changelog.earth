@@ -28,6 +28,16 @@ Groq is the only AI provider used during collection. Legacy AI Gateway environme
 
 Invalid patch-title batches receive one fresh generation attempt within the same 70-second generation deadline. Every batch still passes the full title, story-ID and worldwide-assessment validation before publication. A second invalid batch, malformed JSON, rate limits and timeouts fail collection. A completed run with no eligible new stories is reported separately. Existing editorial decisions are retained.
 
+## Structured events
+
+[`docs/event-schema.md`](../docs/event-schema.md) is the draft contract for turning archived stories into structured, source-backed events. This layer is offline and retrospective: it reads [`data/editions.json`](../data/editions.json), classifies it with Groq in fixed batches, and writes [`data/classifications.json`](../data/classifications.json). Collection, page, API and RSS requests never call it.
+
+Classification adds no cost to collection because it does not run during collection. It reuses [`groqJSON`](../lib/groq.mjs) with a strict schema, records a domain, change type, scope, significance level with a reason and confidence, evidence status, subject, cluster key and grounded claim per story, and stamps each record with its model, prompt version, classification time and the headline it was derived from. Invalid batches are regenerated once and then fail, which includes a generation the provider itself rejects against the strict schema. Work is split into 25-story batches with atomic writes after each batch, so a run over a large archive resumes instead of restarting, and stories whose headline or title revision changed are reclassified instead of silently drifting.
+
+The published archive is never rewritten by this layer. Records live in a separate artifact keyed by source URL, anything without a record is derived on read by [`classifyArticle`](../lib/taxonomy-fallback.mjs) and reported as `inferred`, and the artifact records that it was produced after publication rather than at publication time.
+
+`node scripts/report-classification.mjs` validates the vocabulary against the archive: level distribution, examples at each level, confidence mix, domain and change-type density, cluster candidates, and threshold-based calibration warnings. Warnings about the shape of a distribution require a minimum sample, so a verdict about the vocabulary cannot come from a handful of stories.
+
 ## Saved editions
 
 The archive retains stories by their source date, with up to six eligible stories per day. New selections fill open places without replacing earlier entries. Exact source URLs and normalised original headlines are deduplicated before generation. A collection date does not change a story's source date. GDELT dates represent indexing time.
