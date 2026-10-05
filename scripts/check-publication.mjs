@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { loadArchive, getPublishedChangelog } from '../lib/published-changelog.mjs';
-import { applyPatchTitles, writePatchTitles } from '../lib/patch-titles.mjs';
+import { applyPatchTitles, readsLikeHeadline, writePatchTitles } from '../lib/patch-titles.mjs';
 import { mergeEditions } from '../lib/edition-archive.mjs';
 import { TITLE_STYLE_VERSION, WORLDWIDE_POLICY, isPublishedWorldwide } from '../lib/editorial-policy.mjs';
 const article={title:'Old headline',originalTitle:'New cat species identified',summary:'Scientists identify a previously unknown wild cat species.',note:'A new cat species was identified.',url:'https://example.org/publication-test',date:'2000-01-01',provider:'Example',publisher:'Example',category:'Positive news',kind:'Added'};
@@ -25,6 +25,28 @@ await writePatchTitles([article],{apiKey:'test',fetcher:async(url,options)=>{
  return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[entry]})}}]});
 }});
 await assert.rejects(writePatchTitles([article],{apiKey:'test',fetcher:async()=>new Response('',{status:429})}));
+for (const title of ['Insomnia linked to higher stroke risk','Venus may have eaten its moon','Enceladus ocean spray chemistry unlocked','Geothermal energy efficiency buffed']) assert.ok(readsLikeHeadline(title),`${title} is a headline, not a patch note`);
+for (const title of ['Stroke-risk debuff linked to insomnia','New penguin joins the known species roster','Bird memory skill tree expanded','ISS supply inventory restocked']) assert.ok(!readsLikeHeadline(title),`${title} names a game concept`);
+const headlineReply=title=>Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[{...entry,title}]})}}]});
+const rewriteReply=title=>Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[{sourceId:0,title}]})}}]});
+let requests=[];
+let [rewritten]=await writePatchTitles([article],{apiKey:'test',fetcher:async(url,options)=>{
+ requests.push(JSON.parse(options.body));
+ return requests.length===1 ? headlineReply('Wild cat species identified') : rewriteReply('Added: Wild cat joins the species roster');
+}});
+assert.equal(requests.length,2,'A headline-style title gets one rewrite pass');
+assert.deepEqual(JSON.parse(requests[1].messages[1].content),[{sourceId:0,headline:article.originalTitle,kind:'Added',rejectedTitle:'Wild cat species identified'}]);
+assert.equal(rewritten.title,'Wild cat joins the species roster');
+assert.equal(rewritten.titleRevision,1,'The rewrite belongs to the same revision');
+requests=[];
+[rewritten]=await writePatchTitles([article],{apiKey:'test',fetcher:async()=>(requests.push(1),requests.length===1 ? headlineReply('Wild cat species identified') : rewriteReply('Wild cat found in Peru'))});
+assert.equal(rewritten.title,'Wild cat species identified','A rewrite that is still a headline is not taken');
+requests=[];
+[rewritten]=await writePatchTitles([article],{apiKey:'test',fetcher:async()=>(requests.push(1),requests.length===1 ? headlineReply('Wild cat species identified') : new Response('',{status:429}))});
+assert.equal(rewritten.title,'Wild cat species identified','A failed rewrite never costs the collection');
+requests=[];
+await writePatchTitles([article],{apiKey:'test',fetcher:async()=>(requests.push(1),headlineReply(entry.title))});
+assert.equal(requests.length,1,'Titles that already name a game concept cost no extra call');
 await loadArchive(async()=>Response.json([corrected,{...rejected,url:'https://example.org/local',originalTitle:'Local nature reserve receives a land gift'}]),true);
 const oldFetch=globalThis.fetch;
 try {
@@ -41,4 +63,4 @@ try {
  assert.ok(offline.some(a=>a.url==='https://example.org/local'),'Excluded history is preserved, not deleted');
 } finally {globalThis.fetch=oldFetch;}
 assert.equal(corrected.titleStyleVersion,TITLE_STYLE_VERSION);
-console.log('Worldwide publication gate, source context, title normalization, archive migration and outage safety pass.');
+console.log('Worldwide publication gate, source context, title normalization, headline rewrites, archive migration and outage safety pass.');
