@@ -2,9 +2,20 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 
+const description = "New species. Balance changes. Unresolved bugs. An unofficial changelog for Earth.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.changelog.earth"),
   title: "changelog.earth | Planetary release notes",
-  description: "New species. Balance changes. Unresolved bugs. An unofficial changelog for Earth.",
+  description,
+  openGraph: {
+    title: "Earth's Changelog",
+    description,
+    siteName: "changelog.earth",
+    type: "website",
+    locale: "en_GB",
+  },
+  twitter: { card: "summary_large_image", title: "Earth's Changelog", description },
   alternates: {
     types: { "application/rss+xml": "https://www.changelog.earth/feed.xml" },
   },

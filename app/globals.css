@@ -178,7 +178,7 @@ body{letter-spacing:var(--letter-spacing)}
 @media(max-width:600px){.sources-trigger{gap:12px}.favicon-stack .source-favicon:nth-child(n+4){display:none}.sources-caption{font-size:10px;line-height:1.6}.story-popout{padding:18px}.patch-line{gap:8px}.sources-modal{padding:20px}.sources-modal-header h2{font-size:18px}}
 .patch-line{color:#e8b45f}.patch-line[data-kind=Added],.patch-line[data-kind=Unlocked]{color:#85d6a1}.patch-line[data-kind=Removed],.patch-line[data-kind=Nerfed]{color:#f18b8b}.patch-line[data-kind=Patched],.patch-line[data-kind=Fixed]{color:#80b9f3}.patch-line a:hover{color:inherit}
 
-.terminal-titlebar h3{margin:0;font:inherit;color:var(--foreground)}.news-day.terminal-window{margin-top:24px;margin-bottom:28px}
+.terminal-titlebar h2,.terminal-titlebar h3{margin:0;font:inherit;color:var(--foreground)}.news-day.terminal-window{margin-top:24px;margin-bottom:28px}
 
 .ascii-loader{display:flex;align-items:center;gap:24px;margin:22px 0;padding:26px 28px;border:1px dashed var(--border);border-radius:12px;background:var(--card);font:12px/1.7 var(--theme-font-mono)}
 .ascii-loader-dish{margin:0;color:#85d6a1;font:14px/1.3 var(--theme-font-mono);animation:signal-pulse 1.8s ease-in-out infinite}
@@ -212,3 +212,24 @@ body{letter-spacing:var(--letter-spacing)}
 @media(max-width:600px){.topbar{grid-template-columns:1fr auto;gap:0 12px;height:auto;min-height:96px;padding-top:12px}.topbar nav{grid-column:1/-1;grid-row:2;justify-self:center}.about-page{margin:40px auto 60px}.about-page h1{font-size:40px}}
 
 .about-page h1{font-weight:400;font-size:clamp(48px,7vw,80px);letter-spacing:0;line-height:1.15}
+
+/* 404: the ASCII Earth stands in for the zero. */
+.notfound-page{max-width:820px;margin:0 auto;padding-bottom:72px}
+.notfound-hero{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 0 8px}
+.notfound-hero .hero-stars{inset:0 -64px}
+.notfound-code{display:flex;align-items:center;justify-content:center;gap:clamp(4px,2vw,20px);font-size:clamp(120px,22vw,232px);line-height:1;color:var(--foreground);text-shadow:0 0 28px #ffffff26;user-select:none}
+.notfound-code>span{animation:notfound-flicker 7s steps(1,end) infinite}.notfound-code>span:last-child{animation-delay:-3.4s}
+.notfound-zero .ascii-earth{width:clamp(150px,26vw,290px);height:clamp(150px,26vw,270px)}.notfound-zero .ascii-earth pre{font-size:clamp(4px,.8vw,8px);line-height:1.125;text-shadow:0 0 14px color-mix(in srgb,#85d6a1 30%,transparent);color:#85d6a1}
+.notfound-hero h1{font-size:clamp(28px,4.4vw,42px);letter-spacing:-.04em;line-height:1.15;margin:28px 0 12px}
+.notfound-lead{max-width:520px;margin:0;color:var(--muted-foreground);font-size:16px}
+.notfound-log{margin-top:44px}
+.notfound-log .terminal-body{padding:24px 30px 26px}.notfound-log .terminal-body>p{opacity:0;animation:notfound-line .45s ease-out forwards}
+.notfound-log .terminal-body>p:nth-child(2){animation-delay:.35s}.notfound-log .terminal-body>p:nth-child(3){animation-delay:.7s}.notfound-log .terminal-body>p:nth-child(4){animation-delay:1.05s}.notfound-log .terminal-body>p:nth-child(5){animation-delay:1.4s}.notfound-log .terminal-body>p:nth-child(6){animation-delay:1.75s}
+.notfound-log .patch-line{margin:0 0 10px;flex-wrap:wrap;column-gap:12px}.notfound-log .patch-line>span:last-child{flex:1 1 18ch;min-width:0}.notfound-log .patch-line code,.notfound-prompt code{font:inherit;overflow-wrap:anywhere}.notfound-log .patch-line a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.notfound-prompt{margin:0 0 14px;color:var(--muted-foreground);font:14px/1.8 var(--theme-font-mono)}.notfound-prompt>span{color:#85d6a1;margin-right:4px}.notfound-prompt code{color:var(--foreground)}.notfound-cursor-line{margin:16px 0 0}
+.notfound-cursor{display:inline-block;width:.6em;height:1.1em;vertical-align:-.2em;background:var(--foreground);animation:signal-pulse 1s steps(2,end) infinite}
+.notfound-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}.notfound-actions .notfound-primary{border-color:color-mix(in srgb,#85d6a1 45%,var(--border));color:#85d6a1}
+@keyframes notfound-line{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes notfound-flicker{0%,93%,97%,100%{opacity:1}94%,96%{opacity:.35}}
+@media(max-width:600px){.notfound-hero{padding-top:36px}.notfound-hero .hero-stars{inset:0 -22px}.notfound-code{font-size:clamp(88px,26vw,120px)}.notfound-zero .ascii-earth{width:116px;height:116px}.notfound-zero .ascii-earth pre{font-size:3.4px}.notfound-lead{font-size:14px}.notfound-log{margin-top:32px}.notfound-log .terminal-body{padding:20px 16px 22px}.notfound-log .patch-line,.notfound-prompt{font-size:13px}.notfound-actions{flex-direction:column;align-items:stretch}.notfound-actions .github-pill{justify-content:center}}
+@media(prefers-reduced-motion:reduce){.notfound-code>span,.notfound-cursor{animation:none}.notfound-log .terminal-body>p{animation:none;opacity:1}}

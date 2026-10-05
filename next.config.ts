@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  async redirects() {
+    // A mistyped link in the wild still sends lots of visitors here.
+    return [{ source: "/about1", destination: "/about", permanent: true }];
+  },
   async headers() {
     const isDev = process.env.NODE_ENV === "development";
     return [{
