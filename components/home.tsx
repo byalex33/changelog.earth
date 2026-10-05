@@ -15,16 +15,33 @@ type News = {editorial?:string;articles:Article[];checkedAt:number;unavailable:s
 const shareUrl = 'https://twitter.com/intent/tweet?' + new URLSearchParams({text:"Earth has patch notes. Discoveries, good news and small upgrades, written like game updates.",url:'https://www.changelog.earth'}).toString();
 const patchSymbols:Record<string,string>={Added:'+',Unlocked:'+',Updated:'~',Buffed:'↑',Nerfed:'↓',Removed:'-',Changed:'~',Improved:'~',Fixed:'*',Patched:'*'};
 const dayFormat = new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
-export default function Home({news}:{news:News}) {
+export default function Home({news,total}:{news:News;total:number}) {
  const reducedMotion = useReducedMotion();
  const [visibleCount,setVisibleCount] = useState(30);
- const groups = Object.groupBy((news?.articles ?? []).slice(0,visibleCount), article => article.date.slice(0,10));
+ const [articles,setArticles] = useState(news?.articles ?? []);
+ const [loading,setLoading] = useState(false);
+ const groups = Object.groupBy(articles.slice(0,visibleCount), article => article.date.slice(0,10));
+ // The page ships only the newest stories; fetch the full archive once a reader scrolls past them.
+ async function showMore() {
+  if (visibleCount + 30 > articles.length && articles.length < total) {
+   setLoading(true);
+   let loaded = false;
+   try {
+    const response = await fetch('/api/news');
+    const edition = response.ok ? await response.json() as News : null;
+    if (Array.isArray(edition?.articles)) { setArticles(edition.articles); loaded = true; }
+   } catch {} // Keep showing what we already have; the button stays so readers can retry.
+   setLoading(false);
+   if (!loaded && visibleCount >= articles.length) return;
+  }
+  setVisibleCount(count=>count+30);
+ }
  return <div className="site-shell">
   <Navbar/>
   <main><section className="intro"><HeroStars/><div className="planet-panel"><AsciiEarth/></div><div className="intro-copy"><HeroTitle/><a className="github-pill hero-share" href={shareUrl} target="_blank" rel="noopener noreferrer" aria-label="Share changelog.earth on X (opens a new tab)"><HugeiconsIcon icon={Share03Icon} size={16} aria-hidden="true"/>Share on X</a></div></section>
   <section aria-label="Patch notes" id="releases">
   <div>{Object.entries(groups).sort(([a],[b])=>b.localeCompare(a)).map(([day,articles],index)=><motion.section initial={false} whileInView={reducedMotion === false ? {opacity:[.65,1],y:[24,0],scale:[.98,1],filter:["blur(4px)","blur(0px)"]} : {opacity:1,y:0,scale:1,filter:"none"}} viewport={{once:true,amount:.12}} transition={{duration:.55,delay:Math.min(index * .08,.24),ease:[.16,1,.3,1]}} className="terminal-window news-day" key={day} aria-labelledby={`date-${day}`}><div className="terminal-titlebar"><div className="terminal-dots" aria-hidden="true"><i/><i/><i/></div><h3 id={`date-${day}`}><time dateTime={day}>{dayFormat.format(new Date(day+'T12:00:00Z'))}</time></h3><span className="terminal-shell">v{day.replaceAll('-','.')}</span></div><div className="terminal-body"><div className="release">{articles?.map(article=><article className="news-entry patch-entry" key={article.url}><p className="patch-line" data-kind={article.kind}><a href={article.url} target="_blank" rel="noreferrer" title={`Source: ${article.publisher}${news?.stale.includes(article.provider) ? ' (cached)' : ''}`}><span>[{patchSymbols[article.kind] ?? '~'} {article.kind}] </span>{article.title.replace(/[.!?]$/, '')}</a><StoryInfo article={article} cached={news?.stale.includes(article.provider) ?? false}/></p></article>)}</div><Sources statuses={news?.sourceStatus}/></div></motion.section>)}</div>
-  {news && visibleCount < news.articles.length && <div className="show-more"><Button variant="outline" onClick={()=>setVisibleCount(count=>count+30)}>Show more stories ({news.articles.length-visibleCount} remaining)</Button></div>}
+  {visibleCount < Math.max(total,articles.length) && <div className="show-more"><Button variant="outline" disabled={loading} onClick={showMore}>{loading ? 'Loading older stories…' : `Show more stories (${Math.max(total,articles.length)-visibleCount} remaining)`}</Button></div>}
   </section>
   </main><footer className="site-footer">Created with <span aria-label="love">{'<3'}</span> by <a href="https://alex.codes">alex.codes</a></footer></div>;
 }

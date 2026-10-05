@@ -10,5 +10,6 @@ export default async function Page() {
  const edition = await getPublishedChangelog();
  // Failed regeneration leaves Next's last successful page intact, including across cold starts.
  if (!edition.articles.length) throw new Error('No curated edition available; keep the previously published page.');
- return <Home news={edition}/>;
+ // Ship the newest stories only; the rest of the archive loads from /api/news on demand.
+ return <Home news={{...edition,articles:edition.articles.slice(0,30)}} total={edition.articles.length}/>;
 }
