@@ -28,6 +28,8 @@ Groq is the only AI provider used during collection. Legacy AI Gateway environme
 
 Invalid patch-title batches receive one fresh generation attempt within the same 70-second generation deadline. Every batch still passes the full title, story-ID and worldwide-assessment validation before publication. A second invalid batch, malformed JSON, rate limits and timeouts fail collection. A completed run with no eligible new stories is reported separately. Existing editorial decisions are retained.
 
+Patch notes must name a game concept such as a roster, skill tree, debuff, stat, biome or lore entry; the label verb alone does not count. Titles without one usually read like shortened headlines, so they get one rewrite pass that shows Groq the rejected title. Rewrites that still name no game concept are discarded. This pass only affects quality: if it fails, the original titles stay and collection continues. To fix titles already published, run `node --env-file=.env.local scripts/retitle-headlines.mjs` (add `--dry-run` to list them first). It changes only titles and bumps their revision, so the live archive picks up the corrections.
+
 ## Structured events
 
 [`docs/event-schema.md`](../docs/event-schema.md) is the draft contract for turning archived stories into structured, source-backed events. This layer is offline and retrospective: it reads [`data/editions.json`](../data/editions.json), classifies it with Groq in fixed batches, and writes [`data/classifications.json`](../data/classifications.json). Collection, page, API and RSS requests never call it.
