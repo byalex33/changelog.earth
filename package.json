@@ -23,7 +23,7 @@
     "clsx": "2.1.1",
     "fast-xml-parser": "^5.11.2",
     "loading-dev": "^0.3.5",
-    "motion": "^13.3.0",
+    "motion": "^14.1.0",
     "next": "16.4.1",
     "radix-ui": "^1.8.0",
     "react": "19.3.0",
