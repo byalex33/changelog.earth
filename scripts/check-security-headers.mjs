@@ -26,9 +26,13 @@ try {
     assert.deepEqual(csp.get('default-src'), ["'self'"]);
     assert.ok(csp.get('script-src').includes('https://collect.tracwell.app'));
     assert.ok(csp.get('connect-src').includes('https://collect.tracwell.app'));
-    assert.ok(csp.get('connect-src').includes('https://api.github.com'));
-    assert.ok(csp.get('img-src').includes('https://www.google.com'));
-    assert.ok(csp.get('img-src').includes('https://*.gstatic.com'));
+    // Publisher favicons are self-hosted and GitHub stars are fetched on the server.
+    assert.ok(!csp.get('connect-src').includes('https://api.github.com'));
+    assert.ok(!csp.get('img-src').includes('https://www.google.com'));
+    assert.ok(!csp.get('img-src').includes('https://*.gstatic.com'));
+    // New script origins need a deliberate change here; see the CSP comment in next.config.ts.
+    const scriptSources = ["'self'", "'unsafe-inline'", 'https://collect.tracwell.app', ...(environment === 'development' ? ["'unsafe-eval'"] : [])];
+    assert.deepEqual(csp.get('script-src').filter(source => !scriptSources.includes(source)), []);
     assert.equal(csp.get('script-src').includes("'unsafe-eval'"), environment === 'development');
     assert.equal(csp.get('connect-src').includes('ws:'), environment === 'development');
     assert.equal(csp.get('connect-src').includes('wss:'), environment === 'development');

@@ -58,7 +58,7 @@ GROQ_MODEL=openai/gpt-oss-120b
 npm run dev
 ```
 
-Open **http://localhost:5173**. Without a Groq key, the app serves the saved archive but cannot select new stories. Restart the server after changing environment variables. Keep the key server-side. Configure the same variables in Vercel for production.
+This starts the Next.js development server, the same framework and webpack build that Vercel runs in production. Open **http://localhost:5173**. Without a Groq key, the app serves the saved archive but cannot select new stories. Restart the server after changing environment variables. Keep the key server-side. Configure the same variables in Vercel for production.
 
 Collection also requires `ARCHIVE_SECRET`. Generate a random token with `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"` and set the same value in the hosting environment and the repository's GitHub Actions secret named `ARCHIVE_SECRET`. For local collection, add it to `.env.local`. Never use a `NEXT_PUBLIC_` variable for this token. Missing or incorrect bearer tokens receive HTTP 401 before any feed or AI calls; public saved editions remain accessible.
 
@@ -66,16 +66,16 @@ Collection also requires `ARCHIVE_SECRET`. Generate a random token with `node -e
 
 ```mermaid
 flowchart LR
-    A[Twice-daily archive job] --> B[RSS, GDELT and Spaceflight News]
+    A[Twice-daily archive job] --> B[RSS feeds and Spaceflight News]
     B --> C[Validate and deduplicate]
     C --> D[Groq selects stories and writes titles]
     D --> F[Commit saved editions]
     F --> G[Homepage, API and RSS]
 ```
 
-The **Archive daily editions** GitHub Actions workflow collects stories at 00:23 and 12:23 UTC. It requests drafts from `/api/news?archive`, then commits them to [`data/editions.json`](data/editions.json). Normal homepage, API and RSS requests read saved editions without calling feeds or AI. Failed collection leaves published stories intact.
+The **Archive daily editions** GitHub Actions workflow collects stories at 00:23 and 12:23 UTC. It requests drafts from `/api/news?archive`, then commits them to [`data/editions.json`](data/editions.json). Normal homepage, API and RSS requests read saved editions without calling feeds or AI. Failed collection leaves published stories intact. After an editorial style change, each run re-reviews up to 24 archived stories instead of collecting new ones until the archive is current.
 
-Groq assesses headlines for worldwide relevance and writes game-style patch titles. Original source links, dates and publisher summaries remain attached. Generated labels can be wrong, so the linked reporting remains the reference. GDELT dates indicate indexing time rather than publication time.
+Groq assesses headlines for worldwide relevance and writes game-style patch titles. Original source links, dates and publisher summaries remain attached. Generated labels can be wrong, so the linked reporting remains the reference.
 
 On Vercel, Next.js serves the homepage as cached HTML and regenerates it on visits after 15 minutes. Failed or empty regeneration keeps the previous page; an initial build without a valid edition fails. Local development renders on demand, so use a production build to measure caching.
 
@@ -109,7 +109,7 @@ Classification writes [`data/classifications.json`](data/classifications.json) w
 | Change the retrospective classification pass | [`lib/classification.mjs`](lib/classification.mjs), [`lib/classification-prompt.mjs`](lib/classification-prompt.mjs), [`lib/classification-records.mjs`](lib/classification-records.mjs) |
 | Change how the archive is measured and reported | [`lib/classification-report.mjs`](lib/classification-report.mjs) and [`lib/classified-archive.mjs`](lib/classified-archive.mjs) |
 
-Built with **React 19, TypeScript, Tailwind CSS 4 and Vinext**, with a Cloudflare Workers development runtime and a Next.js build for Vercel. Groq uses the REST API directly. The interface uses shadcn/ui, Radix, Motion and Hugeicons.
+Built with **Next.js 16, React 19, TypeScript and Tailwind CSS 4**, deployed on Vercel. An optional Cloudflare Workers build uses Vinext. Groq uses the REST API directly. The interface uses shadcn/ui, Radix, Motion and Hugeicons.
 
 ## Checks
 
@@ -125,14 +125,17 @@ Add your custom domain in the Vercel project settings and apply the DNS records 
 
 ## Build for Cloudflare
 
+Vercel is the production host. A secondary Cloudflare Workers target builds the same app with Vinext and has its own scripts:
+
 ```sh
-npm run build
-npm start
+npm run dev:cf    # Vinext dev server on the Workers runtime, http://localhost:5173
+npm run build:cf
+npm run start:cf
 ```
 
-The build produces a Cloudflare Worker under `dist/server`; `npm start` previews it locally through Wrangler. To host it on your own Cloudflare account, configure your Worker and secrets, then deploy the generated Worker configuration. The default news feed does not require D1 or R2.
+`npm run build:cf` produces a Cloudflare Worker under `dist/server`; `npm run start:cf` previews it locally through Wrangler. To host it on your own Cloudflare account, configure your Worker and secrets, then deploy the generated Worker configuration.
 
-Set `GROQ_API_KEY` as a production secret and optionally set `GROQ_MODEL`. Do not commit credentials. Local hosting metadata is optional and is excluded from the public repository.
+Set `GROQ_API_KEY` as a production secret and optionally set `GROQ_MODEL`. Do not commit credentials.
 
 ## Contributing
 
@@ -144,7 +147,6 @@ Project code is available under the [MIT license](LICENSE). Third-party componen
 
 - [BeUI motion components](components/motion/LICENSE)
 - [shadcn styles](vendor/shadcn-tailwind-4.13.0.LICENSE.md)
-- [Sites Vite plugin](build/sites-vite-plugin.LICENSE)
 - [JetBrains Mono](public/fonts/JetBrainsMono-OFL.txt) and [Plus Jakarta Sans](public/fonts/PlusJakartaSans-OFL.txt), under the SIL Open Font License
 
 News articles, publisher summaries, names and logos belong to their respective owners. The software license does not relicense that content. This project is not affiliated with the publishers it links to.

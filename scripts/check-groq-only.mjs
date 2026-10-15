@@ -6,7 +6,7 @@ import { TITLE_STYLE_VERSION } from '../lib/editorial-policy.mjs';
 
 const story={title:'New cat joins species roster',originalTitle:'Scientists discover a new cat species',note:'A new species was identified.',url:'https://example.org/cat',date:'2026-09-25',provider:'Example',publisher:'Example',category:'Science & nature',kind:'Added',worldwide:true,scopeReason:'New species expands scientific knowledge.',titleStyleVersion:TITLE_STYLE_VERSION,titleRevision:1};
 let calls=0;
-const options={apiKey:'groq-test',gatewayApiKey:'legacy-key-must-be-ignored',strict:true,fetcher:async url=>{
+const options={apiKey:'groq-test',gatewayApiKey:'legacy-key-must-be-ignored',fetcher:async url=>{
  assert.equal(url,'https://api.groq.com/openai/v1/chat/completions','Collection must never call AI Gateway, even with a legacy key');
  calls++;
  return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[{sourceId:0,title:story.title,kind:story.kind,worldwide:true,scopeReason:story.scopeReason}]})}}]});

@@ -8,10 +8,10 @@ await assert.rejects(groqJSON('test','{}',{apiKey:'test',fetcher:async()=>{calls
 assert.equal(calls,1);
 const {getChangelog}=await import('../lib/changelog.mjs?strict-collection');
 const news={articles:[{title:'New scientific discovery',url:'https://example.org/new',date:'2026-09-20',category:'Science & nature'}],stale:[],unavailable:[]};
-await assert.rejects(getChangelog(news,{strict:true}),/not configured/);
-await assert.rejects(getChangelog(news,{strict:true,apiKey:'test',fetcher:async()=>new Response('',{status:429})}),/Groq HTTP 429/);
+await assert.rejects(getChangelog(news),/not configured/);
+await assert.rejects(getChangelog(news,{apiKey:'test',fetcher:async()=>new Response('',{status:429})}),/Groq HTTP 429/);
 const {getChangelog:empty}=await import('../lib/changelog.mjs?empty-collection');
-assert.equal((await empty({...news,articles:[]},{strict:true,apiKey:'test',fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})})).editorial,'empty');
+assert.equal((await empty({...news,articles:[]},{apiKey:'test',fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})})).editorial,'empty');
 console.log('Rate-limit retry, bounded waiting, explicit collection failure and genuinely empty selection pass.');
 
 // A malformed generated title must get one recovery attempt on the strict collection path.
@@ -20,13 +20,13 @@ const validEntry={sourceId:0,title:'New species joins the roster',kind:'Added',w
 const reply=entry=>Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[entry]})}}]});
 let titleCalls=0;
 const signals=[];
-const recovered=await recover(news,{strict:true,apiKey:'test',fetcher:async(_,request)=>{signals.push(request.signal);return reply(++titleCalls===1 ? {...validEntry,title:'x'.repeat(81)} : validEntry);}});
+const recovered=await recover(news,{apiKey:'test',fetcher:async(_,request)=>{signals.push(request.signal);return reply(++titleCalls===1 ? {...validEntry,title:'x'.repeat(81)} : validEntry);}});
 assert.equal(titleCalls,2);
 assert.equal(signals[0],signals[1],'Retries share the original generation deadline');
 assert.equal(recovered.editorial,'generated');
 assert.equal(recovered.articles[0].title,validEntry.title);
 const {getChangelog:invalid}=await import('../lib/changelog.mjs?title-recovery-fails');
 titleCalls=0;
-await assert.rejects(invalid(news,{strict:true,apiKey:'test',fetcher:async()=>{titleCalls++;return reply({...validEntry,sourceId:4});}}),/Invalid patch title/);
+await assert.rejects(invalid(news,{apiKey:'test',fetcher:async()=>{titleCalls++;return reply({...validEntry,sourceId:4});}}),/Invalid patch title/);
 assert.equal(titleCalls,2,'Invalid output must not retry indefinitely');
 console.log('Invalid title recovery and bounded strict validation pass.');

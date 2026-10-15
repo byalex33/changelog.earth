@@ -1,12 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import localFont from "next/font/local";
 import { Navbar } from "@/components/navbar";
+import { nothing } from "@/lib/fonts";
 import { AsciiEarth } from "@/components/ascii-earth";
 import { HeroStars } from "@/components/particle-text";
 import { NotFoundLog } from "@/components/not-found-log";
 
-const nothing = localFont({src:"../public/fonts/nothing/Ndot57-Regular.otf",display:"swap",weight:"400"});
-export const metadata = {title:"Page not found | changelog.earth",description:"This page isn't in any of Earth's patch notes."};
+export const metadata: Metadata = {title:"Page not found | changelog.earth",description:"This page isn't in any of Earth's patch notes.",robots:{index:false}};
 
 export default function NotFound() {
  return <div className="site-shell">

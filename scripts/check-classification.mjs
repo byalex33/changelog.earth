@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { readFileSync, existsSync, rmSync } from 'node:fs';
+import { readFileSync, existsSync, rmSync, mkdtempSync, writeFileSync, utimesSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { CLASSIFICATION_BATCH_SIZE, chunk, classifyBatch, needsClassification } from '../lib/classification.mjs';
@@ -18,6 +18,8 @@ import saved from '../data/editions.json' with { type:'json' };
 
 const archivePath = new URL('../data/editions.json', import.meta.url);
 const before = readFileSync(archivePath, 'utf8');
+// The archive grows every collection run, so the expected count comes from the file itself.
+const archiveLength = JSON.parse(before).length;
 // Fixture story: headline, summary and the provenance fields a record has to match.
 const story = (id, extra = {}) => ({
  title:`Coral reef resilience roster ${id}`, originalTitle:`Scientists report coral reef resilience finding ${id}`,
@@ -154,6 +156,19 @@ assert.ok(validateStore({...written, records:{...written.records, [articles[0].u
 assert.deepEqual(needsClassification([articles[0]], full, {promptVersion:CLASSIFICATION_PROMPT_VERSION + 1}), [articles[0]], 'A bumped prompt version invalidates its record without blocking the rest');
 } finally { rmSync(temporary, {force:true}); }
 
+// A lock left by a dead process is reported, never deleted: two waiters breaking the same stale
+// lock could each remove the other's fresh one and both enter the critical section.
+const lockDir = mkdtempSync(join(tmpdir(), 'classification-lock-'));
+try {
+ const lockedStore = join(lockDir, 'classifications.json');
+ writeFileSync(`${lockedStore}.lock`, '2147483646');
+ const stale = new Date(Date.now() - 120_000);
+ utimesSync(`${lockedStore}.lock`, stale, stale);
+ assert.throws(() => writeStore(putRecords(emptyStore(), records, 'test-model'), lockedStore), /Stale classification lock/, 'A dead owner fails with instructions instead of being broken');
+ assert.equal(existsSync(`${lockedStore}.lock`), true, 'The stale lock is left for the user to remove');
+ assert.equal(existsSync(lockedStore), false, 'Nothing is written while the lock is held');
+} finally { rmSync(lockDir, {recursive:true, force:true}); }
+
 const entries = classifyArchiveRecords(articles, records);
 assert.equal(entries.length, 3);
 assert.ok(entries.every(entry => entry.method === 'ai' && entry.significanceConfidence === 'high' && entry.stale === false));
@@ -256,5 +271,5 @@ assert.notEqual(typo.status, 0, '--limt=1 must not run the classification');
 assert.match(typo.stderr, /Unknown option: --limt/);
 const limited = spawnSync(process.execPath, [script, '--limit=5', '--batch=10', '--dry-run'], {encoding:'utf8'});
 assert.equal(limited.status, 0, limited.stderr);
-assert.match(limited.stdout, /^Archive 352 stories · stored \d+ · pending 5 ·/m, 'Valid flags still bound the run');
+assert.match(limited.stdout, new RegExp(`^Archive ${archiveLength} stories · stored \\d+ · pending 5 ·`, 'm'), 'Valid flags still bound the run');
 console.log('Taxonomy validation, strict classification, retries, provenance, resumable store, derived records and archive immutability pass.');

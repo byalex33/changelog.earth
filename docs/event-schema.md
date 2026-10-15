@@ -9,6 +9,14 @@ Nothing here changes collection. [`lib/patch-titles.mjs`](../lib/patch-titles.mj
 stories and writes patch titles exactly as before, and [`data/editions.json`](../data/editions.json)
 is never rewritten by the classification work.
 
+## Status
+
+The vocabulary in [`lib/taxonomy.mjs`](../lib/taxonomy.mjs) is used only by the offline
+classification scripts, [`scripts/classify-archive.mjs`](../scripts/classify-archive.mjs) and
+[`scripts/report-classification.mjs`](../scripts/report-classification.mjs), and their checks.
+No page, API route or collection step reads it or
+[`data/classifications.json`](../data/classifications.json) yet.
+
 ## Why
 
 Today the archive's unit is an article. Its only category is a feed label (`Science & nature`,

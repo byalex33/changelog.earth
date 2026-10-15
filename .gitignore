@@ -43,16 +43,12 @@ yarn-error.log*
 next-env.d.ts
 /dist/
 /.wrangler/
-# Checkout-local execution profile and tool state; never publish them.
-/.sites-runtime/
-/.agents/
-/.codex/
+# Checkout-local tool output; never publish it.
 /outputs/
 /work/
 
-# Local instructions, build diary, and hosting metadata
+# Local instructions and build diary
 AGENTS.md
 /public/tweet*
 /scripts/check-tweets.mjs
-/.openai/
 *.tsbuildinfo

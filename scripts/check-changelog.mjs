@@ -9,20 +9,23 @@ const fetcher=async(_,options)=>{
  return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:input.map(a=>({sourceId:a.sourceId,title:`Species ${a.sourceId} joins the roster`,kind:'Added',worldwide:a.sourceId<2,scopeReason:'New species discovery'}))})}}]});
 };
 const options={apiKey:'test',fetcher,now:1000000};
-assert.equal((await getChangelog(news)).editorial,'unconfigured');
+await assert.rejects(getChangelog(news),/not configured/,'Collection without Groq fails instead of serving raw headlines');
 const [first,second]=await Promise.all([getChangelog(news,options),getChangelog(news,options)]);
 assert.equal(calls,1,'Only one AI pass, even for concurrent requests');assert.deepEqual(first.articles,second.articles);
 assert.equal(first.articles.filter(a=>a.worldwide).length,2);assert.equal(first.articles.length,8);
 assert(first.articles.every(a=>a.note==='Original publisher details.'&&a.titleStyleVersion===5));
 assert.equal(first.articles[0].originalTitle,news.articles[0].title);
 assert.equal(editionCacheControl(first),'public, s-maxage=900, stale-while-revalidate=3600');
+assert.equal(editionCacheControl({articles:first.articles,editorial:'archived'}),'public, s-maxage=900, stale-while-revalidate=3600');
 assert.equal(editionCacheControl({articles:[]}),'no-store');
 const saved=await getChangelog(news,{...options,archive:first.articles,now:options.now+1000});assert.equal(calls,1,'Saved rejections and accepted stories cost no further AI calls');
 assert.deepEqual(saved.articles,first.articles);
 const {getChangelog:cold}=await import('../lib/changelog.mjs?cold');
-const failure=await cold(news,{...options,archive:first.articles,fetcher:async()=>new Response('',{status:429})});assert.equal(failure.editorial,'cached');assert.deepEqual(failure.articles,first.articles);
+const unchanged=await cold(news,{...options,archive:first.articles,fetcher:async()=>assert.fail('Saved stories need no AI call')});assert.equal(unchanged.editorial,'empty');assert.deepEqual(unchanged.articles,first.articles);
+await assert.rejects(cold(news,{...options,fetcher:async()=>new Response('',{status:429})}),/Groq HTTP 429/,'An outage fails collection rather than returning a fallback');
+await assert.rejects(cold(news,{...options,now:options.now+60_000,fetcher:async()=>assert.fail('Backed-off runs must not call Groq')}),/backed off/,'A failed run backs off before calling Groq again');
 const {getChangelog:malformed}=await import('../lib/changelog.mjs?malformed');
-await assert.rejects(malformed(news,{...options,strict:true,fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})}),/Incomplete patch titles/);
+await assert.rejects(malformed(news,{...options,fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})}),/Incomplete patch titles/);
 console.log('One headline-only AI pass, source preservation, saved rejection reuse, coalescing and outage safety pass.');
 
 const busy=Array.from({length:30},(_,i)=>({...news.articles[0],title:`Science headline ${i}`,url:`https://example.org/busy-${i}`,date:`2026-09-23T15:${String(59-i).padStart(2,'0')}:00Z`,publisher:'Busy science',provider:i%2 ? 'Science feed A' : 'Science feed B'}));
@@ -37,7 +40,7 @@ assert(!selected.includes(older),'Older days must not displace candidates from a
 assert.equal(pool[1],busy[1],'Selection must not mutate the feed list');
 assert.deepEqual(selectCandidates([older,...varied]),[...varied,older]);
 const {getChangelog:diverse}=await import('../lib/changelog.mjs?diverse');
-const edition=await diverse({...news,articles:pool},{apiKey:'test',strict:true,fetcher:async(_,options)=>{
+const edition=await diverse({...news,articles:pool},{apiKey:'test',fetcher:async(_,options)=>{
  const input=JSON.parse(JSON.parse(options.body).messages[1].content);
  assert.deepEqual(input.map(a=>a.headline),selected.map(a=>a.title),'New categories must reach the editor in balanced order');
  return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:input.map(a=>({sourceId:a.sourceId,title:a.headline,kind:a.sourceId===1 ? 'Nerfed' : 'Unlocked',worldwide:true,scopeReason:'Worldwide progress'}))})}}]});
