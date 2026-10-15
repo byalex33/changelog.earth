@@ -6,7 +6,7 @@ The site serves saved editions from [`data/editions.json`](../data/editions.json
 
 The [archive workflow](../.github/workflows/archive-editions.yml) runs at 00:23 and 12:23 UTC and can also run manually. It calls the live API with the `archive` query parameter and an `Authorization: Bearer` header, validates the response and commits additions. Configure the same random `ARCHIVE_SECRET` in the hosting environment and GitHub Actions repository secrets before enabling collection. Missing or incorrect credentials return HTTP 401 before archive loading, feed requests or AI calls. GitHub can delay scheduled runs; failures appear in Actions. AI credentials remain on the deployed server.
 
-The collector combines [RSS feeds](../lib/rss-feeds.mjs), GDELT and Spaceflight News. It considers stories from the last seven days. In-memory source caches refresh after 15 minutes and can reuse fetched stories for up to 24 hours during outages. Individual feed requests time out after eight seconds. These caches and request coalescing are per server instance, not global rate or spending limits.
+The collector combines curated [RSS feeds](../lib/rss-feeds.mjs) and Spaceflight News. Every candidate comes from a listed publisher; there is no open web index, so an arbitrary site cannot put a link in front of the editor. It considers stories from the last seven days. In-memory source caches refresh after 15 minutes and can reuse fetched stories for up to 24 hours during outages. Individual feed requests time out after eight seconds. These caches and request coalescing are per server instance, not global rate or spending limits.
 
 Energy, environment and health coverage includes pv magazine, CleanTechnica, Yale Environment 360, Carbon Brief and a dedicated UN News health feed. These join the existing science, space, technology and positive-news sources under the same editorial policy.
 
@@ -42,7 +42,7 @@ The published archive is never rewritten by this layer. Records live in a separa
 
 ## Saved editions
 
-The archive retains stories by their source date, with up to six eligible stories per day. New selections fill open places without replacing earlier entries. Exact source URLs and normalised original headlines are deduplicated before generation. A collection date does not change a story's source date. GDELT dates represent indexing time.
+The archive retains stories by their source date, with up to six eligible stories per day. New selections fill open places without replacing earlier entries. Exact source URLs and normalised original headlines are deduplicated before generation. A collection date does not change a story's source date.
 
 Accepted and rejected decisions remain in the archive to avoid repeat reviews. Excluded stories do not consume daily publication slots or appear in the public feed. There is no automatic expiry of archived days.
 

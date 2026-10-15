@@ -66,7 +66,7 @@ Collection also requires `ARCHIVE_SECRET`. Generate a random token with `node -e
 
 ```mermaid
 flowchart LR
-    A[Twice-daily archive job] --> B[RSS, GDELT and Spaceflight News]
+    A[Twice-daily archive job] --> B[RSS feeds and Spaceflight News]
     B --> C[Validate and deduplicate]
     C --> D[Groq selects stories and writes titles]
     D --> F[Commit saved editions]
@@ -75,7 +75,7 @@ flowchart LR
 
 The **Archive daily editions** GitHub Actions workflow collects stories at 00:23 and 12:23 UTC. It requests drafts from `/api/news?archive`, then commits them to [`data/editions.json`](data/editions.json). Normal homepage, API and RSS requests read saved editions without calling feeds or AI. Failed collection leaves published stories intact.
 
-Groq assesses headlines for worldwide relevance and writes game-style patch titles. Original source links, dates and publisher summaries remain attached. Generated labels can be wrong, so the linked reporting remains the reference. GDELT dates indicate indexing time rather than publication time.
+Groq assesses headlines for worldwide relevance and writes game-style patch titles. Original source links, dates and publisher summaries remain attached. Generated labels can be wrong, so the linked reporting remains the reference.
 
 On Vercel, Next.js serves the homepage as cached HTML and regenerates it on visits after 15 minutes. Failed or empty regeneration keeps the previous page; an initial build without a valid edition fails. Local development renders on demand, so use a production build to measure caching.
 
