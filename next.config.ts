@@ -15,12 +15,15 @@ const nextConfig: NextConfig = {
           key: "Content-Security-Policy",
           value: [
             "default-src 'self'",
-            // ponytail: inline scripts preserve ISR hydration; use per-request nonces if ISR is retired.
+            // 'unsafe-inline' is here only because ISR pages are cached HTML and can't carry
+            // per-request nonces for Next's inline hydration scripts. It is safe today because
+            // no route renders untrusted HTML. Any dynamic route that does must get a nonce-based
+            // CSP from proxy.ts instead. scripts/check-security-headers.mjs pins the allowed sources.
             `script-src 'self' 'unsafe-inline' https://collect.tracwell.app${isDev ? " 'unsafe-eval'" : ""}`,
             "style-src 'self' 'unsafe-inline'",
-            "img-src 'self' data: https://www.google.com https://*.gstatic.com",
+            "img-src 'self' data:",
             "font-src 'self'",
-            `connect-src 'self' https://api.github.com https://collect.tracwell.app${isDev ? " ws: wss:" : ""}`,
+            `connect-src 'self' https://collect.tracwell.app${isDev ? " ws: wss:" : ""}`,
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self'",
