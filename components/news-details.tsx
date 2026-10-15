@@ -12,9 +12,10 @@ const sources=[
 ];
 const feedCount=sources.reduce((count,source)=>count+source.feeds.length,0);
 
+// Self-hosted by scripts/fetch-favicons.mjs; hosts without a saved icon fall back to the first letter.
 function Favicon({url,name}: {url:string;name:string}) {
  const [failed,setFailed]=useState(false);
- return <span className="source-favicon" aria-hidden="true">{failed?name[0]:<img src={`https://www.google.com/s2/favicons?domain=${encodeURIComponent(new URL(url).hostname)}&sz=64`} width="24" height="24" alt="" loading="lazy" referrerPolicy="no-referrer" onError={()=>setFailed(true)}/>}</span>;
+ return <span className="source-favicon" aria-hidden="true">{failed?name[0]:<img src={`/favicons/${new URL(url).hostname}.png`} width="24" height="24" alt="" loading="lazy" onError={()=>setFailed(true)}/>}</span>;
 }
 
 export function StoryInfo({article}: {article:Story}) {
