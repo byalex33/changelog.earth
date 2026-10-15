@@ -17,9 +17,8 @@ assert.deepEqual(validateArchive(merged),merged);
 const candidates=Array.from({length:12},(_,i)=>story(i,i<6?'2026-09-19':'2026-09-18'));
 const {getChangelog}=await import('../lib/changelog.mjs?archive-test');
 const news={articles:candidates,checkedAt:1,unavailable:[],stale:[]};
-const result=await getChangelog(news,{archive:previous,apiKey:'test',fetcher:async()=>new Response('',{status:429})});
-assert.deepEqual(result.articles,mergeEditions(previous,[]),'A cold outage must retain archived dates');
-assert.equal(result.editorial,'cached');
+// An outage fails the run, so the collector commits nothing and the saved archive keeps its dates.
+await assert.rejects(getChangelog(news,{archive:previous,apiKey:'test',fetcher:async()=>new Response('',{status:429})}),/Groq HTTP 429/);
 const {getChangelog:generate}=await import('../lib/changelog.mjs?archive-additions');
 const fuller=await generate(news,{archive:previous,apiKey:'test',fetcher:async(_,options)=>{
  const input=JSON.parse(JSON.parse(options.body).messages[1].content);

@@ -55,6 +55,7 @@ try {
   return Response.json([article]);
  };
  const edition=await getPublishedChangelog();
+ assert.equal(edition.editorial,'archived');
  assert.ok(edition.articles.every(isPublishedWorldwide));
  assert.equal(edition.articles.find(a=>a.url===article.url).title,corrected.title);
  assert.ok(!edition.articles.some(a=>a.url==='https://example.org/local'));

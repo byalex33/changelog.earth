@@ -54,6 +54,6 @@ Only stories with the current title-style version and an eligible `worldwide` as
 
 The homepage uses 15-minute incremental static regeneration. It contains patch notes before JavaScript loads. An empty initial edition fails the build; empty or failed regeneration preserves the previous page. Builds and normal regeneration never generate AI drafts.
 
-The public news API caches nonempty saved editions in Vercel's CDN for one minute. Draft responses and empty editions are not cached there. RSS includes the latest 100 published entries, with stable IDs and source links, and uses a 15-minute refresh interval.
+The public news API caches nonempty saved editions in Vercel's CDN for 15 minutes, serving a stale copy for up to an hour while it refreshes. Draft responses and empty editions are not cached there. RSS includes the latest 100 published entries, with stable IDs and source links, and uses a 15-minute refresh interval.
 
 See the [contribution guide](../CONTRIBUTING.md#check-your-changes) for checks covering these behaviours.
