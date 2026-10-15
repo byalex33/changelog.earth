@@ -35,3 +35,11 @@ console.log('Daily limits, multi-day selection, duplicate prevention, idempotent
 const excludedDay=Array.from({length:6},(_,i)=>({...story(100+i),worldwide:false}));
 assert.equal(mergeEditions(excludedDay,[story(200)]).length,7,'Excluded local stories must not consume worldwide daily slots');
 assert.throws(()=>validateArchive([{...story(300),worldwide:'yes'}]));
+// The live archive is merged with its remote copy on every regeneration, so merging must stay linear.
+// 20,000 stories: a per-story scan of the archive takes about a second here, a URL index a few milliseconds.
+const large=Array.from({length:20_000},(_,i)=>({...story(`large-${i}`),date:new Date(Date.UTC(2020,0,1)-i*3_600_000).toISOString(),titleRevision:0}));
+const started=performance.now();
+const remerged=mergeEditions(large,large);
+assert.ok(performance.now()-started<200,'Merging a large archive with itself must not scan the archive per story');
+assert.deepEqual(remerged,large);
+console.log('Linear archive merging pass.');
