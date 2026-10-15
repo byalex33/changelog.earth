@@ -18,6 +18,8 @@ import saved from '../data/editions.json' with { type:'json' };
 
 const archivePath = new URL('../data/editions.json', import.meta.url);
 const before = readFileSync(archivePath, 'utf8');
+// The archive grows every collection run, so the expected count comes from the file itself.
+const archiveLength = JSON.parse(before).length;
 // Fixture story: headline, summary and the provenance fields a record has to match.
 const story = (id, extra = {}) => ({
  title:`Coral reef resilience roster ${id}`, originalTitle:`Scientists report coral reef resilience finding ${id}`,
@@ -256,5 +258,5 @@ assert.notEqual(typo.status, 0, '--limt=1 must not run the classification');
 assert.match(typo.stderr, /Unknown option: --limt/);
 const limited = spawnSync(process.execPath, [script, '--limit=5', '--batch=10', '--dry-run'], {encoding:'utf8'});
 assert.equal(limited.status, 0, limited.stderr);
-assert.match(limited.stdout, /^Archive 352 stories · stored \d+ · pending 5 ·/m, 'Valid flags still bound the run');
+assert.match(limited.stdout, new RegExp(`^Archive ${archiveLength} stories · stored \\d+ · pending 5 ·`, 'm'), 'Valid flags still bound the run');
 console.log('Taxonomy validation, strict classification, retries, provenance, resumable store, derived records and archive immutability pass.');
