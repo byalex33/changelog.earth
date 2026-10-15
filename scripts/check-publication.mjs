@@ -55,6 +55,7 @@ try {
   return Response.json([article]);
  };
  const edition=await getPublishedChangelog();
+ assert.deepEqual(Object.keys(edition),['articles','editorial'],'Readers get saved stories only, not collection status');
  assert.equal(edition.editorial,'archived');
  assert.ok(edition.articles.every(isPublishedWorldwide));
  assert.equal(edition.articles.find(a=>a.url===article.url).title,corrected.title);
