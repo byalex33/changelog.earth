@@ -130,9 +130,9 @@ npm run build
 npm start
 ```
 
-The build produces a Cloudflare Worker under `dist/server`; `npm start` previews it locally through Wrangler. To host it on your own Cloudflare account, configure your Worker and secrets, then deploy the generated Worker configuration. The default news feed does not require D1 or R2.
+The build produces a Cloudflare Worker under `dist/server`; `npm start` previews it locally through Wrangler. To host it on your own Cloudflare account, configure your Worker and secrets, then deploy the generated Worker configuration.
 
-Set `GROQ_API_KEY` as a production secret and optionally set `GROQ_MODEL`. Do not commit credentials. Local hosting metadata is optional and is excluded from the public repository.
+Set `GROQ_API_KEY` as a production secret and optionally set `GROQ_MODEL`. Do not commit credentials.
 
 ## Contributing
 
@@ -144,7 +144,6 @@ Project code is available under the [MIT license](LICENSE). Third-party componen
 
 - [BeUI motion components](components/motion/LICENSE)
 - [shadcn styles](vendor/shadcn-tailwind-4.13.0.LICENSE.md)
-- [Sites Vite plugin](build/sites-vite-plugin.LICENSE)
 - [JetBrains Mono](public/fonts/JetBrainsMono-OFL.txt) and [Plus Jakarta Sans](public/fonts/PlusJakartaSans-OFL.txt), under the SIL Open Font License
 
 News articles, publisher summaries, names and logos belong to their respective owners. The software license does not relicense that content. This project is not affiliated with the publishers it links to.
