@@ -15,7 +15,7 @@ For feed suggestions, include the feed URL, its publisher and examples of report
 1. Fork the repository and clone your fork.
 2. Install Node.js 22.13 or newer, then run `npm ci`.
 3. Copy `.env.example` to `.env.local`.
-4. Run `npm run dev` and open http://localhost:5173.
+4. Run `npm run dev` to start the Next.js development server, then open http://localhost:5173. The optional Cloudflare target has separate `:cf` scripts; see the [README](README.md#build-for-cloudflare).
 
 The saved archive works without AI credentials. New story collection needs `GROQ_API_KEY`. Keep credentials server-side and out of commits. See the [README](README.md#run-locally) for configuration details.
 

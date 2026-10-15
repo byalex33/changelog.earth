@@ -6,9 +6,12 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vinext dev --port 5173",
-    "build": "vinext build",
-    "start": "wrangler dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
+    "dev": "next dev --webpack -p 5173",
+    "build": "next build --webpack",
+    "start": "next start",
+    "dev:cf": "vinext dev --port 5173",
+    "build:cf": "vinext build",
+    "start:cf": "wrangler dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern outputs --ignore-pattern work"
   },
   "dependencies": {
