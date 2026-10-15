@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { readFileSync, existsSync, rmSync } from 'node:fs';
+import { readFileSync, existsSync, rmSync, mkdtempSync, writeFileSync, utimesSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { CLASSIFICATION_BATCH_SIZE, chunk, classifyBatch, needsClassification } from '../lib/classification.mjs';
@@ -155,6 +155,19 @@ for (const bad of [0, -1, 'x', undefined]) assert.throws(() => validateStore({..
 assert.ok(validateStore({...written, records:{...written.records, [articles[0].url]:{...stored, promptVersion:CLASSIFICATION_PROMPT_VERSION + 7}}}), 'A prompt upgrade must not make the store unreadable');
 assert.deepEqual(needsClassification([articles[0]], full, {promptVersion:CLASSIFICATION_PROMPT_VERSION + 1}), [articles[0]], 'A bumped prompt version invalidates its record without blocking the rest');
 } finally { rmSync(temporary, {force:true}); }
+
+// A lock left by a dead process is reported, never deleted: two waiters breaking the same stale
+// lock could each remove the other's fresh one and both enter the critical section.
+const lockDir = mkdtempSync(join(tmpdir(), 'classification-lock-'));
+try {
+ const lockedStore = join(lockDir, 'classifications.json');
+ writeFileSync(`${lockedStore}.lock`, '2147483646');
+ const stale = new Date(Date.now() - 120_000);
+ utimesSync(`${lockedStore}.lock`, stale, stale);
+ assert.throws(() => writeStore(putRecords(emptyStore(), records, 'test-model'), lockedStore), /Stale classification lock/, 'A dead owner fails with instructions instead of being broken');
+ assert.equal(existsSync(`${lockedStore}.lock`), true, 'The stale lock is left for the user to remove');
+ assert.equal(existsSync(lockedStore), false, 'Nothing is written while the lock is held');
+} finally { rmSync(lockDir, {recursive:true, force:true}); }
 
 const entries = classifyArchiveRecords(articles, records);
 assert.equal(entries.length, 3);
