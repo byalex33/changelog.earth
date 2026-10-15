@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { nothing } from "@/lib/fonts";
-import { rssAlternate, sharedOpenGraph } from "@/lib/site-metadata";
+import { rssAlternate, shareImage, sharedOpenGraph } from "@/lib/site-metadata";
 
 const title = "About Us | changelog.earth";
 const description = "Why we made Earth's unofficial patch notes.";
@@ -10,8 +10,8 @@ export const metadata: Metadata = {
  title,
  description,
  alternates:{canonical:"/about",types:rssAlternate},
- openGraph:{...sharedOpenGraph,title,description,url:"/about"},
- twitter:{card:"summary_large_image",title,description},
+ openGraph:{...sharedOpenGraph,title,description,url:"/about",images:shareImage},
+ twitter:{card:"summary_large_image",title,description,images:shareImage},
 };
 
 export default function AboutPage() {
