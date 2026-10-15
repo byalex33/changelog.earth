@@ -17,9 +17,8 @@ assert.deepEqual(validateArchive(merged),merged);
 const candidates=Array.from({length:12},(_,i)=>story(i,i<6?'2026-09-19':'2026-09-18'));
 const {getChangelog}=await import('../lib/changelog.mjs?archive-test');
 const news={articles:candidates,checkedAt:1,unavailable:[],stale:[]};
-const result=await getChangelog(news,{archive:previous,apiKey:'test',fetcher:async()=>new Response('',{status:429})});
-assert.deepEqual(result.articles,mergeEditions(previous,[]),'A cold outage must retain archived dates');
-assert.equal(result.editorial,'cached');
+// An outage fails the run, so the collector commits nothing and the saved archive keeps its dates.
+await assert.rejects(getChangelog(news,{archive:previous,apiKey:'test',fetcher:async()=>new Response('',{status:429})}),/Groq HTTP 429/);
 const {getChangelog:generate}=await import('../lib/changelog.mjs?archive-additions');
 const fuller=await generate(news,{archive:previous,apiKey:'test',fetcher:async(_,options)=>{
  const input=JSON.parse(JSON.parse(options.body).messages[1].content);
@@ -35,3 +34,11 @@ console.log('Daily limits, multi-day selection, duplicate prevention, idempotent
 const excludedDay=Array.from({length:6},(_,i)=>({...story(100+i),worldwide:false}));
 assert.equal(mergeEditions(excludedDay,[story(200)]).length,7,'Excluded local stories must not consume worldwide daily slots');
 assert.throws(()=>validateArchive([{...story(300),worldwide:'yes'}]));
+// The live archive is merged with its remote copy on every regeneration, so merging must stay linear.
+// 20,000 stories: a per-story scan of the archive takes about a second here, a URL index a few milliseconds.
+const large=Array.from({length:20_000},(_,i)=>({...story(`large-${i}`),date:new Date(Date.UTC(2020,0,1)-i*3_600_000).toISOString(),titleRevision:0}));
+const started=performance.now();
+const remerged=mergeEditions(large,large);
+assert.ok(performance.now()-started<200,'Merging a large archive with itself must not scan the archive per story');
+assert.deepEqual(remerged,large);
+console.log('Linear archive merging pass.');

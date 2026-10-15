@@ -6,11 +6,11 @@ The site serves saved editions from [`data/editions.json`](../data/editions.json
 
 The [archive workflow](../.github/workflows/archive-editions.yml) runs at 00:23 and 12:23 UTC and can also run manually. It calls the live API with the `archive` query parameter and an `Authorization: Bearer` header, validates the response and commits additions. Configure the same random `ARCHIVE_SECRET` in the hosting environment and GitHub Actions repository secrets before enabling collection. Missing or incorrect credentials return HTTP 401 before archive loading, feed requests or AI calls. GitHub can delay scheduled runs; failures appear in Actions. AI credentials remain on the deployed server.
 
-The collector combines [RSS feeds](../lib/rss-feeds.mjs), GDELT and Spaceflight News. It considers stories from the last seven days. In-memory source caches refresh after 15 minutes and can reuse fetched stories for up to 24 hours during outages. Individual feed requests time out after eight seconds. These caches and request coalescing are per server instance, not global rate or spending limits.
+The collector combines curated [RSS feeds](../lib/rss-feeds.mjs) and Spaceflight News. Every candidate comes from a listed publisher; there is no open web index, so an arbitrary site cannot put a link in front of the editor. It considers stories from the last seven days. In-memory source caches refresh after 15 minutes and can reuse fetched stories for up to 24 hours during outages. Individual feed requests time out after eight seconds. These caches and request coalescing are per server instance, not global rate or spending limits.
 
 Energy, environment and health coverage includes pv magazine, CleanTechnica, Yale Environment 360, Carbon Brief and a dedicated UN News health feed. These join the existing science, space, technology and positive-news sources under the same editorial policy.
 
-The collector also checks Science News, Medical Xpress, MIT research, the Guardian's science and environment feeds, and ScienceDaily's health and earth/climate feeds. There are 40 inputs in total. Topic feeds share their publisher's candidate-selection turn, and overlapping stories are deduplicated before review.
+The collector also checks Science News, Medical Xpress, MIT research, the Guardian's science and environment feeds, and ScienceDaily's health and earth/climate feeds. There are 28 inputs in total: Spaceflight News and 27 RSS feeds. Every feed is in a category the editor reviews (UN News's general feed is allowed by name); general top-stories, UK, world and business feeds are not collected, because that filter discarded all of their stories. Topic feeds share their publisher's candidate-selection turn, and overlapping stories are deduplicated before review.
 
 For a local collection run, set `EDITION_URL=http://localhost:5173/api/news` and put `ARCHIVE_SECRET` in `.env.local`, then run `node --env-file=.env.local scripts/archive-editions.mjs`. The script adds the archive query parameter and bearer header, refuses to run without the secret, and rejects redirects. This command can use AI credits and writes to the local archive.
 
@@ -42,11 +42,11 @@ The published archive is never rewritten by this layer. Records live in a separa
 
 ## Saved editions
 
-The archive retains stories by their source date, with up to six eligible stories per day. New selections fill open places without replacing earlier entries. Exact source URLs and normalised original headlines are deduplicated before generation. A collection date does not change a story's source date. GDELT dates represent indexing time.
+The archive retains stories by their source date, with up to six eligible stories per day. New selections fill open places without replacing earlier entries. Exact source URLs and normalised original headlines are deduplicated before generation. A collection date does not change a story's source date.
 
 Accepted and rejected decisions remain in the archive to avoid repeat reviews. Excluded stories do not consume daily publication slots or appear in the public feed. There is no automatic expiry of archived days.
 
-Only stories with the current title-style version and an eligible `worldwide` assessment appear publicly. Style changes require an archive review before publication. Title corrections carry revision numbers so an older cached copy cannot undo them. Historical Jev scores remain in the archive for provenance; collection no longer calls Jev.
+Only stories with the current title-style version and an eligible `worldwide` assessment appear publicly. Style changes require an archive review before publication. Style migrations advance 24 stories per collection run, newest first: while any archived story has an older style version, a run sends one batch to Groq instead of collecting new stories, and the collector saves it. This keeps every request within Groq's output cap, and new-story collection resumes once the archive is current. Title corrections carry revision numbers so an older cached copy cannot undo them. Historical Jev scores remain in the archive for provenance; collection no longer calls Jev.
 
 ## Serving readers
 
@@ -54,6 +54,6 @@ Only stories with the current title-style version and an eligible `worldwide` as
 
 The homepage uses 15-minute incremental static regeneration. It contains patch notes before JavaScript loads. An empty initial edition fails the build; empty or failed regeneration preserves the previous page. Builds and normal regeneration never generate AI drafts.
 
-The public news API caches nonempty saved editions in Vercel's CDN for one minute. Draft responses and empty editions are not cached there. RSS includes the latest 100 published entries, with stable IDs and source links, and uses a 15-minute refresh interval.
+The public news API returns only the saved articles, without collection status, and caches nonempty editions in Vercel's CDN for 15 minutes, serving a stale copy for up to an hour while it refreshes. Draft responses and empty editions are not cached there. RSS includes the latest 100 published entries, with stable IDs and source links, and uses a 15-minute refresh interval.
 
 See the [contribution guide](../CONTRIBUTING.md#check-your-changes) for checks covering these behaviours.
