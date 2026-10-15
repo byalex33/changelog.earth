@@ -46,7 +46,7 @@ The archive retains stories by their source date, with up to six eligible storie
 
 Accepted and rejected decisions remain in the archive to avoid repeat reviews. Excluded stories do not consume daily publication slots or appear in the public feed. There is no automatic expiry of archived days.
 
-Only stories with the current title-style version and an eligible `worldwide` assessment appear publicly. Style changes require an archive review before publication. Title corrections carry revision numbers so an older cached copy cannot undo them. Historical Jev scores remain in the archive for provenance; collection no longer calls Jev.
+Only stories with the current title-style version and an eligible `worldwide` assessment appear publicly. Style changes require an archive review before publication. Style migrations advance 24 stories per collection run, newest first: while any archived story has an older style version, a run sends one batch to Groq instead of collecting new stories, and the collector saves it. This keeps every request within Groq's output cap, and new-story collection resumes once the archive is current. Title corrections carry revision numbers so an older cached copy cannot undo them. Historical Jev scores remain in the archive for provenance; collection no longer calls Jev.
 
 ## Serving readers
 

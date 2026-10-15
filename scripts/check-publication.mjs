@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { loadArchive, getPublishedChangelog } from '../lib/published-changelog.mjs';
+import { loadArchive, getPublishedChangelog, MIGRATION_BATCH } from '../lib/published-changelog.mjs';
 import { applyPatchTitles, readsLikeHeadline, writePatchTitles } from '../lib/patch-titles.mjs';
 import { mergeEditions } from '../lib/edition-archive.mjs';
 import { TITLE_STYLE_VERSION, WORLDWIDE_POLICY, isPublishedWorldwide } from '../lib/editorial-policy.mjs';
@@ -64,4 +64,32 @@ try {
  assert.ok(offline.some(a=>a.url==='https://example.org/local'),'Excluded history is preserved, not deleted');
 } finally {globalThis.fetch=oldFetch;}
 assert.equal(corrected.titleStyleVersion,TITLE_STYLE_VERSION);
-console.log('Worldwide publication gate, source context, title normalization, headline rewrites, archive migration and outage safety pass.');
+// A style change must not send the whole archive to Groq in one call: that exceeds the output cap
+// and fails every collection run. 60 outdated stories over ten 2001 days (clear of the bundled archive).
+const outdated=Array.from({length:60},(_,i)=>({...article,title:`Old migration title ${i}`,originalTitle:`Migration test species ${i} identified`,url:`https://example.org/migration-${i}`,date:`2001-01-${String(10-Math.floor(i/6)).padStart(2,'0')}`,titleStyleVersion:TITLE_STYLE_VERSION-1,worldwide:true,scopeReason:'Older style',titleRevision:1}));
+const oldKey=process.env.GROQ_API_KEY, batches=[];
+let remote=outdated;
+try {
+ process.env.GROQ_API_KEY='test';
+ globalThis.fetch=async(url,options)=>{
+  if (String(url).startsWith('https://raw.githubusercontent.com/')) return Response.json(remote);
+  assert.equal(url,'https://api.groq.com/openai/v1/chat/completions','A pending migration runs before any feed request');
+  const input=JSON.parse(JSON.parse(options.body).messages[1].content);
+  assert.ok(input.length<=24,'Each Groq request carries at most 24 stories');
+  batches.push(input.length);
+  return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:input.map(({sourceId})=>({sourceId,title:`Species ${sourceId} joins the roster`,kind:'Added',worldwide:true,scopeReason:'New species'}))})}}]});
+ };
+ const migrated=edition=>edition.articles.filter(a=>a.url.startsWith('https://example.org/migration-') && a.titleStyleVersion===TITLE_STYLE_VERSION).map(a=>a.url).sort();
+ const first=await getPublishedChangelog({draft:true});
+ assert.equal(MIGRATION_BATCH,24);
+ assert.equal(first.editorial,'generated','The collector saves each migration batch');
+ assert.deepEqual(batches,[24],'One bounded Groq call per run');
+ assert.deepEqual(migrated(first),outdated.slice(0,24).map(a=>a.url).sort(),'Exactly 24 stories, newest first, migrate per run');
+ assert.equal(first.articles.filter(a=>a.url.startsWith('https://example.org/migration-')).length,60,'Stories awaiting migration stay in the archive');
+ remote=first.articles; // The collector committed the batch; the next run reads it back.
+ assert.equal(migrated(await getPublishedChangelog({draft:true})).length,48,'The next run continues the migration');
+} finally {
+ globalThis.fetch=oldFetch;
+ if (oldKey===undefined) delete process.env.GROQ_API_KEY; else process.env.GROQ_API_KEY=oldKey;
+}
+console.log('Worldwide publication gate, source context, title normalization, headline rewrites, bounded archive migration and outage safety pass.');

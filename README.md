@@ -73,7 +73,7 @@ flowchart LR
     F --> G[Homepage, API and RSS]
 ```
 
-The **Archive daily editions** GitHub Actions workflow collects stories at 00:23 and 12:23 UTC. It requests drafts from `/api/news?archive`, then commits them to [`data/editions.json`](data/editions.json). Normal homepage, API and RSS requests read saved editions without calling feeds or AI. Failed collection leaves published stories intact.
+The **Archive daily editions** GitHub Actions workflow collects stories at 00:23 and 12:23 UTC. It requests drafts from `/api/news?archive`, then commits them to [`data/editions.json`](data/editions.json). Normal homepage, API and RSS requests read saved editions without calling feeds or AI. Failed collection leaves published stories intact. After an editorial style change, each run re-reviews up to 24 archived stories instead of collecting new ones until the archive is current.
 
 Groq assesses headlines for worldwide relevance and writes game-style patch titles. Original source links, dates and publisher summaries remain attached. Generated labels can be wrong, so the linked reporting remains the reference.
 
