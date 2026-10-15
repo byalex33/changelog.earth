@@ -13,8 +13,14 @@ export async function GET(request: Request) {
   if (!secret || provided.length !== expected.length || !timingSafeEqual(provided, expected)) {
    return Response.json({error:"Unauthorized"}, {status:401, headers:{"Cache-Control":"no-store", "Vercel-CDN-Cache-Control":"no-store", "WWW-Authenticate":"Bearer"}});
   }
-  const edition = await getPublishedChangelog({draft});
-  return Response.json(edition, {status: edition.articles.length ? 200 : 503, headers:{"Cache-Control":"no-store", "Vercel-CDN-Cache-Control":"no-store"}});
+  try {
+   const edition = await getPublishedChangelog({draft});
+   return Response.json(edition, {status: edition.articles.length ? 200 : 503, headers:{"Cache-Control":"no-store", "Vercel-CDN-Cache-Control":"no-store"}});
+  } catch (error) {
+   console.error(error);
+   const message = error instanceof Error && error.message ? error.message : "Collection failed";
+   return Response.json({error: message.slice(0, 300)}, {status:500, headers:{"Cache-Control":"no-store", "Vercel-CDN-Cache-Control":"no-store"}});
+  }
  }
  // Every distinct query string is its own CDN cache entry, so accept only the canonical ?page=N.
  const pages = params.getAll("page");

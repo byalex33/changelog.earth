@@ -7,6 +7,11 @@ const article={title:'Old headline',originalTitle:'New cat species identified',s
 const entry={sourceId:0,title:'Added: New wild cat joins species roster',kind:'Added',worldwide:true,scopeReason:'New species expands scientific knowledge.'};
 const corrected=applyPatchTitles([article],{entries:[entry]},'groq','test')[0];
 assert.equal(corrected.title,'New wild cat joins species roster');
+const prefixed='Added: '+ 'A'.repeat(76);
+assert.ok(prefixed.length>80);
+assert.equal(applyPatchTitles([article],{entries:[{...entry,title:prefixed}]})[0].title.length,76,'A label prefix is removed before the length limit');
+assert.equal(applyPatchTitles([article],{entries:[{...entry,title:'Bird memory skill tree expanded'.padEnd(81)}] })[0].title,'Bird memory skill tree expanded');
+assert.throws(()=>applyPatchTitles([article],{entries:[{...entry,title:'B'.repeat(401)}]}),/Invalid patch title: sourceId 0 is 401 characters/);
 assert.equal(corrected.url,article.url); assert.equal(corrected.summary,article.summary);
 assert.ok(isPublishedWorldwide(corrected));
 assert.ok(!isPublishedWorldwide({...corrected,worldwide:false}));
@@ -47,6 +52,27 @@ assert.equal(rewritten.title,'Wild cat species identified','A failed rewrite nev
 requests=[];
 await writePatchTitles([article],{apiKey:'test',fetcher:async()=>(requests.push(1),headlineReply(entry.title))});
 assert.equal(requests.length,1,'Titles that already name a game concept cost no extra call');
+const longHeadline='Scientists identify a previously unknown wild cat species living in the high Andes foothills today';
+assert.ok(longHeadline.length>80 && longHeadline.length<=400);
+requests=[];
+[rewritten]=await writePatchTitles([article],{apiKey:'test',fetcher:async()=>(requests.push(1),requests.length===1 ? headlineReply(longHeadline) : rewriteReply('New wild cat joins species roster'))});
+assert.equal(requests.length,2,'An over-long headline is rewritten instead of failing the batch');
+assert.equal(rewritten.title,'New wild cat joins species roster');
+requests=[];
+[rewritten]=await writePatchTitles([article],{apiKey:'test',fetcher:async()=>{
+ requests.push(1);
+ if (requests.length===1) return headlineReply(longHeadline);
+ if (requests.length===2) return rewriteReply('y'.repeat(90));
+ return headlineReply('New wild cat joins species roster');
+}});
+assert.equal(rewritten.title,'New wild cat joins species roster');
+assert.equal(requests.length,3,'A title that stays over 80 characters gets one fresh generation');
+requests=[];
+await assert.rejects(writePatchTitles([article],{apiKey:'test',fetcher:async()=>{
+ requests.push(1);
+ return requests.length%2===1 ? headlineReply(longHeadline) : rewriteReply('y'.repeat(90));
+}}),new RegExp(`Invalid patch title: sourceId 0 is ${longHeadline.length} characters`));
+assert.equal(requests.length,4,'An over-long title does not retry generation indefinitely');
 await loadArchive(async()=>Response.json([corrected,{...rejected,url:'https://example.org/local',originalTitle:'Local nature reserve receives a land gift'}]),true);
 const oldFetch=globalThis.fetch;
 try {
