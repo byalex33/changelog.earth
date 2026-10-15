@@ -14,7 +14,8 @@ const {getChangelog:empty}=await import('../lib/changelog.mjs?empty-collection')
 assert.equal((await empty({...news,articles:[]},{apiKey:'test',fetcher:async()=>Response.json({choices:[{finish_reason:'stop',message:{content:'{"entries":[]}'}}]})})).editorial,'empty');
 console.log('Rate-limit retry, bounded waiting, explicit collection failure and genuinely empty selection pass.');
 
-// A malformed generated title must get one recovery attempt on the strict collection path.
+// An over-long title is handed to the rewrite pass before the batch is rejected. The second
+// response shortens it, and both calls share the original generation deadline.
 const {getChangelog:recover}=await import('../lib/changelog.mjs?title-recovery');
 const validEntry={sourceId:0,title:'New species joins the roster',kind:'Added',worldwide:true,scopeReason:'New discovery'};
 const reply=entry=>Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[entry]})}}]});

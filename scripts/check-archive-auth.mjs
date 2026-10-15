@@ -84,6 +84,24 @@ try {
  await assert.rejects(import('./archive-editions.mjs?denied'),/Edition HTTP 401/);
  assert.equal(requests,1);
  assert.equal(await readFile(archive,'utf8'),before,'Authentication failures must not modify the archive');
+ const failingPublisher = asModule(`export async function getPublishedChangelog() { throw new Error('Invalid patch title: sourceId 0 is 94 characters'); }`);
+ const { GET: failGet } = await import(asModule(stripTypeScriptTypes(source)
+  .replace('@/lib/published-changelog.mjs',failingPublisher)
+  .replace('@/lib/changelog.mjs',new URL('../lib/changelog.mjs',import.meta.url).href)
+  .replace('@/lib/public-story.mjs',new URL('../lib/public-story.mjs',import.meta.url).href)));
+ const failedCollection = await failGet(request('?archive',`Bearer ${secret}`));
+ assert.equal(failedCollection.status,500);
+ assert.equal(failedCollection.headers.get('cache-control'),'no-store');
+ assert.equal(failedCollection.headers.get('vercel-cdn-cache-control'),'no-store');
+ assert.deepEqual(await failedCollection.json(),{error:'Invalid patch title: sourceId 0 is 94 characters'});
+ let attempts=0;
+ globalThis.fetch = async () => {
+  attempts++;
+  return Response.json({error:'Invalid patch title: sourceId 0 is 94 characters'},{status:500});
+ };
+ await assert.rejects(import('./archive-editions.mjs?server-error'),/Edition HTTP 500: Invalid patch title: sourceId 0 is 94 characters/);
+ assert.equal(attempts,2,'A transient edition failure is retried once');
+ assert.equal(await readFile(archive,'utf8'),before,'A failed collection must not modify the archive');
 } finally {
  globalThis.fetch = savedFetch;
  if (savedSecret === undefined) delete process.env.ARCHIVE_SECRET;
