@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { nothing } from "@/lib/fonts";
+import { rssAlternate, sharedOpenGraph } from "@/lib/site-metadata";
 
-export const metadata = {title:"About Us | changelog.earth",description:"Why we made Earth's unofficial patch notes."};
+const title = "About Us | changelog.earth";
+const description = "Why we made Earth's unofficial patch notes.";
+export const metadata: Metadata = {
+ title,
+ description,
+ alternates:{canonical:"/about",types:rssAlternate},
+ openGraph:{...sharedOpenGraph,title,description,url:"/about"},
+ twitter:{card:"summary_large_image",title,description},
+};
 
 export default function AboutPage() {
  return <div className="site-shell">

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { nothing } from "@/lib/fonts";
@@ -5,7 +6,7 @@ import { AsciiEarth } from "@/components/ascii-earth";
 import { HeroStars } from "@/components/particle-text";
 import { NotFoundLog } from "@/components/not-found-log";
 
-export const metadata = {title:"Page not found | changelog.earth",description:"This page isn't in any of Earth's patch notes."};
+export const metadata: Metadata = {title:"Page not found | changelog.earth",description:"This page isn't in any of Earth's patch notes.",robots:{index:false}};
 
 export default function NotFound() {
  return <div className="site-shell">
