@@ -1,4 +1,5 @@
 import Home from "@/components/home";
+import { Navbar } from "@/components/navbar";
 import { getPublishedChangelog } from "@/lib/published-changelog.mjs";
 import { publicPage } from "@/lib/public-story.mjs";
 
@@ -13,5 +14,5 @@ export default async function Page() {
  if (!edition.articles.length) throw new Error('No curated edition available; keep the previously published page.');
  // Ship the first page of slim stories only; later pages load from /api/news?page=N on demand.
  const {articles,total} = publicPage(edition.articles);
- return <Home news={{articles}} total={total}/>;
+ return <Home news={{articles}} total={total} navbar={<Navbar/>}/>;
 }

@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { Navbar } from "@/components/navbar";
+import { useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Share03Icon from "@hugeicons/core-free-icons/Share03Icon";
@@ -18,7 +17,8 @@ const patchSymbols:Record<string,string>={Added:'+',Unlocked:'+',Updated:'~',Buf
 const dayFormat = new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
 // Object.groupBy needs Safari 17.4 / Chrome 117, newer than Next's browser targets, and Next doesn't polyfill it.
 function groupByDay(list:Article[]){const days=new Map<string,Article[]>();for(const a of list){const d=a.date.slice(0,10);const g=days.get(d);if(g)g.push(a);else days.set(d,[a]);}return days;}
-export default function Home({news,total:initialTotal}:{news:News;total:number}) {
+// The navbar is a server component (it fetches the GitHub star count), so the page passes it in.
+export default function Home({news,total:initialTotal,navbar}:{news:News;total:number;navbar:ReactNode}) {
  const reducedMotion = useReducedMotion();
  const [articles,setArticles] = useState(news.articles);
  const [total,setTotal] = useState(initialTotal);
@@ -42,7 +42,7 @@ export default function Home({news,total:initialTotal}:{news:News;total:number})
   setLoading(false);
  }
  return <div className="site-shell">
-  <Navbar/>
+  {navbar}
   <main><section className="intro"><HeroStars/><div className="planet-panel"><AsciiEarth/></div><div className="intro-copy"><HeroTitle/><a className="github-pill hero-share" href={shareUrl} target="_blank" rel="noopener noreferrer" aria-label="Share changelog.earth on X (opens a new tab)"><HugeiconsIcon icon={Share03Icon} size={16} aria-hidden="true"/>Share on X</a></div></section>
   <section aria-label="Patch notes" id="releases">
   <div>{[...groups].sort(([a],[b])=>b.localeCompare(a)).map(([day,articles],index)=><motion.section initial={false} whileInView={reducedMotion === false ? {opacity:[.65,1],y:[24,0],scale:[.98,1],filter:["blur(4px)","blur(0px)"]} : {opacity:1,y:0,scale:1,filter:"none"}} viewport={{once:true,amount:.12}} transition={{duration:.55,delay:Math.min(index * .08,.24),ease:[.16,1,.3,1]}} className="terminal-window news-day" key={day} aria-labelledby={`date-${day}`}><div className="terminal-titlebar"><div className="terminal-dots" aria-hidden="true"><i/><i/><i/></div><h2 id={`date-${day}`}><time dateTime={day}>{dayFormat.format(new Date(day+'T12:00:00Z'))}</time></h2><span className="terminal-shell">v{day.replaceAll('-','.')}</span></div><div className="terminal-body"><div className="release">{articles.map(article=><article className="news-entry patch-entry" key={article.url}><p className="patch-line" data-kind={article.kind}><a href={article.url} target="_blank" rel="noreferrer" title={`Source: ${article.publisher}`}><span>[{patchSymbols[article.kind] ?? '~'} {article.kind}] </span>{article.title.replace(/[.!?]$/, '')}</a><StoryInfo article={article}/></p></article>)}</div></div></motion.section>)}</div>
