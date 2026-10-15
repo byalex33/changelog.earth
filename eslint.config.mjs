@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local agent worktrees carry their own builds and node_modules.
+    ".claude/**",
   ]),
   {
     files: ["components/ui/**/*.{ts,tsx}"],
