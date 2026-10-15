@@ -2,6 +2,7 @@ import { rssFeeds } from '../lib/rss-feeds.mjs';
 import { parseRss, readFeed } from '../lib/rss.mjs';
 import assert from 'node:assert/strict';
 import { normalizeArticles, mergeArticles, getNews, sourceCount } from '../lib/news.mjs';
+import { isEligible } from '../lib/changelog.mjs';
 const now = Date.parse('2026-09-19T12:00:00Z');
 const story = {title:'Scientists discover a new species',url:'https://example.org/discovery?utm_source=test',published_at:'2026-09-19T10:00:00Z',news_site:'Example'};
 const normalized = normalizeArticles({results:[story,{...story,url:'javascript:alert(1)'},{...story,published_at:'2026-09-20T00:00:00Z'},{...story,published_at:'not-a-date'},{...story,published_at:'2025-01-01T00:00:00Z'}]},'Spaceflight News',now);
@@ -27,6 +28,7 @@ console.log('News validation, future-date filtering, deduplication, cache/coales
 
 assert.equal(new Set(rssFeeds.map(feed=>feed.url)).size,rssFeeds.length);
 assert.equal(new Set(rssFeeds.map(feed=>feed.id)).size,rssFeeds.length);
+for (const feed of rssFeeds) assert.ok(isEligible({category:feed.category,provider:feed.id}),`${feed.id} would be fetched and then discarded`);
 for (const id of ['ScienceDaily','Phys.org']) assert.equal(rssFeeds.find(feed=>feed.id===id)?.category,'Science & nature');
 for (const [id,category] of [['UN News · Health','Health'],['Yale Environment 360','Environment'],['Carbon Brief','Environment'],['pv magazine','Energy'],['CleanTechnica','Energy'],['ScienceDaily · Health & medicine','Health'],['ScienceDaily · Earth & climate','Environment'],['Science News','Science & nature'],['Medical Xpress','Health'],['MIT News · Research','Science & nature'],['The Guardian · Science','Science & nature'],['The Guardian · Environment','Environment']]) {
  assert.equal(rssFeeds.find(feed=>feed.id===id)?.category,category);

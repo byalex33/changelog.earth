@@ -10,7 +10,7 @@ The collector combines curated [RSS feeds](../lib/rss-feeds.mjs) and Spaceflight
 
 Energy, environment and health coverage includes pv magazine, CleanTechnica, Yale Environment 360, Carbon Brief and a dedicated UN News health feed. These join the existing science, space, technology and positive-news sources under the same editorial policy.
 
-The collector also checks Science News, Medical Xpress, MIT research, the Guardian's science and environment feeds, and ScienceDaily's health and earth/climate feeds. There are 40 inputs in total. Topic feeds share their publisher's candidate-selection turn, and overlapping stories are deduplicated before review.
+The collector also checks Science News, Medical Xpress, MIT research, the Guardian's science and environment feeds, and ScienceDaily's health and earth/climate feeds. There are 28 inputs in total: Spaceflight News and 27 RSS feeds. Every feed is in a category the editor reviews (UN News's general feed is allowed by name); general top-stories, UK, world and business feeds are not collected, because that filter discarded all of their stories. Topic feeds share their publisher's candidate-selection turn, and overlapping stories are deduplicated before review.
 
 For a local collection run, set `EDITION_URL=http://localhost:5173/api/news` and put `ARCHIVE_SECRET` in `.env.local`, then run `node --env-file=.env.local scripts/archive-editions.mjs`. The script adds the archive query parameter and bearer header, refuses to run without the secret, and rejects redirects. This command can use AI credits and writes to the local archive.
 
