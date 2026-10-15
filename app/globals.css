@@ -35,9 +35,7 @@
   --sidebar-accent-foreground: hsl(0, 0%, 25%);
   --sidebar-border: hsl(220, 13%, 91%);
   --sidebar-ring: hsl(0, 0%, 25%);
-  --theme-font-sans: Plus Jakarta Sans, Inter, system-ui, sans-serif;
   --font-serif: Georgia, serif;
-  --theme-font-mono: "JetBrains Mono", monospace;
   --radius: 1rem;
   --shadow-color: hsl(0, 0%, 25%);
   --shadow-opacity: 0.08;
@@ -81,9 +79,7 @@
   --sidebar-accent-foreground: hsl(0, 0%, 85%);
   --sidebar-border: hsl(0, 0%, 12%);
   --sidebar-ring: hsl(0, 0%, 85%);
-  --theme-font-sans: Plus Jakarta Sans, Inter, system-ui, sans-serif;
   --font-serif: Georgia, serif;
-  --theme-font-mono: "JetBrains Mono", monospace;
   --radius: 1rem;
   --shadow-color: hsl(0, 0%, 0%);
   --shadow-opacity: 0.6;
@@ -108,48 +104,6 @@
 main{padding-bottom:40px}
 
 body{letter-spacing:var(--letter-spacing)}
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/theme-0.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(/fonts/theme-1.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/theme-2.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(/fonts/theme-3.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(/fonts/theme-4.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(/fonts/theme-5.ttf) format('truetype');
-}
 
 
 .release{min-width:0}.news-day{margin-bottom:26px}.news-entry{padding:0 0 27px;margin-bottom:25px;border-bottom:1px solid var(--border)}.news-entry h2{font-size:21px;line-height:1.5;letter-spacing:-.5px;font-weight:500;max-width:760px}@media(max-width:600px){.news-entry h2{font-size:19px}}

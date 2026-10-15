@@ -1,8 +1,7 @@
 import Link from "next/link";
-import localFont from "next/font/local";
 import { Navbar } from "@/components/navbar";
+import { nothing } from "@/lib/fonts";
 
-const nothing = localFont({src:"../../public/fonts/nothing/Ndot57-Regular.otf",display:"swap",weight:"400"});
 export const metadata = {title:"About Us | changelog.earth",description:"Why we made Earth's unofficial patch notes."};
 
 export default function AboutPage() {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { mono, sans } from "@/lib/fonts";
 import "./globals.css";
 
 const description = "New species. Balance changes. Unresolved bugs. An unofficial changelog for Earth.";
@@ -34,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${mono.variable} ${sans.variable}`}>
       <body className="antialiased">
         {children}
         {process.env.NEXT_PUBLIC_TRACWELL_PROJECT_KEY && (
