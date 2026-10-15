@@ -13,18 +13,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # Actions are pinned to commits; the token stays out of .git/config while the archive script runs.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22'
       - run: node scripts/archive-editions.mjs
         env:
           ARCHIVE_SECRET: ${{ secrets.ARCHIVE_SECRET }}
+      # main can move during collection, so the commit is rebased onto it and the push retried.
       - name: Save new stories
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git add data/editions.json
           if git diff --cached --quiet; then exit 0; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'Archive newly selected planetary updates'
-          git push
+          remote="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          for attempt in 1 2 3; do git pull --rebase "$remote" main && git push "$remote" HEAD:main && exit 0; sleep 5; done; exit 1
