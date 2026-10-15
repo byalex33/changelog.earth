@@ -4,14 +4,17 @@ import { stripTypeScriptTypes } from 'node:module';
 
 const asModule = source => `data:text/javascript;base64,${Buffer.from(source).toString('base64')}`;
 // Exercise the actual route with a stub at the collection boundary: denied requests must never reach it.
-const publisherUrl = asModule('export const calls=[]; export async function getPublishedChangelog(options) { calls.push(options); return {articles:[{}],editorial:"archived"}; }');
+// 65 stories carrying internal fields the public response must drop; story 31 has only a note.
+const publisherUrl = asModule(`export const calls=[]; export async function getPublishedChangelog(options) { calls.push(options); return {articles:Array.from({length:65},(_,i)=>({title:'T'+i,url:'https://example.org/'+i,date:'2026-10-01T00:00:00.000Z',dateLabel:'Published',publisher:'P',provider:'P',category:'Space',kind:'Added',originalTitle:'O'+i,...(i===30?{note:'N'}:{summary:'S'+i,note:'S'+i}),scopeReason:'r',titleModel:'m',titleStyleVersion:5,worldwide:true})),editorial:"archived"}; }`);
 const { calls } = await import(publisherUrl);
 const source = await readFile(new URL('../app/api/news/route.ts',import.meta.url),'utf8');
 const { GET } = await import(asModule(stripTypeScriptTypes(source)
  .replace('@/lib/published-changelog.mjs',publisherUrl)
- .replace('@/lib/changelog.mjs',new URL('../lib/changelog.mjs',import.meta.url).href)));
+ .replace('@/lib/changelog.mjs',new URL('../lib/changelog.mjs',import.meta.url).href)
+ .replace('@/lib/public-story.mjs',new URL('../lib/public-story.mjs',import.meta.url).href)));
 const savedSecret = process.env.ARCHIVE_SECRET, savedFetch = globalThis.fetch;
 const secret = 'collector-test-secret';
+const publicKeys = ['date','dateLabel','kind','originalTitle','publisher','summary','title','url'];
 const request = (query,authorization) => new Request(`https://example.org/api/news${query}`,{headers:authorization ? {Authorization:authorization} : {}});
 try {
  for (const configured of [undefined,'',secret]) {
@@ -33,12 +36,37 @@ try {
  assert.equal(allowed.status,200);
  assert.equal(allowed.headers.get('cache-control'),'no-store');
  assert.equal(allowed.headers.get('vercel-cdn-cache-control'),'no-store');
+ const draftEdition = await allowed.json();
+ assert.equal(draftEdition.editorial,'archived');
+ assert.equal(draftEdition.articles.length,65,'The collector still receives the whole unpaginated edition');
+ assert.equal(draftEdition.articles[0].scopeReason,'r','The collector still receives internal fields');
  assert.deepEqual(calls,[{draft:true}]);
  delete process.env.ARCHIVE_SECRET;
  const published = await GET(request(''));
  assert.equal(published.status,200);
  assert.equal(published.headers.get('cache-control'),'public, max-age=0, must-revalidate');
+ assert.equal(published.headers.get('vercel-cdn-cache-control'),'public, s-maxage=900, stale-while-revalidate=3600');
  assert.deepEqual(calls,[{draft:true},{draft:false}],'Published reads must remain public without collection credentials');
+ const first = await published.json();
+ assert.equal(first.total,65);
+ assert.deepEqual(first.articles.map(a=>a.url),Array.from({length:30},(_,i)=>'https://example.org/'+i));
+ assert.deepEqual(Object.keys(first.articles[0]).sort(),publicKeys,'Public stories must carry only rendered fields');
+ assert.deepEqual(Object.keys(first).sort(),['articles','total']);
+ const second = await (await GET(request('?page=2'))).json();
+ assert.deepEqual(second.articles.map(a=>a.title),Array.from({length:30},(_,i)=>'T'+(i+30)));
+ assert.equal(second.articles[0].summary,'N','Summary falls back to the note');
+ assert.equal((await (await GET(request('?page=3'))).json()).articles.length,5);
+ assert.deepEqual((await (await GET(request('?page=9'))).json()),{articles:[],total:65});
+ assert.equal(calls.length,5);
+ // Query-string variants would each miss the CDN cache, so anything but a canonical ?page=N is refused before loading.
+ for (const query of ['?foo=1','?x=1','?page=2&x=1','?page=0','?page=02','?page=-1','?page=1.5','?page=abc','?page=','?page=1&page=2','?page=99999','?Archive','?summary']) {
+  const response = await GET(request(query));
+  assert.equal(response.status,400,query);
+  assert.equal(response.headers.get('cache-control'),'public, max-age=300');
+  assert.equal(response.headers.get('vercel-cdn-cache-control'),'public, s-maxage=300');
+  assert.deepEqual(await response.json(),{error:'Unknown parameter'});
+ }
+ assert.equal(calls.length,5,'Rejected query strings must not load the archive');
 
  const archive = new URL('../data/editions.json',import.meta.url);
  const before = await readFile(archive,'utf8');
@@ -61,4 +89,4 @@ try {
  if (savedSecret === undefined) delete process.env.ARCHIVE_SECRET;
  else process.env.ARCHIVE_SECRET = savedSecret;
 }
-console.log('Archive authentication, fail-closed configuration, public reads, collector credentials and denied-write safety pass.');
+console.log('Archive authentication, fail-closed configuration, paginated public reads, unknown-parameter rejection, collector credentials and denied-write safety pass.');
