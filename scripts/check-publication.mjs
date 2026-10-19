@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { loadArchive, getPublishedChangelog, MIGRATION_BATCH } from '../lib/published-changelog.mjs';
-import { applyPatchTitles, readsLikeHeadline, writePatchTitles } from '../lib/patch-titles.mjs';
-import { mergeEditions } from '../lib/edition-archive.mjs';
+import { applyPatchTitles, fitPatchTitle, readsLikeHeadline, writePatchTitles } from '../lib/patch-titles.mjs';
+import { mergeEditions, validateArchive } from '../lib/edition-archive.mjs';
 import { TITLE_STYLE_VERSION, WORLDWIDE_POLICY, isPublishedWorldwide } from '../lib/editorial-policy.mjs';
 const article={title:'Old headline',originalTitle:'New cat species identified',summary:'Scientists identify a previously unknown wild cat species.',note:'A new cat species was identified.',url:'https://example.org/publication-test',date:'2000-01-01',provider:'Example',publisher:'Example',category:'Positive news',kind:'Added'};
 const entry={sourceId:0,title:'Added: New wild cat joins species roster',kind:'Added',worldwide:true,scopeReason:'New species expands scientific knowledge.'};
@@ -68,11 +68,43 @@ requests=[];
 assert.equal(rewritten.title,'New wild cat joins species roster');
 assert.equal(requests.length,3,'A title that stays over 80 characters gets one fresh generation');
 requests=[];
-await assert.rejects(writePatchTitles([article],{apiKey:'test',fetcher:async()=>{
+const incident='Coral heat-resistance stat raised in laboratory trials across Pacific reef systems this week now'.padEnd(107,'x');
+assert.equal(incident.length,107);
+assert.equal(fitPatchTitle(incident),'Coral heat-resistance stat raised in laboratory trials across Pacific reef');
+assert.ok(fitPatchTitle(incident).length<=80 && !readsLikeHeadline(fitPatchTitle(incident)),'A fitted title keeps a game concept that sits inside the limit');
+assert.equal(fitPatchTitle('Possible cause found for long COVID fatigue debuff, '.padEnd(107,'x')),'Possible cause found for long COVID fatigue debuff');
+assert.equal(fitPatchTitle('B'.repeat(107)),'B'.repeat(80),'A title with no word boundary is cut at the limit');
+assert.equal(fitPatchTitle('Bird memory skill tree expanded'),'Bird memory skill tree expanded');
+assert.equal(fitPatchTitle('Added: '+'C'.repeat(100)).length,80,'A label prefix does not count toward the fitted limit');
+const [fitted]=await writePatchTitles([article],{apiKey:'test',fetcher:async()=>{
  requests.push(1);
- return requests.length%2===1 ? headlineReply(longHeadline) : rewriteReply('y'.repeat(90));
-}}),new RegExp(`Invalid patch title: sourceId 0 is ${longHeadline.length} characters`));
-assert.equal(requests.length,4,'An over-long title does not retry generation indefinitely');
+ return requests.length%2===1 ? headlineReply(incident) : rewriteReply('y'.repeat(90));
+}});
+assert.equal(requests.length,4,'A title that stays over 80 characters is regenerated once, then fitted');
+assert.equal(fitted.title,fitPatchTitle(incident));
+assert.equal(validateArchive([fitted])[0].title,fitted.title,'A fitted title is a valid archived story');
+requests=[];
+const second={...article,url:'https://example.org/publication-test-2',originalTitle:'Second reef headline'};
+const batchReply=title=>Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({entries:[{...entry,title:'New wild cat joins species roster'},{...entry,sourceId:1,title}]})}}]});
+const fittedBatch=await writePatchTitles([article,second],{apiKey:'test',fetcher:async()=>{
+ requests.push(1);
+ return requests.length%2===1 ? batchReply(incident) : rewriteReply('y'.repeat(90));
+}});
+assert.equal(fittedBatch[0].title,'New wild cat joins species roster','Stories that already fit are not rewritten to make room');
+assert.equal(fittedBatch[1].title,fitPatchTitle(incident),'Only the over-long title is fitted');
+assert.equal(requests.length,4);
+requests=[];
+[rewritten]=await writePatchTitles([article],{apiKey:'test',fetcher:async()=>(requests.push(1),requests.length===1 ? headlineReply(longHeadline) : rewriteReply('Wild cat found in the high Andes'))});
+assert.equal(requests.length,2,'A shorter headline is kept when the over-long title was itself a headline');
+assert.equal(rewritten.title,'Wild cat found in the high Andes');
+requests=[];
+const [keptConcept]=await writePatchTitles([article],{apiKey:'test',fetcher:async()=>{
+ requests.push(1);
+ return requests.length%2===1 ? headlineReply(incident) : rewriteReply('Wild cat found in the high Andes');
+}});
+assert.equal(requests.length,4,'A long game-concept title is not replaced by a headline rewrite');
+assert.equal(keptConcept.title,fitPatchTitle(incident));
+assert.ok(!readsLikeHeadline(keptConcept.title));
 await loadArchive(async()=>Response.json([corrected,{...rejected,url:'https://example.org/local',originalTitle:'Local nature reserve receives a land gift'}]),true);
 const oldFetch=globalThis.fetch;
 try {

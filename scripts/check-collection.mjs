@@ -30,4 +30,17 @@ const {getChangelog:invalid}=await import('../lib/changelog.mjs?title-recovery-f
 titleCalls=0;
 await assert.rejects(invalid(news,{apiKey:'test',fetcher:async()=>{titleCalls++;return reply({...validEntry,sourceId:4});}}),/Invalid patch title/);
 assert.equal(titleCalls,2,'Invalid output must not retry indefinitely');
-console.log('Invalid title recovery and bounded strict validation pass.');
+const {getChangelog:longTitle}=await import('../lib/changelog.mjs?long-title');
+const {validateArchive}=await import('../lib/edition-archive.mjs');
+let longCalls=0;
+const longNews={...news,articles:[{...news.articles[0],summary:'A discovery.',provider:'Example',publisher:'Example'}]};
+const longEdition=await longTitle(longNews,{apiKey:'test',fetcher:async()=>{
+ longCalls++;
+ return reply(longCalls%2===1 ? {...validEntry,title:'Q'.repeat(107)} : {...validEntry,title:'z'.repeat(90)});
+}});
+assert.equal(longCalls,4,'A 107-character title is rewritten, regenerated once, then fitted');
+assert.equal(longEdition.editorial,'generated');
+assert.equal(longEdition.articles.length,1);
+assert.ok(longEdition.articles[0].title.length>0 && longEdition.articles[0].title.length<=80,longEdition.articles[0].title);
+assert.equal(validateArchive(longEdition.articles)[0].title,'Q'.repeat(80),'The edition payload stays archivable');
+console.log('Invalid title recovery, fitted long titles and bounded strict validation pass.');
