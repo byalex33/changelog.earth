@@ -1,5 +1,24 @@
 [
   {
+    "title": "Condor insights unlocked for biodiversity treaty",
+    "summary": "In 1987, biologists captured the last free-flying condor to transfer it to captivity, and the largest flying North American bird species was officially declared extinct in the wild. Today, after decades of coordinated efforts and millions of dollars spent on captive breeding and reintroduction efforts, more than 300 condors have been restored to their natural environment.",
+    "url": "https://phys.org/news/2026-10-species-california-condor-lessons-global.html",
+    "date": "2026-10-25T00:00:01.000Z",
+    "dateLabel": "Published",
+    "publisher": "Phys.org",
+    "provider": "Phys.org",
+    "category": "Science & nature",
+    "kind": "Unlocked",
+    "originalTitle": "Who should have a say in which species are saved? The California condor offers lessons for a global biodiversity treaty",
+    "note": "In 1987, biologists captured the last free-flying condor to transfer it to captivity, and the largest flying North American bird species was officially declared extinct in the wild. Today, after decades of coordinated efforts and millions of dollars spent on captive breeding and reintroduction efforts, more than 300 condors have been restored to their natural environment.",
+    "worldwide": true,
+    "scopeReason": "Global biodiversity treaty relevance",
+    "titleRevision": 1,
+    "titleProvider": "groq",
+    "titleModel": "openai/gpt-oss-120b",
+    "titleStyleVersion": 5
+  },
+  {
     "title": "Allegiant jet order excluded from global patch notes",
     "summary": "Allegiant Air has ordered six additional Boeing 737 MAX aircraft for delivery in 2028, exercising its first purchase… The post Allegiant orders six more Boeing 737 MAX jets for 2028 delivery appeared first on AeroTime .",
     "url": "https://www.aerotime.aero/articles/allegiant-six-boeing-737-max-order-2028",
